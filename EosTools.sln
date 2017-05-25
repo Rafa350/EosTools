@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceModel", "ResourceModel\ResourceModel.csproj", "{CB7F132C-D5CA-4B30-873A-671B77A0DCA0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doxygen", "Doxygen", "{278E009E-FD4A-4895-A9BF-F546F9504E36}"
+	ProjectSection(SolutionItems) = preProject
+		doc\Doxyfile.dox = doc\Doxyfile.dox
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceCompiler", "ResourceCompiler\ResourceCompiler.csproj", "{6DEC810B-3D28-4715-A9F0-3124A428E346}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EosResourceCompiler", "EosResourceCompiler\EosResourceCompiler.csproj", "{A50119B5-99E2-412C-9778-46320AA87208}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceCompilerBuildTask", "ResourceCompilerBuildTask\ResourceCompilerBuildTask.csproj", "{2ADACB13-2C52-422E-9125-A6BB15C640D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EosFontGenerator", "EosFontGenerator\EosFontGenerator.csproj", "{8A72229C-F55C-4E37-AA93-88596FE7F962}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CB7F132C-D5CA-4B30-873A-671B77A0DCA0}.Debug|x86.ActiveCfg = Debug|x86
+		{CB7F132C-D5CA-4B30-873A-671B77A0DCA0}.Debug|x86.Build.0 = Debug|x86
+		{CB7F132C-D5CA-4B30-873A-671B77A0DCA0}.Release|x86.ActiveCfg = Release|x86
+		{CB7F132C-D5CA-4B30-873A-671B77A0DCA0}.Release|x86.Build.0 = Release|x86
+		{6DEC810B-3D28-4715-A9F0-3124A428E346}.Debug|x86.ActiveCfg = Debug|x86
+		{6DEC810B-3D28-4715-A9F0-3124A428E346}.Debug|x86.Build.0 = Debug|x86
+		{6DEC810B-3D28-4715-A9F0-3124A428E346}.Release|x86.ActiveCfg = Release|x86
+		{6DEC810B-3D28-4715-A9F0-3124A428E346}.Release|x86.Build.0 = Release|x86
+		{A50119B5-99E2-412C-9778-46320AA87208}.Debug|x86.ActiveCfg = Debug|x86
+		{A50119B5-99E2-412C-9778-46320AA87208}.Debug|x86.Build.0 = Debug|x86
+		{A50119B5-99E2-412C-9778-46320AA87208}.Release|x86.ActiveCfg = Release|x86
+		{A50119B5-99E2-412C-9778-46320AA87208}.Release|x86.Build.0 = Release|x86
+		{2ADACB13-2C52-422E-9125-A6BB15C640D0}.Debug|x86.ActiveCfg = Debug|x86
+		{2ADACB13-2C52-422E-9125-A6BB15C640D0}.Debug|x86.Build.0 = Debug|x86
+		{2ADACB13-2C52-422E-9125-A6BB15C640D0}.Release|x86.ActiveCfg = Release|x86
+		{2ADACB13-2C52-422E-9125-A6BB15C640D0}.Release|x86.Build.0 = Release|x86
+		{8A72229C-F55C-4E37-AA93-88596FE7F962}.Debug|x86.ActiveCfg = Debug|x86
+		{8A72229C-F55C-4E37-AA93-88596FE7F962}.Debug|x86.Build.0 = Debug|x86
+		{8A72229C-F55C-4E37-AA93-88596FE7F962}.Release|x86.ActiveCfg = Release|x86
+		{8A72229C-F55C-4E37-AA93-88596FE7F962}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

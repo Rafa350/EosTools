@@ -1,0 +1,4 @@
+<map id="CommandItem" name="CommandItem">
+<area shape="rect" id="node2" href="$class_eos_tools_1_1v1_1_1_resource_model_1_1_model_1_1_menu_resources_1_1_item.html" title="Item" alt="" coords="35,80,82,107"/>
+<area shape="rect" id="node3" href="$interface_eos_tools_1_1v1_1_1_resource_model_1_1_model_1_1_i_visitable.html" title="IVisitable" alt="" coords="21,5,96,32"/>
+</map>

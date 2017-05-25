@@ -1,0 +1,4 @@
+<map id="Visit" name="Visit">
+<area shape="rect" id="node2" href="$class_eos_tools_1_1v1_1_1_resource_model_1_1_model_1_1_menu_resources_1_1_menu.html#a601bb85f799a9f14437f7f840bd52900" title="EosTools.v1.ResourceModel.\lModel.MenuResources.Menu.Accept\lVisitor" alt="" coords="101,5,337,61"/>
+<area shape="rect" id="node3" href="$interface_eos_tools_1_1v1_1_1_resource_model_1_1_model_1_1_i_visitor.html#a3a9ea00a0f306cff62c277910475f278" title="EosTools.v1.ResourceModel.\lModel.IVisitor.Visit" alt="" coords="385,13,576,54"/>
+</map>
