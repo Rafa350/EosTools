@@ -1,5 +1,0 @@
-var namespace_eos_tools_1_1v1_1_1_resource_model_1_1_model_1_1_font_table_resources =
-[
-    [ "FontTable", "class_eos_tools_1_1v1_1_1_resource_model_1_1_model_1_1_font_table_resources_1_1_font_table.html", "class_eos_tools_1_1v1_1_1_resource_model_1_1_model_1_1_font_table_resources_1_1_font_table" ],
-    [ "FontTableItem", "class_eos_tools_1_1v1_1_1_resource_model_1_1_model_1_1_font_table_resources_1_1_font_table_item.html", "class_eos_tools_1_1v1_1_1_resource_model_1_1_model_1_1_font_table_resources_1_1_font_table_item" ]
-];
