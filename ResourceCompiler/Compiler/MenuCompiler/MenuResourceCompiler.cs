@@ -39,11 +39,14 @@
             TextWriter writer;
             string fileName, path;
 
-            if ((parameters != null) && parameters.Exists("output-extension"))
-                outputExtension = parameters["output-extension"];
+            if (parameters != null) {
 
-            if ((parameters != null) && parameters.Exists("output-header-extension"))
-                outputHeaderExtension = parameters["output-header-extension"];
+                if (parameters.Exists("output-extension"))
+                    outputExtension = parameters["output-extension"];
+
+                if (parameters.Exists("output-header-extension"))
+                    outputHeaderExtension = parameters["output-header-extension"];
+            }
 
             fileName = String.Format("{0}.{1}", resource.ResourceId, outputExtension);
             path = Path.Combine(outputPath, fileName);
