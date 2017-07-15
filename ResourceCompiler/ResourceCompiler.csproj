@@ -53,6 +53,7 @@
     <Compile Include="Compiler\MenuCompiler\MenuResourceCompiler.cs" />
     <Compile Include="Compiler\MenuCompiler\MenuUtils.cs" />
     <Compile Include="Compiler\ResourceCompiler.cs" />
+    <Compile Include="Compiler\StringCompiler\StringResourceCompiler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

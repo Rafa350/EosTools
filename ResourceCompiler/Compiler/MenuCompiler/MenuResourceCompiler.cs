@@ -14,8 +14,8 @@
     /// </summary>
     public sealed class MenuResourceCompiler {
 
-        private string outputExtension = "c";
-        private string outputHeaderExtension = "h";
+        private const string defOutputExtension = "c";
+        private const string defOutputHeaderExtension = "h";
 
         private Version version;
 
@@ -39,6 +39,10 @@
             TextWriter writer;
             string fileName, path;
 
+            string outputBaseFileName = resource.ResourceId;
+            string outputExtension = defOutputExtension;
+            string outputHeaderExtension = defOutputHeaderExtension;
+
             if (parameters != null) {
 
                 if (parameters.Exists("output-extension"))
@@ -48,7 +52,7 @@
                     outputHeaderExtension = parameters["output-header-extension"];
             }
 
-            fileName = String.Format("{0}.{1}", resource.ResourceId, outputExtension);
+            fileName = String.Format("{0}.{1}", outputBaseFileName, outputExtension);
             path = Path.Combine(outputPath, fileName);
 
             writer = new StreamWriter(
@@ -64,7 +68,7 @@
                 writer.Close();
             }
 
-            fileName = String.Format("{0}.{1}", resource.ResourceId, outputHeaderExtension);
+            fileName = String.Format("{0}.{1}", outputBaseFileName, outputHeaderExtension);
             path = Path.Combine(outputPath, fileName);
 
             writer = new StreamWriter(

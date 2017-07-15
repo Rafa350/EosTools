@@ -72,12 +72,16 @@
     <Compile Include="Model\MenuResources\MenuItem.cs" />
     <Compile Include="Model\Resource.cs" />
     <Compile Include="Model\ResourcePool.cs" />
+    <Compile Include="Model\StringResource.cs" />
     <Compile Include="Model\TextDataResources\TextData.cs" />
     <Compile Include="Model\TextDataResources\TextDataItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="signature.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\StringResources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
