@@ -1,16 +1,30 @@
-using System;
-
 namespace EosTools.v1.ResourceModel.Model {
+
+    using System;
+    using EosTools.v1.ResourceModel.Model.StringResources;
 
     public sealed class StringResource : Resource {
 
-        public StringResource(string resourceId, string language): 
+        private readonly Strings strings;
+
+        public StringResource(string resourceId, string language, Strings strings): 
             base(resourceId, language) {
 
+            if (strings == null)
+                throw new ArgumentNullException("strings");
+
+            this.strings = strings;
         }
 
         public override void AcceptVisitor(IVisitor visitor) {
-            throw new NotImplementedException();
+
+            visitor.Visit(this);
+        }
+
+        public Strings Strings {
+            get {
+                return strings;
+            }
         }
     }
 }

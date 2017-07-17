@@ -1,12 +1,32 @@
 namespace EosTools.v1.ResourceCompiler.Compiler.StringCompiler {
 
-    using System;
     using EosTools.v1.ResourceModel.Model;
-    using EosTools.v1.ResourceModel.Model.TextDataResources;
+    using System;
+    using System.IO;
+    using System.Reflection;
 
     public sealed class StringResourceCompiler {
 
-        public void Compile( )
-    }
+        private readonly Version version;
 
+        public StringResourceCompiler() {
+
+            version = Assembly.GetExecutingAssembly().GetName().Version;
+        }
+
+        public void Compile(StringResource resource, string outputPath, CompilerParameters parameters) {
+
+            if (resource == null)
+                throw new ArgumentNullException("resource");
+
+        }
+
+        private void GenerateHeader(StringResource resource, TextWriter writer) {
+
+        }
+
+        private void GenerateCode(StringResource resource, TextWriter writer) {
+
+        }
+    }
 }
