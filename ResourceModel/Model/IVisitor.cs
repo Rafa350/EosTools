@@ -10,6 +10,7 @@
         void Visit(ResourcePool resources);
         void Visit(MenuResource resource);
         void Visit(FontResource resource);
+        void Visit(BitmapResource resource);
         void Visit(FormResource resource);
         void Visit(StringResource resource);
 

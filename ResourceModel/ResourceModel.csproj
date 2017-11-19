@@ -54,6 +54,7 @@
     <Compile Include="Model\BinaryDataResources\BinaryData.cs" />
     <Compile Include="Model\BinaryDataResources\BinaryDataItem.cs" />
     <Compile Include="Model\DefaultVisitor.cs" />
+    <Compile Include="Model\BitmapResource.cs" />
     <Compile Include="Model\FontResource.cs" />
     <Compile Include="Model\FontResources\Font.cs" />
     <Compile Include="Model\FontResources\FontChar.cs" />
@@ -81,6 +82,7 @@
     <None Include="signature.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Model\BitmapResources\" />
     <Folder Include="Model\StringResources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

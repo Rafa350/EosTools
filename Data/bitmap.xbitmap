@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bitmapResource version="1.0" resourceId="BmpMain">
+        <bitmap format="rgb565">
+        </bitmap>
+    </bitmapResource>
+</resources>
