@@ -20,6 +20,7 @@
         void Visit(Form form);
 
         void Visit(Menu menu);
+        void Visit(Strings strings);
         void Visit(CommandItem item);
         void Visit(MenuItem item);
         void Visit(ExitItem item);

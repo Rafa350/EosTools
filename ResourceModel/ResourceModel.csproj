@@ -74,17 +74,21 @@
     <Compile Include="Model\Resource.cs" />
     <Compile Include="Model\ResourcePool.cs" />
     <Compile Include="Model\StringResource.cs" />
-    <Compile Include="Model\TextDataResources\TextData.cs" />
-    <Compile Include="Model\TextDataResources\TextDataItem.cs" />
+    <Compile Include="Model\StringResources\Strings.cs" />
+    <Compile Include="Model\StringResources\StringsItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="signature.pfx" />
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <Folder Include="Model\BitmapResources\" />
     <Folder Include="Model\StringResources\" />
   </ItemGroup>
+=======
+  <ItemGroup />
+>>>>>>> 33603139e15600757fbe384588c31b718305dc57
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

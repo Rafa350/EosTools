@@ -1,15 +1,15 @@
 ﻿namespace EosTools.v1.ResourceCompiler.Compiler.MenuCompiler {
 
+    using EosTools.v1.ResourceCompiler.Compiler;
+    using EosTools.v1.ResourceModel.Model;
+    using EosTools.v1.ResourceModel.Model.MenuResources;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Reflection;
-    using EosTools.v1.ResourceCompiler.Compiler;
-    using EosTools.v1.ResourceModel.Model;
-    using EosTools.v1.ResourceModel.Model.MenuResources;
-    
+
     /// <summary>
-    /// Compila un fitxer de recursor de menu, i genera els fitxers font i 
+    /// Compila un fitxer de recursos de menu, i genera els fitxers font i 
     /// de capcelera
     /// </summary>
     public sealed class MenuResourceCompiler {
@@ -17,7 +17,7 @@
         private const string defOutputExtension = "c";
         private const string defOutputHeaderExtension = "h";
 
-        private Version version;
+        private readonly Version version;
 
         private int offset = 0;
         private IDictionary<Item, int> itemOffsets;
@@ -38,6 +38,9 @@
 
             TextWriter writer;
             string fileName, path;
+
+            if (resource == null)
+                throw new ArgumentNullException("resource");
 
             string outputBaseFileName = resource.ResourceId;
             string outputExtension = defOutputExtension;
