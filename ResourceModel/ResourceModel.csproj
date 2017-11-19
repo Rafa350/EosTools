@@ -81,14 +81,10 @@
   <ItemGroup>
     <None Include="signature.pfx" />
   </ItemGroup>
-<<<<<<< HEAD
   <ItemGroup>
     <Folder Include="Model\BitmapResources\" />
     <Folder Include="Model\StringResources\" />
   </ItemGroup>
-=======
-  <ItemGroup />
->>>>>>> 33603139e15600757fbe384588c31b718305dc57
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
