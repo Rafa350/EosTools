@@ -3,6 +3,7 @@
     using System;
     using EosTools.v1.ResourceCompiler.Compiler.FontCompiler;
     using EosTools.v1.ResourceCompiler.Compiler.MenuCompiler;
+    using EosTools.v1.ResourceCompiler.Compiler.BitmapCompiler;
     using EosTools.v1.ResourceModel.Model;
 
     public sealed class ResourceCompiler: IResourceCompiler {
@@ -21,6 +22,12 @@
             public override void Visit(FontResource resource) {
 
                 FontResourceCompiler compiler = new FontResourceCompiler();
+                compiler.Compile(resource, outputFolder, parameters);
+            }
+
+            public override void Visit(BitmapResource resource) {
+
+                BitmapResourceCompiler compiler = new BitmapResourceCompiler();
                 compiler.Compile(resource, outputFolder, parameters);
             }
 

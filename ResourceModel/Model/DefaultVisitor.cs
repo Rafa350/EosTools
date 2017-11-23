@@ -37,6 +37,11 @@
         public virtual void Visit(Form form) {
         }
 
+        public virtual void Visit(BitmapResource resource) {
+
+            throw new NotImplementedException();
+        }
+
         public virtual void Visit(Strings strings) {
         }
 

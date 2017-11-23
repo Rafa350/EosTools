@@ -45,6 +45,10 @@
                     case "formResource":
                         resources.Add(ProcessFormResource(resourceNode));
                         break;
+
+                    case "bitmapResource":
+                        resources.Add(ProcessBitmapResource(resourceNode));
+                        break;
                 }
             }
 
@@ -212,6 +216,11 @@
         }
 
         private FormResource ProcessFormResource(XmlNode resourceNode) {
+
+            return null;
+        }
+
+        private Resource ProcessBitmapResource(XmlNode bitmapNode) {
 
             return null;
         }

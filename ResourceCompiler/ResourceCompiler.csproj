@@ -46,6 +46,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compiler\BitmapCompiler\BitmapResourceCompiler.cs" />
     <Compile Include="Compiler\CodeBuilder.cs" />
     <Compile Include="Compiler\FontCompiler\FontResourceCompiler.cs" />
     <Compile Include="Compiler\CompilerParameters.cs" />

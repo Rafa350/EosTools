@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceModel", "ResourceModel\ResourceModel.csproj", "{CB7F132C-D5CA-4B30-873A-671B77A0DCA0}"
 EndProject
@@ -18,35 +18,60 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceCompilerBuildTask",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EosFontGenerator", "EosFontGenerator\EosFontGenerator.csproj", "{8A72229C-F55C-4E37-AA93-88596FE7F962}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EosBitmapGenerator", "EosBitmapGenerator\EosBitmapGenerator.csproj", "{8E77FD38-D5C4-455F-974A-CCCADBA80228}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CB7F132C-D5CA-4B30-873A-671B77A0DCA0}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{CB7F132C-D5CA-4B30-873A-671B77A0DCA0}.Debug|x86.ActiveCfg = Debug|x86
 		{CB7F132C-D5CA-4B30-873A-671B77A0DCA0}.Debug|x86.Build.0 = Debug|x86
+		{CB7F132C-D5CA-4B30-873A-671B77A0DCA0}.Release|Any CPU.ActiveCfg = Release|x86
 		{CB7F132C-D5CA-4B30-873A-671B77A0DCA0}.Release|x86.ActiveCfg = Release|x86
 		{CB7F132C-D5CA-4B30-873A-671B77A0DCA0}.Release|x86.Build.0 = Release|x86
+		{6DEC810B-3D28-4715-A9F0-3124A428E346}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{6DEC810B-3D28-4715-A9F0-3124A428E346}.Debug|x86.ActiveCfg = Debug|x86
 		{6DEC810B-3D28-4715-A9F0-3124A428E346}.Debug|x86.Build.0 = Debug|x86
+		{6DEC810B-3D28-4715-A9F0-3124A428E346}.Release|Any CPU.ActiveCfg = Release|x86
 		{6DEC810B-3D28-4715-A9F0-3124A428E346}.Release|x86.ActiveCfg = Release|x86
 		{6DEC810B-3D28-4715-A9F0-3124A428E346}.Release|x86.Build.0 = Release|x86
+		{A50119B5-99E2-412C-9778-46320AA87208}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{A50119B5-99E2-412C-9778-46320AA87208}.Debug|x86.ActiveCfg = Debug|x86
 		{A50119B5-99E2-412C-9778-46320AA87208}.Debug|x86.Build.0 = Debug|x86
+		{A50119B5-99E2-412C-9778-46320AA87208}.Release|Any CPU.ActiveCfg = Release|x86
 		{A50119B5-99E2-412C-9778-46320AA87208}.Release|x86.ActiveCfg = Release|x86
 		{A50119B5-99E2-412C-9778-46320AA87208}.Release|x86.Build.0 = Release|x86
+		{2ADACB13-2C52-422E-9125-A6BB15C640D0}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{2ADACB13-2C52-422E-9125-A6BB15C640D0}.Debug|x86.ActiveCfg = Debug|x86
 		{2ADACB13-2C52-422E-9125-A6BB15C640D0}.Debug|x86.Build.0 = Debug|x86
+		{2ADACB13-2C52-422E-9125-A6BB15C640D0}.Release|Any CPU.ActiveCfg = Release|x86
 		{2ADACB13-2C52-422E-9125-A6BB15C640D0}.Release|x86.ActiveCfg = Release|x86
 		{2ADACB13-2C52-422E-9125-A6BB15C640D0}.Release|x86.Build.0 = Release|x86
+		{8A72229C-F55C-4E37-AA93-88596FE7F962}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{8A72229C-F55C-4E37-AA93-88596FE7F962}.Debug|x86.ActiveCfg = Debug|x86
 		{8A72229C-F55C-4E37-AA93-88596FE7F962}.Debug|x86.Build.0 = Debug|x86
+		{8A72229C-F55C-4E37-AA93-88596FE7F962}.Release|Any CPU.ActiveCfg = Release|x86
 		{8A72229C-F55C-4E37-AA93-88596FE7F962}.Release|x86.ActiveCfg = Release|x86
 		{8A72229C-F55C-4E37-AA93-88596FE7F962}.Release|x86.Build.0 = Release|x86
+		{8E77FD38-D5C4-455F-974A-CCCADBA80228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E77FD38-D5C4-455F-974A-CCCADBA80228}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E77FD38-D5C4-455F-974A-CCCADBA80228}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8E77FD38-D5C4-455F-974A-CCCADBA80228}.Debug|x86.Build.0 = Debug|Any CPU
+		{8E77FD38-D5C4-455F-974A-CCCADBA80228}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E77FD38-D5C4-455F-974A-CCCADBA80228}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E77FD38-D5C4-455F-974A-CCCADBA80228}.Release|x86.ActiveCfg = Release|Any CPU
+		{8E77FD38-D5C4-455F-974A-CCCADBA80228}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {853E1D0F-31C3-4AE1-BC8B-CABE3D149363}
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
