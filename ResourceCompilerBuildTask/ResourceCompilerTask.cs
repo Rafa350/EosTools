@@ -31,15 +31,27 @@
                 foreach (string parameter in parameters.Split(';'))
                     compilerParameters.Add(parameter);
 
-                ResourcePool resources;
-                using (Stream stream = new FileStream(
-                     item.ItemSpec, FileMode.Open, FileAccess.Read, FileShare.None)) {
-                    IResourceReader reader = new ResourceReader(stream);
-                    resources = reader.Read();
-                }
+                try {
+                    ResourcePool resources;
+                    using (Stream stream = new FileStream(
+                         item.ItemSpec, FileMode.Open, FileAccess.Read, FileShare.None)) {
+                        IResourceReader reader = new ResourceReader(stream);
+                        resources = reader.Read();
+                    }
 
-                IResourceCompiler compiler = new ResourceCompiler();
-                compiler.Compile(resources, outPath, compilerParameters);
+                    IResourceCompiler compiler = new ResourceCompiler();
+                    compiler.Compile(resources, outPath, compilerParameters);
+                }
+                catch (Exception ex) {
+
+                    Exception e = ex;
+                    while (e != null) {
+                        Log.LogMessage(e.Message);
+                        e = e.InnerException;
+                    }
+
+                    throw;
+                }
             }
 
             return true;

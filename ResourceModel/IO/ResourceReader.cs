@@ -164,32 +164,48 @@
             int code = Int32.Parse(charNode.Attributes["code"].Value.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber);
             int advance = Convert.ToInt32(charNode.Attributes["advance"].Value);
 
+            // Comprova si es un fomt amb bitmap
+            //
             XmlNode bitmapNode = charNode.SelectSingleNode("bitmap");
-            int left = Convert.ToInt32(bitmapNode.Attributes["left"].Value);
-            int top = Convert.ToInt32(bitmapNode.Attributes["top"].Value);
-            int width = Convert.ToInt32(bitmapNode.Attributes["width"].Value);
-            int height = Convert.ToInt32(bitmapNode.Attributes["height"].Value);
+            if (bitmapNode != null) {
+                int left = Convert.ToInt32(bitmapNode.Attributes["left"].Value);
+                int top = Convert.ToInt32(bitmapNode.Attributes["top"].Value);
+                int width = Convert.ToInt32(bitmapNode.Attributes["width"].Value);
+                int height = Convert.ToInt32(bitmapNode.Attributes["height"].Value);
 
-            List<byte> bitmap = new List<byte>();
-            foreach (XmlNode scanLineNode in bitmapNode.SelectNodes("scanLine")) {
-                string scanLine = scanLineNode.InnerText;
-                if (String.IsNullOrEmpty(scanLine))
-                    bitmap.Add(0);
-                else {
-                    byte b = 0;
-                    byte mask = 0x80;
-                    for (int i = 0; i < scanLine.Length; i++) {
-                        if (scanLine[i] == '#')
-                            b |= (byte) (mask >> (i & 0x07));
-                        if (((i % 8) == 7) || (i == scanLine.Length - 1)) {
-                            bitmap.Add(b);
-                            b = 0;
+                List<byte> bitmap = new List<byte>();
+                foreach (XmlNode scanLineNode in bitmapNode.SelectNodes("scanLine")) {
+                    string scanLine = scanLineNode.InnerText;
+                    if (String.IsNullOrEmpty(scanLine))
+                        bitmap.Add(0);
+                    else {
+                        byte b = 0;
+                        byte mask = 0x80;
+                        for (int i = 0; i < scanLine.Length; i++) {
+                            if (scanLine[i] == '#')
+                                b |= (byte)(mask >> (i & 0x07));
+                            if (((i % 8) == 7) || (i == scanLine.Length - 1)) {
+                                bitmap.Add(b);
+                                b = 0;
+                            }
                         }
                     }
                 }
+
+                return new FontChar(code, left, top, width, height, advance, bitmap.ToArray());
             }
 
-            return new FontChar(code, left, top, width, height, advance, bitmap.ToArray());
+            // Comprova si es un fomt amb glyh
+            //
+            XmlNode glyphNode = charNode.SelectSingleNode("glyph");
+            if (glyphNode != null) {
+
+                return null;
+            }
+
+            // Es un font sense imatge
+            //
+            return new FontChar(code, 0, 0, 0, 0, advance, null);
         }
 
         private FontTableResource ProcessFontTableResource(XmlNode resourceNode) {

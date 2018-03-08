@@ -121,8 +121,8 @@
             else
                 writer.WriteLine("const unsigned char font{0}[] = {{", fontName);
             writer.WriteLine();
-            writer.WriteLine("              // FONTINFO");
-            writer.WriteLine("/* {8:X4} */    0x{0:X2}, 0x{1:X2}, 0x{2:X2}, 0x{3:X2}, 0x{4:X2}, 0x{5:X2}, 0x{6:X2}, 0x{7:X2},",
+            writer.WriteLine("                // FONTINFO");
+            writer.WriteLine("  /* {8:X4} */    0x{0:X2}, 0x{1:X2}, 0x{2:X2}, 0x{3:X2}, 0x{4:X2}, 0x{5:X2}, 0x{6:X2}, 0x{7:X2},",
                 flags,
                 font.Height,
                 font.Ascent,
@@ -137,13 +137,14 @@
 
             // Genera el mapa de caracters
             //
-            writer.WriteLine("              // CHARMAP");
+            writer.WriteLine("                // CHARMAP");
             for (int code = firstChar; code <= lastChar; code++) {
                 if (charList.Contains(code)) {
-                    writer.WriteLine("/* {2:X4} */    0x{0:X2}, 0x{1:X2},",
+                    writer.WriteLine("  /* {2:X4} */    0x{0:X2}, 0x{1:X2},         // '{3}'",
                         (byte) (charInfoOffset % 256),
                         (byte) (charInfoOffset / 256),
-                        addr);
+                        addr,
+                        (char) code);
                     addr += charMapBytes;
                     charInfoOffset += charInfoBytes;
                 }
@@ -154,7 +155,7 @@
 
             // Genera la taula de caracters
             //
-            writer.WriteLine("              // CHARINFO");
+            writer.WriteLine("                // CHARINFO");
             foreach (FontChar fontChar in font.Chars) {
                 int offset;
                 if (bitmapOffsets.TryGetValue(fontChar.Code, out offset))
@@ -162,7 +163,7 @@
                 else
                     offset = 0xFFFF;
 
-                writer.WriteLine("/* {7:X4} */    0x{0:X2}, 0x{1:X2}, 0x{2:X2}, 0x{3:X2}, 0x{4:X2}, 0x{5:X2}, 0x{6:X2},",
+                writer.WriteLine("  /* {7:X4} */    0x{0:X2}, 0x{1:X2}, 0x{2:X2}, 0x{3:X2}, 0x{4:X2}, 0x{5:X2}, 0x{6:X2},",
                     fontChar.Width,
                     fontChar.Height,
                     (byte) fontChar.Left,
@@ -177,25 +178,30 @@
 
             // Genera la taula de bitmaps
             //
-            writer.WriteLine("              // CHARBITS");
+            writer.WriteLine("                // CHARBITS");
             foreach (FontChar fontChar in font.Chars) {
                 if (fontChar.Bitmap != null && fontChar.Bitmap.Length > 0) {
                     int columnCount = 0;
-                    int maxCount = fontChar.Bitmap.Length;
-                    for (int byteCount = 0; byteCount < maxCount; byteCount++) {
+                    for (int byteCount = 0; byteCount < fontChar.Bitmap.Length; byteCount++) {
                         byte b = fontChar.Bitmap[byteCount];
-                        if (byteCount == 0) 
-                            writer.Write("/* {0:X4} */    ", addr);
+                        if (columnCount == 0) {
+                            if (byteCount == 0)
+                                writer.Write("  /* {0:X4} */    ", addr);
+                            else
+                                writer.Write("                ");
+                        }
                         writer.Write("0x{0:X2}, ", b);
+
                         columnCount++;
                         if (columnCount == 8) {
                             columnCount = 0;
                             writer.WriteLine();
-                            writer.Write("              ");
                         }
                     }
+
                     if (columnCount > 0)
                         writer.WriteLine();
+
                     addr += fontChar.Bitmap.Length;
                 }
             }
