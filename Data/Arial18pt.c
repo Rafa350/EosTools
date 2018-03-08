@@ -5,11 +5,12 @@
  *
  *       Fuente : Arial 18pt
  *
- *       Fecha de generacion  : 29/01/2016 22:08:36
- *       Nombre del generador : XFontGenerator
+ *       Fecha de generacion  : 08/03/2018 11:08:51
+ *       Nombre del generador : EosResourceCompiler
  *       Version del generador: 1.0.0.0
  *
  ************************************************************************/
+
 
 #ifdef FONT_USE_Arial18pt
 
@@ -96,6 +97,3 @@ const unsigned char fontArial18pt[] = {
 
 
 #endif
-
-
-/************************************************************************/

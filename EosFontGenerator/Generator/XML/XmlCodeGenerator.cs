@@ -49,15 +49,15 @@
                 foreach (CharacterDescriptor characterDescriptor in fontDescriptor.CharacterDescriptors) {
                     wr.WriteStartElement("char");
                     wr.WriteAttributeString("code", String.Format("0x{0:X2}", Convert.ToInt32(characterDescriptor.Character)));
-                    wr.WriteAttributeString("left", characterDescriptor.Left.ToString());
-                    wr.WriteAttributeString("top", characterDescriptor.Top.ToString());
-                    wr.WriteAttributeString("width", characterDescriptor.Width.ToString());
-                    wr.WriteAttributeString("height", characterDescriptor.Height.ToString());
                     wr.WriteAttributeString("advance", characterDescriptor.Advance.ToString());
 
                     if (characterDescriptor.Bitmap != null) {
                         wr.WriteStartElement("bitmap");
                         wr.WriteAttributeString("bpp", "1");
+                        wr.WriteAttributeString("left", characterDescriptor.Left.ToString());
+                        wr.WriteAttributeString("top", characterDescriptor.Top.ToString());
+                        wr.WriteAttributeString("width", characterDescriptor.Width.ToString());
+                        wr.WriteAttributeString("height", characterDescriptor.Height.ToString());
                         for (int y = 0; y < characterDescriptor.Height; y++) {
                             wr.WriteStartElement("scanLine");
                             StringBuilder sb = new StringBuilder();

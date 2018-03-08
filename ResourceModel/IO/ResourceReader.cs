@@ -162,14 +162,16 @@
         private FontChar ProcessFontChar(XmlNode charNode) {
 
             int code = Int32.Parse(charNode.Attributes["code"].Value.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber);
-            int left = Convert.ToInt32(charNode.Attributes["left"].Value);
-            int top = Convert.ToInt32(charNode.Attributes["top"].Value);
-            int width = Convert.ToInt32(charNode.Attributes["width"].Value);
-            int height = Convert.ToInt32(charNode.Attributes["height"].Value);
             int advance = Convert.ToInt32(charNode.Attributes["advance"].Value);
 
+            XmlNode bitmapNode = charNode.SelectSingleNode("bitmap");
+            int left = Convert.ToInt32(bitmapNode.Attributes["left"].Value);
+            int top = Convert.ToInt32(bitmapNode.Attributes["top"].Value);
+            int width = Convert.ToInt32(bitmapNode.Attributes["width"].Value);
+            int height = Convert.ToInt32(bitmapNode.Attributes["height"].Value);
+
             List<byte> bitmap = new List<byte>();
-            foreach (XmlNode scanLineNode in charNode.SelectNodes("bitmap/scanLine")) {
+            foreach (XmlNode scanLineNode in bitmapNode.SelectNodes("scanLine")) {
                 string scanLine = scanLineNode.InnerText;
                 if (String.IsNullOrEmpty(scanLine))
                     bitmap.Add(0);
