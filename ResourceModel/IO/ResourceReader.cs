@@ -9,7 +9,8 @@
     using EosTools.v1.ResourceModel.Model.FontResources;
     using EosTools.v1.ResourceModel.Model.FontTableResources;
     using EosTools.v1.ResourceModel.Model.MenuResources;
-    
+    using EosTools.v1.ResourceModel.Model.BitmapResources;
+
     public class ResourceReader: IResourceReader {
 
         private readonly Stream stream;
@@ -238,9 +239,37 @@
             return null;
         }
 
-        private Resource ProcessBitmapResource(XmlNode bitmapNode) {
+        /// <summary>
+        /// Procesa un node 'bitmapResource'
+        /// </summary>
+        /// <param name="resourceNode">El node.</param>
+        /// <returns>L'objecte BitmapResource generat.</returns>
+        /// 
+        private Resource ProcessBitmapResource(XmlNode resourceNode) {
 
-            return null;
+            string language = CultureInfo.CurrentCulture.Name;
+
+            string resourceId = resourceNode.Attributes["resourceId"].Value;
+
+            if (resourceNode.Attributes["language"] != null)
+                language = resourceNode.Attributes["language"].Value;
+
+            XmlNode bitmapNode = resourceNode.SelectSingleNode("bitmap");
+
+            return new BitmapResource(resourceId, null, ProcessBitmap(bitmapNode));
+        }
+
+        /// <summary>
+        /// Procesa un node 'bitmap'
+        /// </summary>
+        /// <param name="bitmapNode">El node a procesar.</param>
+        /// <returns>L'objecte BitmapData generat.</returns>
+        /// 
+        private BitmapData ProcessBitmap(XmlNode bitmapNode) {
+
+            string source = bitmapNode.Attributes["source"].Value;
+            string format = bitmapNode.Attributes["format"].Value;
+            return new BitmapData(source, format);
         }
     }
 }

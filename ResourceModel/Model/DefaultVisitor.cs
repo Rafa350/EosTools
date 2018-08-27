@@ -5,6 +5,7 @@
     using EosTools.v1.ResourceModel.Model.FormResources;
     using EosTools.v1.ResourceModel.Model.MenuResources;
     using EosTools.v1.ResourceModel.Model.StringResources;
+    using EosTools.v1.ResourceModel.Model.BitmapResources;
 
     public abstract class DefaultVisitor: IVisitor {
 
@@ -25,8 +26,8 @@
         }
 
         public virtual void Visit(FontResource resource) {
-            
-            throw new NotImplementedException();
+
+            resource.Font.AcceptVisitor(this);
         }
 
         public virtual void Visit(FormResource resource) {
@@ -34,15 +35,22 @@
             throw new NotImplementedException();
         }
 
+        public virtual void Visit(BitmapResource resource) {
+
+            resource.Bitmap.AcceptVisitor(this);
+        }
+
         public virtual void Visit(Form form) {
         }
 
-        public virtual void Visit(BitmapResource resource) {
+        public virtual void Visit(Strings strings) {
 
             throw new NotImplementedException();
         }
 
-        public virtual void Visit(Strings strings) {
+        public virtual void Visit(BitmapData bitmap) {
+
+            throw new NotImplementedException();
         }
 
         public virtual void Visit(Menu menu) {
@@ -64,7 +72,6 @@
         }
 
         public void Visit(Font font) {
-
         }
 
         public void Visit(FontChar fontChar) {

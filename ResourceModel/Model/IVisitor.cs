@@ -4,6 +4,7 @@
     using EosTools.v1.ResourceModel.Model.FormResources;
     using EosTools.v1.ResourceModel.Model.MenuResources;
     using EosTools.v1.ResourceModel.Model.StringResources;
+    using EosTools.v1.ResourceModel.Model.BitmapResources;
 
     public interface IVisitor {
 
@@ -13,6 +14,8 @@
         void Visit(BitmapResource resource);
         void Visit(FormResource resource);
         void Visit(StringResource resource);
+
+        void Visit(BitmapData bitmap);
 
         void Visit(Font font);
         void Visit(FontChar fontChar);
