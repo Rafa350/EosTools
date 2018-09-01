@@ -7,6 +7,7 @@
     using EosTools.v1.ResourceModel.Model.StringResources;
     using System;
 
+
     public abstract class DefaultVisitor: IVisitor {
 
         public virtual void Visit(ResourcePool resources) {
@@ -15,21 +16,41 @@
                 resource.AcceptVisitor(this);
         }
 
+        /// <summary>
+        /// Visita un objecte 'MenuResource'
+        /// </summary>
+        /// <param name="resource">L'objecte a visitar.</param>
+        /// 
         public virtual void Visit(MenuResource resource) {
 
             resource.Menu.AcceptVisitor(this);
         }
 
+        /// <summary>
+        /// Visita un objecte 'StringsResource'
+        /// </summary>
+        /// <param name="resource">L'objecte a visitar.</param>
+        /// 
         public virtual void Visit(StringResource resource) {
 
             resource.Strings.AcceptVisitor(this);
         }
 
+        /// <summary>
+        /// Visita un objecte 'FontResource'
+        /// </summary>
+        /// <param name="resource">L'objecte a visitar.</param>
+        /// 
         public virtual void Visit(FontResource resource) {
-            
-            throw new NotImplementedException();
+
+            resource.Font.AcceptVisitor(this);
         }
 
+        /// <summary>
+        /// Visita un objecte 'FormResource'
+        /// </summary>
+        /// <param name="resource">L'objecte a visitar.</param>
+        /// 
         public virtual void Visit(FormResource resource) {
 
             throw new NotImplementedException();
@@ -56,9 +77,6 @@
         public virtual void Visit(Bitmap bitmap) {
         }
 
-        public virtual void Visit(Strings strings) {
-        }
-
         public virtual void Visit(Menu menu) {
 
             foreach (Item item in menu.Items)
@@ -78,10 +96,13 @@
         }
 
         public void Visit(Font font) {
-
         }
 
         public void Visit(FontChar fontChar) {
+        }
+
+        public void Visit(Strings strings) {
+
         }
     }
 }

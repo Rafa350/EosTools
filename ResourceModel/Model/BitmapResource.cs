@@ -4,7 +4,7 @@
     using EosTools.v1.ResourceModel.Model.BitmapResources;
 
     /// <summary>
-    /// Recurs que representa un font.
+    /// Recurs que representa un bitmap.
     /// </summary>
     /// 
     public sealed class BitmapResource: Resource {
@@ -16,7 +16,6 @@
         /// </summary>
         /// <param name="resourceId">Identificador del recurs.</param>
         /// <param name="languaje">Llenguatge del recurs.</param>
-        /// <param name="font">El font que conte aquest recurs.</param>
         /// <param name="bitmap">El bitmap que conte aquest recurs.</param>
         /// 
         public BitmapResource(string resourceId, string languaje, Bitmap bitmap) :

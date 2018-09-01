@@ -53,7 +53,7 @@
             }
         }
 
-        public ReadOnlyCollection<FontChar> Chars {
+        public IReadOnlyCollection<FontChar> Chars {
             get {
                 return chars.AsReadOnly();
             }

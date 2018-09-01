@@ -7,6 +7,7 @@
     /// <summary>
     /// Descriptor d'un recurs de menu.
     /// </summary>
+    /// 
     public sealed class Menu: IVisitable {
 
         private readonly string title;
@@ -16,6 +17,7 @@
         /// Contructor del menu.
         /// </summary>
         /// <param name="title">Titol de menu.</param>
+        /// 
         public Menu(string title) {
 
             if (String.IsNullOrEmpty("title"))
@@ -29,6 +31,7 @@
         /// </summary>
         /// <param name="title">Titol del menu.</param>
         /// <param name="items">Llista d'items del menu.</param>
+        /// 
         public Menu(string title, params Item[] items) {
 
             if (String.IsNullOrEmpty("title"))
@@ -43,6 +46,7 @@
         /// </summary>
         /// <param name="title">Titol del menu.</param>
         /// <param name="items">Llista d'items del menu.</param>
+        /// 
         public Menu(string title, IEnumerable<Item> items) {
 
             if (String.IsNullOrEmpty("title"))
@@ -56,20 +60,29 @@
         /// Accepta un visitador.
         /// </summary>
         /// <param name="visitor">El visitador.</param>
+        /// 
         public void AcceptVisitor(IVisitor visitor) {
 
             visitor.Visit(this);
         }
 
+        /// <summary>
+        /// Obte el titol.
+        /// </summary>
+        /// 
         public string Title {
             get {
                 return title;
             }
         }
 
-        public ReadOnlyCollection<Item> Items {
+        /// <summary>
+        /// Obte els subitems.
+        /// </summary>
+        /// 
+        public IReadOnlyCollection<Item> Items {
             get {
-                return items.AsReadOnly();
+                return items;
             }
         }
     }
