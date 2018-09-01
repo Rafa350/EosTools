@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <bitmapResource version="1.0" resourceId="BmpMain">
-        <bitmap source="bitmap.png" format="rgb565"/>
+        <bitmap source="bitmap.bmp" format="rgb565"/>
     </bitmapResource>
 </resources>

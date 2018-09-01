@@ -9,7 +9,8 @@
     using EosTools.v1.ResourceModel.Model.FontResources;
     using EosTools.v1.ResourceModel.Model.FontTableResources;
     using EosTools.v1.ResourceModel.Model.MenuResources;
-    
+    using EosTools.v1.ResourceModel.Model.BitmapResources;
+
     public class ResourceReader: IResourceReader {
 
         private readonly Stream stream;
@@ -55,19 +56,31 @@
             return new ResourcePool(resources);
         }
 
-        private Resource ProcessMenuResource(XmlNode resourceNode) {
+        /// <summary>
+        /// Procesa un node 'menuResource'
+        /// </summary>
+        /// <param name="menuResourceNode">El node a procesar.</param>
+        /// <returns>El recurs.</returns>
+        /// 
+        private Resource ProcessMenuResource(XmlNode menuResourceNode) {
 
-            string resourceId = resourceNode.Attributes["resourceId"].Value;
+            string resourceId = menuResourceNode.Attributes["resourceId"].Value;
 
             string language = CultureInfo.CurrentCulture.Name;
 
-            if (resourceNode.Attributes["language"] != null)
-                language = resourceNode.Attributes["language"].Value;
+            if (menuResourceNode.Attributes["language"] != null)
+                language = menuResourceNode.Attributes["language"].Value;
 
-            XmlNode menuNode = resourceNode.SelectSingleNode("menu");
+            XmlNode menuNode = menuResourceNode.SelectSingleNode("menu");
             return new MenuResource(resourceId, language, ProcessMenu(menuNode));
         }
 
+        /// <summary>
+        /// Procesa un node 'menu'
+        /// </summary>
+        /// <param name="menuNode">El node a procesar.</param>
+        /// <returns>El menu</returns>
+        /// 
         private Menu ProcessMenu(XmlNode menuNode) {
 
             string title = menuNode.Attributes["title"].Value;
@@ -92,9 +105,16 @@
             return new Menu(title, items);
         }
 
+        /// <summary>
+        /// Procesa un node 'menuItem'
+        /// </summary>
+        /// <param name="menuItemNode">El node a procesar.</param>
+        /// <returns>L'objecte 'MenuItem</returns>
+        /// 
         private MenuItem ProcessMenuItem(XmlNode menuItemNode) {
 
             string title = menuItemNode.Attributes["title"].Value;
+
             string displayFormat = null;
             if (menuItemNode.Attributes["displayFormat"] != null) {
                 displayFormat = menuItemNode.Attributes["displayFormat"].Value;
@@ -102,14 +122,20 @@
                     displayFormat = String.Empty;
             }
 
-            Menu menu = null;
+            Menu subMenu = null;
             XmlNode menuNode = menuItemNode.SelectSingleNode("menu");
             if (menuNode != null)
-                menu = ProcessMenu(menuNode);
+                subMenu = ProcessMenu(menuNode);
 
-            return new MenuItem(title, displayFormat, menu);
+            return new MenuItem(title, displayFormat, subMenu);
         }
 
+        /// <summary>
+        /// Procesa un node 'commandItem'
+        /// </summary>
+        /// <param name="commandItemNode">El node a procesar.</param>
+        /// <returns>L'objecte 'CommandItem'</returns>
+        /// 
         private CommandItem ProcessCommandItem(XmlNode commandItemNode) {
 
             string title = commandItemNode.Attributes["title"].Value;
@@ -124,27 +150,44 @@
             return new CommandItem(title, displayFormat, command);
         }
 
-        private ExitItem ProcessExitItem(XmlNode commandItemNode) {
+        /// <summary>
+        /// Procesa un node 'exitItem'
+        /// </summary>
+        /// <param name="exitItemNode">El node a procesar.</param>
+        /// <returns>L'objecte 'ExitItem'</returns>
+        /// 
+        private ExitItem ProcessExitItem(XmlNode exitItemNode) {
 
-            string title = commandItemNode.Attributes["title"].Value;
+            string title = exitItemNode.Attributes["title"].Value;
 
             return new ExitItem(title);
         }
 
-        private FontResource ProcessFontResource(XmlNode resourceNode) {
+        /// <summary>
+        /// Procesa un node 'fontResource'
+        /// </summary>
+        /// <param name="fontResourceNode">El node a procesar.</param>
+        /// <returns>L'objecte 'FontResource'</returns>
+        /// 
+        private FontResource ProcessFontResource(XmlNode fontResourceNode) {
+
+            string resourceId = fontResourceNode.Attributes["resourceId"].Value;
 
             string language = CultureInfo.CurrentCulture.Name;
+            if (fontResourceNode.Attributes["language"] != null)
+                language = fontResourceNode.Attributes["language"].Value;
 
-            string resourceId = resourceNode.Attributes["resourceId"].Value;
-            
-            if (resourceNode.Attributes["language"] != null)
-                language = resourceNode.Attributes["language"].Value;
-
-            XmlNode fontNode = resourceNode.SelectSingleNode("font");
+            XmlNode fontNode = fontResourceNode.SelectSingleNode("font");
 
             return new FontResource(resourceId, null, ProcessFont(fontNode));
         }
 
+        /// <summary>
+        /// Procesa un node 'font'
+        /// </summary>
+        /// <param name="fontNode">El node a procesar.</param>
+        /// <returns>L'objecte 'Font'</returns>
+        /// 
         private Font ProcessFont(XmlNode fontNode) {
 
             string name = fontNode.Attributes["name"].Value;
@@ -159,6 +202,12 @@
             return new Font(name, height, ascent, descent, chars);
         }
 
+        /// <summary>
+        /// Procesa un node 'char'
+        /// </summary>
+        /// <param name="charNode">El node a procesar.</param>
+        /// <returns>L'objecte 'FontChar'</returns>
+        /// 
         private FontChar ProcessFontChar(XmlNode charNode) {
 
             int code = Int32.Parse(charNode.Attributes["code"].Value.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber);
@@ -208,10 +257,10 @@
             return new FontChar(code, 0, 0, 0, 0, advance, null);
         }
 
-        private FontTableResource ProcessFontTableResource(XmlNode resourceNode) {
+        private FontTableResource ProcessFontTableResource(XmlNode fontTableResourceNode) {
 
-            string resourceId = resourceNode.Attributes["resourceId"].Value;
-            XmlNode fontTableNode = resourceNode.SelectSingleNode("fontTable");
+            string resourceId = fontTableResourceNode.Attributes["resourceId"].Value;
+            XmlNode fontTableNode = fontTableResourceNode.SelectSingleNode("fontTable");
 
             return new FontTableResource(resourceId, null, ProcessFontTable(fontTableNode));
         }
@@ -233,14 +282,47 @@
             return new FontTableItem(fontId, fontName);
         }
 
-        private FormResource ProcessFormResource(XmlNode resourceNode) {
+        /// <summary>
+        /// Procesa un node 'formResource'
+        /// </summary>
+        /// <param name="formResourceNode">El node a procesar.</param>
+        /// <returns>L'objecte 'FormResource'</returns>
+        /// 
+        private FormResource ProcessFormResource(XmlNode formResourceNode) {
 
             return null;
         }
 
-        private Resource ProcessBitmapResource(XmlNode bitmapNode) {
+        /// <summary>
+        /// Procesa un node 'bitmapResource'
+        /// </summary>
+        /// <param name="bitmapResourceNode">El node a procesar.</param>
+        /// <returns>L'objecte BitmapResource.</returns>
+        /// 
+        private BitmapResource ProcessBitmapResource(XmlNode bitmapResourceNode) {
 
-            return null;
+            string resourceId = bitmapResourceNode.Attributes["resourceId"].Value;
+
+            string language = CultureInfo.CurrentCulture.Name;
+            if (bitmapResourceNode.Attributes["language"] != null)
+                language = bitmapResourceNode.Attributes["language"].Value;
+
+            XmlNode bitmapNode = bitmapResourceNode.SelectSingleNode("bitmap");
+            return new BitmapResource(resourceId, language, ProcessBitmapNode(bitmapNode));
+        }
+
+        /// <summary>
+        /// Procesa un node 'bitmap'
+        /// </summary>
+        /// <param name="bitmapNode">El node a procesar.</param>
+        /// <returns>L'objecte 'Bitmap'</returns>
+        /// 
+        private Bitmap ProcessBitmapNode(XmlNode bitmapNode) {
+
+            string source = bitmapNode.Attributes["source"].Value;
+            BitmapFormat format = (BitmapFormat) Enum.Parse(typeof(BitmapFormat), bitmapNode.Attributes["format"].Value, true);
+
+            return new Bitmap(source, format);
         }
     }
 }

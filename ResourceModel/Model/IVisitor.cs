@@ -1,5 +1,6 @@
 ﻿namespace EosTools.v1.ResourceModel.Model {
 
+    using EosTools.v1.ResourceModel.Model.BitmapResources;
     using EosTools.v1.ResourceModel.Model.FontResources;
     using EosTools.v1.ResourceModel.Model.FormResources;
     using EosTools.v1.ResourceModel.Model.MenuResources;
@@ -13,6 +14,8 @@
         void Visit(BitmapResource resource);
         void Visit(FormResource resource);
         void Visit(StringResource resource);
+
+        void Visit(Bitmap bitmap);
 
         void Visit(Font font);
         void Visit(FontChar fontChar);

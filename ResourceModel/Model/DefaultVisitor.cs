@@ -1,10 +1,11 @@
 ﻿namespace EosTools.v1.ResourceModel.Model {
 
-    using System;
+    using EosTools.v1.ResourceModel.Model.BitmapResources;
     using EosTools.v1.ResourceModel.Model.FontResources;
     using EosTools.v1.ResourceModel.Model.FormResources;
     using EosTools.v1.ResourceModel.Model.MenuResources;
     using EosTools.v1.ResourceModel.Model.StringResources;
+    using System;
 
     public abstract class DefaultVisitor: IVisitor {
 
@@ -37,9 +38,22 @@
         public virtual void Visit(Form form) {
         }
 
+        /// <summary>
+        /// Visita un 'BitmapResource'
+        /// </summary>
+        /// <param name="resource">L'objecte a visitar.</param>
+        /// 
         public virtual void Visit(BitmapResource resource) {
 
-            throw new NotImplementedException();
+            resource.Bitmap.AcceptVisitor(this);
+        }
+
+        /// <summary>
+        /// Visita un 'Bitmap'
+        /// </summary>
+        /// <param name="bitmap">L'objecte a visitar.</param>
+        /// 
+        public virtual void Visit(Bitmap bitmap) {
         }
 
         public virtual void Visit(Strings strings) {

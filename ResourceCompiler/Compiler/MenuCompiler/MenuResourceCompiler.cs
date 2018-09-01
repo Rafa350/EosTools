@@ -12,6 +12,7 @@
     /// Compila un fitxer de recursos de menu, i genera els fitxers font i 
     /// de capcelera
     /// </summary>
+    /// 
     public sealed class MenuResourceCompiler {
 
         private const string defOutputExtension = "c";
@@ -32,8 +33,9 @@
         /// Compila el recurs.
         /// </summary>
         /// <param name="resource">Recurs del menu.</param>
-        /// <param name="outputPath">Carpeta del fitxer de sortida</param>
+        /// <param name="outputPath">Carpeta del fitxer de sortida.</param>
         /// <param name="parameters">Parametres de compilacio.</param>
+        /// 
         public void Compile(MenuResource resource, string outputPath, CompilerParameters parameters) {
 
             TextWriter writer;

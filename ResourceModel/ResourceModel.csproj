@@ -56,7 +56,7 @@
     <Compile Include="IO\ResourceWriter.cs" />
     <Compile Include="Model\BinaryDataResources\BinaryData.cs" />
     <Compile Include="Model\BinaryDataResources\BinaryDataItem.cs" />
-    <Compile Include="Model\BitmapResources\BitmapData.cs" />
+    <Compile Include="Model\BitmapResources\Bitmap.cs" />
     <Compile Include="Model\DefaultVisitor.cs" />
     <Compile Include="Model\BitmapResource.cs" />
     <Compile Include="Model\FontResource.cs" />

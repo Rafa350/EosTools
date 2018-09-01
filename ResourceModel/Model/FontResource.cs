@@ -6,6 +6,7 @@
     /// <summary>
     /// Recurs que representa un font.
     /// </summary>
+    /// 
     public sealed class FontResource: Resource {
 
         private readonly Font font;
@@ -16,6 +17,7 @@
         /// <param name="resourceId">Identificador del recurs.</param>
         /// <param name="languaje">Llenguatge del recurs.</param>
         /// <param name="font">El font que conte aquest recurs.</param>
+        /// 
         public FontResource(string resourceId, string languaje, Font font) :
             base(resourceId, languaje) {
 
@@ -29,6 +31,7 @@
         /// Accepta un visitador.
         /// </summary>
         /// <param name="visitor">El visitador.</param>
+        /// 
         public override void AcceptVisitor(IVisitor visitor) {
 
             visitor.Visit(this);
@@ -37,6 +40,7 @@
         /// <summary>
         /// Obte el font contingut en el recurs.
         /// </summary>
+        /// 
         public Font Font {
             get {
                 return font;
