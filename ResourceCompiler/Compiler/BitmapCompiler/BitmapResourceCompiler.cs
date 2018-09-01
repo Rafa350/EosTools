@@ -1,14 +1,14 @@
 ﻿namespace EosTools.v1.ResourceCompiler.Compiler.BitmapCompiler {
 
     using EosTools.v1.ResourceModel.Model;
+    using EosTools.v1.ResourceModel.Model.BitmapResources;
     using System;
     using System.IO;
     using System.Reflection;
-    using System.Text;
 
     using Bitmap = EosTools.v1.ResourceModel.Model.BitmapResources.Bitmap;
-    using Image = System.Drawing.Bitmap;
     using Color = System.Drawing.Color;
+    using Image = System.Drawing.Bitmap;
 
     public class BitmapResourceCompiler {
 
@@ -98,8 +98,13 @@
 
             writer.WriteLine("const unsigned char bitmap{0}[] = {{", resource.ResourceId);
             writer.WriteLine();
-            writer.WriteLine("    0x{0:X2}, 0x{1:X2},", image.Width >> 16, image.Width & 0xFF);
-            writer.WriteLine("    0x{0:X2}, 0x{1:X2},", image.Height >> 16, image.Height & 0xFF);
+            writer.WriteLine("    0x{0:X2}, 0x{1:X2},    // width : {2}", image.Width >> 16, image.Width & 0xFF, image.Width);
+            writer.WriteLine("    0x{0:X2}, 0x{1:X2},    // height: {2}", image.Height >> 16, image.Height & 0xFF, image.Height);
+            switch (bitmap.Format) {
+                case BitmapFormat.RGB565:
+                    writer.WriteLine("    0x{0:X2},          // format: {1}", Convert.ToInt32(bitmap.Format), bitmap.Format.ToString()); 
+                    break;
+            }
             writer.WriteLine();
 
             for (int y = 0; y < image.Height; y++) {
@@ -109,7 +114,13 @@
                         writer.Write("    ");
 
                     Color color = image.GetPixel(x, y);
-                    writer.Write(String.Format("0x{0:X2}, 0x{1:X2}, 0x{2:X2}, ", color.R, color.G, color.B));
+                    switch (bitmap.Format) {
+                        case ResourceModel.Model.BitmapResources.BitmapFormat.RGB565: {
+                            int c = (color.R << 11) | (color.G << 5) | color.B;
+                            writer.Write(String.Format("0x{0:X2}, 0x{1:X2}, ", c >> 16, c & 0xFF));
+                            break;
+                        }
+                    }
 
                     if ((x % columns) == (columns - 1))
                         writer.WriteLine();

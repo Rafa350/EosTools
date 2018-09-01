@@ -3,7 +3,9 @@
     using System;
 
     public enum BitmapFormat {
-        rgb565
+        RGB565 = 0,
+        RGB888 = 1,
+        ARGB8888 = 2,
     }
 
     public class Bitmap: IVisitable {
