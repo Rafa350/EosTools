@@ -102,7 +102,7 @@
             writer.WriteLine("    0x{0:X2}, 0x{1:X2},    // height: {2}", image.Height >> 16, image.Height & 0xFF, image.Height);
             switch (bitmap.Format) {
                 case BitmapFormat.RGB565:
-                    writer.WriteLine("    0x00, 0x{0:X2},    // flags : {1}", Convert.ToInt32(bitmap.Format), bitmap.Format.ToString()); 
+                    writer.WriteLine("    0x00, 0x{0:X2},    // flags : {1}", Convert.ToInt32(bitmap.Format), bitmap.Format.ToString());
                     break;
             }
             writer.WriteLine();
@@ -116,8 +116,11 @@
                     Color color = image.GetPixel(x, y);
                     switch (bitmap.Format) {
                         case ResourceModel.Model.BitmapResources.BitmapFormat.RGB565: {
-                            int c = (color.R << 11) | (color.G << 5) | color.B;
-                            writer.Write(String.Format("0x{0:X2}, 0x{1:X2}, ", c >> 16, c & 0xFF));
+                            int r = (color.R >> 3) & 0x1F;
+                            int g = (color.G >> 2) & 0x3F;
+                            int b = (color.B >> 3) & 0x1F;
+                            int c = (r << 11) | (g << 5) | b;
+                            writer.Write(String.Format("0x{0:X2}, 0x{1:X2}, ", c & 0xFF, c >> 8));
                             break;
                         }
                     }
