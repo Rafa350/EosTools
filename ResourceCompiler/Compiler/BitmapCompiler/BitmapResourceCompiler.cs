@@ -102,7 +102,7 @@
             writer.WriteLine("    0x{0:X2}, 0x{1:X2},    // height: {2}", image.Height >> 16, image.Height & 0xFF, image.Height);
             switch (bitmap.Format) {
                 case BitmapFormat.RGB565:
-                    writer.WriteLine("    0x{0:X2},          // format: {1}", Convert.ToInt32(bitmap.Format), bitmap.Format.ToString()); 
+                    writer.WriteLine("    0x00, 0x{0:X2},    // flags : {1}", Convert.ToInt32(bitmap.Format), bitmap.Format.ToString()); 
                     break;
             }
             writer.WriteLine();
@@ -128,6 +128,8 @@
                     else if (x == image.Width - 1)
                         writer.WriteLine();
                 }
+                if (y != image.Height - 1)
+                    writer.WriteLine();
             }
 
             writer.WriteLine("};");
