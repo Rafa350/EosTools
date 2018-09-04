@@ -147,19 +147,19 @@
 
         private void GenerateMenu(TextWriter writer, Menu menu) {
 
-            writer.WriteLine("                // MENUINFO");
-            writer.WriteLine("  /* {0:X4} */    0x{1:X2}, ", 
+            writer.WriteLine("                   // MENUINFO");
+            writer.WriteLine("    /* {0:X4} */     0x{1:X2}, ", 
                 offset,
                 menu.Items.Count);
             offset += 1;
 
-            writer.Write("  /* {0:X4} */    0x{1:X2}, ", 
+            writer.Write("    /* {0:X4} */     0x{1:X2}, ", 
                 offset,
                 menu.Title.Length);
             int byteCount = 1;
             foreach (char ch in menu.Title) {
                 if (byteCount == 0)
-                    writer.Write("              ");
+                    writer.Write("                   ");
                 writer.Write("'{0}', ", ch);
                 byteCount++;
                 if (byteCount == 8) {
@@ -171,10 +171,10 @@
                 writer.WriteLine();
             offset += menu.Title.Length + 1;
 
-            writer.WriteLine("                // ITEMMAP");
+            writer.WriteLine("                   // ITEMMAP");
             foreach (Item item in menu.Items) {
                 int itemOffset = itemOffsets[item];
-                writer.WriteLine("  /* {0:X4} */    0x{1:X2}, 0x{2:X2}, ", 
+                writer.WriteLine("    /* {0:X4} */     0x{1:X2}, 0x{2:X2}, ", 
                     offset, 
                     itemOffset % 256, 
                     itemOffset / 256);
@@ -193,13 +193,13 @@
 
         private void GenerateCommandItem(TextWriter writer, CommandItem item) {
 
-            writer.WriteLine("                // COMMANDITEMINFO");
+            writer.WriteLine("                   // COMMANDITEMINFO");
 
-            writer.WriteLine("  /* {0:X4} */    0x00,",
+            writer.WriteLine("    /* {0:X4} */     0x00,",
                 offset);
             offset += 1;
 
-            writer.Write("  /* {0:X4} */    0x{1:X2}, ",
+            writer.Write("    /* {0:X4} */     0x{1:X2}, ",
                 offset,
                 item.Title.Length);
             int byteCount = 1;
@@ -217,7 +217,7 @@
                 writer.WriteLine();
             offset += item.Title.Length + 1;
 
-            writer.WriteLine("  /* {0:X4} */    {1}, ",
+            writer.WriteLine("    /* {0:X4} */     {1}, ",
                 offset,
                 item.Command);
             offset += 1;
@@ -225,19 +225,19 @@
 
         private void GenerateExitItem(TextWriter writer, ExitItem item) {
 
-            writer.WriteLine("                // EXITITEMINFO");
+            writer.WriteLine("                   // EXITITEMINFO");
 
-            writer.WriteLine("  /* {0:X4} */    0x02,",
+            writer.WriteLine("    /* {0:X4} */     0x02,",
                 offset);
             offset += 1;
 
-            writer.Write("  /* {0:X4} */    0x{1:X2}, ",
+            writer.Write("    /* {0:X4} */     0x{1:X2}, ",
                 offset,
                 item.Title.Length);
             int byteCount = 1;
             foreach (char ch in item.Title) {
                 if (byteCount == 0)
-                    writer.Write("              ");
+                    writer.Write("                  ");
                 writer.Write("'{0}', ", ch);
                 byteCount++;
                 if (byteCount == 8) {
@@ -252,19 +252,19 @@
 
         private void GenerateMenuItem(TextWriter writer, MenuItem item) {
 
-            writer.WriteLine("                // MENUITEMINFO");
+            writer.WriteLine("                   // MENUITEMINFO");
 
-            writer.WriteLine("  /* {0:X4} */    0x01, ",
+            writer.WriteLine("    /* {0:X4} */     0x01, ",
                 offset);
             offset += 1;
 
-            writer.Write("  /* {0:X4} */    0x{1:X2}, ",
+            writer.Write("    /* {0:X4} */     0x{1:X2}, ",
                 offset,
                 item.Title.Length);
             int byteCount = 1;
             foreach (char ch in item.Title) {
                 if (byteCount == 0)
-                    writer.Write("              ");
+                    writer.Write("                   ");
                 writer.Write("'{0}', ", ch);
                 byteCount++;
                 if (byteCount == 8) {
