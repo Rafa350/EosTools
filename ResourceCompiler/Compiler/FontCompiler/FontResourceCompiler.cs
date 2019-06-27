@@ -157,8 +157,7 @@
             //
             writer.WriteLine("                   // CHARINFO");
             foreach (FontChar fontChar in font.Chars) {
-                int offset;
-                if (bitmapOffsets.TryGetValue(fontChar.Code, out offset))
+                if (bitmapOffsets.TryGetValue(fontChar.Code, out int offset))
                     offset += charBitsOffset;
                 else
                     offset = 0xFFFF;
