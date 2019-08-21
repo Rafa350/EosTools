@@ -25,7 +25,10 @@
 
         private enum GGOFormat: uint {
             GGO_METRICS = 0,
-            GGO_BITMAP = 1
+            GGO_BITMAP = 1,
+            GGO_GRAY2_BITMAP = 4,
+            GGO_GRAY4_BITMAP = 5,
+            GGO_GRAY8_BITMAP = 6
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -150,13 +153,15 @@
                             matrix.eM21.value = 0;
                             matrix.eM22.value = 1;
 
+                            GGOFormat format = GGOFormat.GGO_BITMAP;
+
                             byte[] pixels = null;
-                            int bufferSize = (int) GetGlyphOutline(hdc, ch, (uint) GGOFormat.GGO_BITMAP,
+                            int bufferSize = (int) GetGlyphOutline(hdc, ch, (uint) format,
                                 out gm, 0, IntPtr.Zero, ref matrix);
                             if (bufferSize > 0) {
                                 IntPtr buffer = Marshal.AllocHGlobal(bufferSize);
                                 try {
-                                    if (GetGlyphOutline(hdc, ch, (uint) GGOFormat.GGO_BITMAP, out gm, (uint) bufferSize, buffer, ref matrix) == 0) {
+                                    if (GetGlyphOutline(hdc, ch, (uint) format, out gm, (uint) bufferSize, buffer, ref matrix) == 0) {
                                         int error = Marshal.GetLastWin32Error();
                                         throw new InvalidOperationException(
                                             String.Format("GetGlyphOutline: ERROR '{0}", error));
@@ -170,7 +175,7 @@
                                 }
                             }
 
-                            return CreateGlyphInfo(gm, pixels);
+                            return CreateGlyphInfo(gm, pixels, format);
 
                         }
                         finally {
@@ -194,7 +199,7 @@
             return fi;
         }
 
-        private static GlyphInfo CreateGlyphInfo(GLYPHMETRICS gm, byte[] pixels) {
+        private static GlyphInfo CreateGlyphInfo(GLYPHMETRICS gm, byte[] pixels, GGOFormat format) {
 
             GlyphInfo gi = new GlyphInfo();
             gi.Advance = gm.gmCellIncX;
@@ -209,7 +214,7 @@
                 int maxY = Int32.MinValue;
                 for (int y = 0; y < (int) gm.gmBlackBoxY; y++) {
                     for (int x = 0; x < (int) gm.gmBlackBoxX; x++) {
-                        if (GetPixel(pixels, x, y)) {
+                        if (GetPixel(pixels, format, x, y)) {
                             if (x > maxX)
                                 maxX = x;
                             if (y > maxY)
@@ -221,7 +226,7 @@
                 int minY = Int32.MaxValue;
                 for (int y = (int) gm.gmBlackBoxY - 1; y >= 0; y--) {
                     for (int x = (int) gm.gmBlackBoxX - 1; x >= 0; x--) {
-                        if (GetPixel(pixels, x, y)) {
+                        if (GetPixel(pixels, format, x, y)) {
                             if (x < minX)
                                 minX = x;
                             if (y < minY)
@@ -242,16 +247,29 @@
                 Color transparent = Color.FromKnownColor(KnownColor.Transparent);
                 for (int y = minY; y <= maxY; y++) 
                     for (int x = minX; x <= maxX; x++) 
-                        bitmap.SetPixel(x - minX, y - minY, GetPixel(pixels, x, y) ? black : transparent);
+                        bitmap.SetPixel(x - minX, y - minY, GetPixel(pixels, format, x, y) ? black : transparent);
                 gi.Bitmap = bitmap;
             }
 
             return gi;
         }
 
-        private static bool GetPixel(byte[] pixels, int x, int y) {
+        private static bool GetPixel(byte[] pixels, GGOFormat format, int x, int y) {
 
-            return (pixels[(y * 4) + (x >> 3)] & (0x80 >> (x & 0x07))) != 0;
+            switch (format) {
+                default:
+                case GGOFormat.GGO_BITMAP:
+                    return (pixels[(y * 4) + (x >> 3)] & (0x80 >> (x & 0x07))) != 0;
+
+                case GGOFormat.GGO_GRAY2_BITMAP:
+                    return (pixels[(y * 4) + (x >> 3)] & (0x80 >> (x & 0x07))) != 0;
+
+                case GGOFormat.GGO_GRAY4_BITMAP:
+                    return (pixels[(y * 4) + (x >> 3)] & (0x80 >> (x & 0x07))) != 0;
+
+                case GGOFormat.GGO_GRAY8_BITMAP:
+                    return (pixels[(y * 4) + (x >> 3)] & (0x80 >> (x & 0x07))) != 0;
+            }
         }
     }
 }
