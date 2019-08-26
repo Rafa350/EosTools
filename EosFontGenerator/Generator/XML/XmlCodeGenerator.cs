@@ -53,7 +53,7 @@
 
                     if (characterDescriptor.Bitmap != null) {
                         wr.WriteStartElement("bitmap");
-                        wr.WriteAttributeString("bpp", "1");
+                        wr.WriteAttributeString("format", "L1");
                         wr.WriteAttributeString("left", characterDescriptor.Left.ToString());
                         wr.WriteAttributeString("top", characterDescriptor.Top.ToString());
                         wr.WriteAttributeString("width", characterDescriptor.Width.ToString());

@@ -19,6 +19,7 @@
             this.character = character;
 
             glyphInfo = FontAPI.GetGlyphInfo(fontDescriptor.Font, character);
+            FontAPI.GetPixels(FontDescriptor.Font, character, PixelsFormat.L4);
         }
 
         public FontDescriptor FontDescriptor {

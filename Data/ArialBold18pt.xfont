@@ -8,7 +8,7 @@
     <fontResource version="2.0" resourceId="ArialBold18pt">
         <font name="Arial Bold 18pt" height="29" ascent="23" descent="6" isBold="True" isItalic="False">
             <char code="0x30" advance="13">
-                <bitmap bpp="1" left="1" top="17" width="11" height="17">
+                <bitmap format="L1" left="1" top="17" width="11" height="17">
                     <scanLine>...#####...</scanLine>
                     <scanLine>..#######..</scanLine>
                     <scanLine>.#########.</scanLine>
@@ -29,7 +29,7 @@
                 </bitmap>
             </char>
             <char code="0x31" advance="13">
-                <bitmap bpp="1" left="2" top="17" width="7" height="17">
+                <bitmap format="L1" left="2" top="17" width="7" height="17">
                     <scanLine>....###</scanLine>
                     <scanLine>....###</scanLine>
                     <scanLine>...####</scanLine>
@@ -50,7 +50,7 @@
                 </bitmap>
             </char>
             <char code="0x32" advance="13">
-                <bitmap bpp="1" left="1" top="17" width="11" height="17">
+                <bitmap format="L1" left="1" top="17" width="11" height="17">
                     <scanLine>...#####...</scanLine>
                     <scanLine>..########.</scanLine>
                     <scanLine>.#########.</scanLine>
@@ -71,7 +71,7 @@
                 </bitmap>
             </char>
             <char code="0x33" advance="13">
-                <bitmap bpp="1" left="1" top="17" width="11" height="17">
+                <bitmap format="L1" left="1" top="17" width="11" height="17">
                     <scanLine>...#####...</scanLine>
                     <scanLine>.########..</scanLine>
                     <scanLine>.#########.</scanLine>
@@ -92,7 +92,7 @@
                 </bitmap>
             </char>
             <char code="0x34" advance="13">
-                <bitmap bpp="1" left="0" top="17" width="12" height="17">
+                <bitmap format="L1" left="0" top="17" width="12" height="17">
                     <scanLine>.......###..</scanLine>
                     <scanLine>......####..</scanLine>
                     <scanLine>......####..</scanLine>
@@ -113,7 +113,7 @@
                 </bitmap>
             </char>
             <char code="0x35" advance="13">
-                <bitmap bpp="1" left="1" top="17" width="11" height="17">
+                <bitmap format="L1" left="1" top="17" width="11" height="17">
                     <scanLine>..########.</scanLine>
                     <scanLine>..########.</scanLine>
                     <scanLine>.#########.</scanLine>
@@ -134,7 +134,7 @@
                 </bitmap>
             </char>
             <char code="0x36" advance="13">
-                <bitmap bpp="1" left="1" top="17" width="11" height="17">
+                <bitmap format="L1" left="1" top="17" width="11" height="17">
                     <scanLine>....####...</scanLine>
                     <scanLine>..########.</scanLine>
                     <scanLine>.#########.</scanLine>
@@ -155,7 +155,7 @@
                 </bitmap>
             </char>
             <char code="0x37" advance="13">
-                <bitmap bpp="1" left="1" top="17" width="11" height="17">
+                <bitmap format="L1" left="1" top="17" width="11" height="17">
                     <scanLine>###########</scanLine>
                     <scanLine>###########</scanLine>
                     <scanLine>###########</scanLine>
@@ -176,7 +176,7 @@
                 </bitmap>
             </char>
             <char code="0x38" advance="13">
-                <bitmap bpp="1" left="1" top="17" width="11" height="17">
+                <bitmap format="L1" left="1" top="17" width="11" height="17">
                     <scanLine>...#####...</scanLine>
                     <scanLine>.#########.</scanLine>
                     <scanLine>.#########.</scanLine>
@@ -197,7 +197,7 @@
                 </bitmap>
             </char>
             <char code="0x39" advance="13">
-                <bitmap bpp="1" left="1" top="17" width="11" height="17">
+                <bitmap format="L1" left="1" top="17" width="11" height="17">
                     <scanLine>...#####...</scanLine>
                     <scanLine>..#######..</scanLine>
                     <scanLine>.#########.</scanLine>

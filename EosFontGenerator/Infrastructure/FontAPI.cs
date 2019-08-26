@@ -11,6 +11,33 @@
         public int Height;
     }
 
+    public enum PixelsFormat {
+        L1,
+        L2,
+        L4,
+        L8
+    }
+
+    public sealed class GlyphPixels {
+
+        private readonly PixelsFormat format;
+        private readonly byte[] pixels;
+
+        public GlyphPixels(PixelsFormat format, byte[] pixels) {
+
+            this.format = format;
+            this.pixels = pixels;
+        }
+
+        public PixelsFormat Format {
+            get { return format; }
+        }
+
+        public byte[] Pixels {
+            get { return pixels; }
+        }
+    }
+
     public sealed class GlyphInfo {
 
         public Bitmap Bitmap;
@@ -175,8 +202,77 @@
                                 }
                             }
 
-                            return CreateGlyphInfo(gm, pixels, format);
+                            return CreateGlyphInfo(gm, pixels);
 
+                        }
+                        finally {
+                            SelectObject(hdc, hOldFont);
+                        }
+                    }
+                    finally {
+                        graphics.ReleaseHdc(hdc);
+                    }
+                }
+            }
+        }
+
+        public static GlyphPixels GetPixels(Font font, char ch, PixelsFormat format) {
+
+            using (Bitmap bitmap = new Bitmap(1, 1)) {
+                using (Graphics graphics = Graphics.FromImage(bitmap)) {
+
+                    IntPtr hdc = graphics.GetHdc();
+                    try {
+                        IntPtr hOldFont = SelectObject(hdc, font.ToHfont());
+                        try {
+
+                            GLYPHMETRICS gm;
+                            MAT2 matrix = new MAT2();
+                            matrix.eM11.value = 1;
+                            matrix.eM12.value = 0;
+                            matrix.eM21.value = 0;
+                            matrix.eM22.value = 1;
+
+                            GGOFormat fmt;
+                            switch (format) {
+                                case PixelsFormat.L1:
+                                    fmt = GGOFormat.GGO_BITMAP;
+                                    break;
+
+                                case PixelsFormat.L2:
+                                    fmt = GGOFormat.GGO_GRAY2_BITMAP;
+                                    break;
+
+                                case PixelsFormat.L4:
+                                    fmt = GGOFormat.GGO_GRAY4_BITMAP;
+                                    break;
+
+                                case PixelsFormat.L8:
+                                    fmt = GGOFormat.GGO_GRAY4_BITMAP;
+                                    break;
+                            }
+
+                            byte[] pixels = null;
+                            int bufferSize = (int)GetGlyphOutline(hdc, ch, (uint)fmt, out gm, 0, IntPtr.Zero, ref matrix);
+                            if (bufferSize > 0) {
+                                IntPtr buffer = Marshal.AllocHGlobal(bufferSize);
+                                try {
+                                    if (GetGlyphOutline(hdc, ch, (uint)fmt, out gm, (uint)bufferSize, buffer, ref matrix) == 0) {
+                                        int error = Marshal.GetLastWin32Error();
+                                        throw new InvalidOperationException(String.Format("GetGlyphOutline: ERROR '{0}", error));
+                                    }
+
+                                    pixels = new byte[bufferSize];
+                                    Marshal.Copy(buffer, pixels, 0, bufferSize);
+                                }
+                                finally {
+                                    Marshal.FreeHGlobal(buffer);
+                                }
+
+                                return new GlyphPixels(format, pixels);
+                            }
+                            else
+                                return null;
                         }
                         finally {
                             SelectObject(hdc, hOldFont);
@@ -199,7 +295,7 @@
             return fi;
         }
 
-        private static GlyphInfo CreateGlyphInfo(GLYPHMETRICS gm, byte[] pixels, GGOFormat format) {
+        private static GlyphInfo CreateGlyphInfo(GLYPHMETRICS gm, byte[] pixels) {
 
             GlyphInfo gi = new GlyphInfo();
             gi.Advance = gm.gmCellIncX;
@@ -214,7 +310,7 @@
                 int maxY = Int32.MinValue;
                 for (int y = 0; y < (int) gm.gmBlackBoxY; y++) {
                     for (int x = 0; x < (int) gm.gmBlackBoxX; x++) {
-                        if (GetPixel(pixels, format, x, y)) {
+                        if (GetPixel(pixels, x, y)) {
                             if (x > maxX)
                                 maxX = x;
                             if (y > maxY)
@@ -226,7 +322,7 @@
                 int minY = Int32.MaxValue;
                 for (int y = (int) gm.gmBlackBoxY - 1; y >= 0; y--) {
                     for (int x = (int) gm.gmBlackBoxX - 1; x >= 0; x--) {
-                        if (GetPixel(pixels, format, x, y)) {
+                        if (GetPixel(pixels, x, y)) {
                             if (x < minX)
                                 minX = x;
                             if (y < minY)
@@ -247,29 +343,16 @@
                 Color transparent = Color.FromKnownColor(KnownColor.Transparent);
                 for (int y = minY; y <= maxY; y++) 
                     for (int x = minX; x <= maxX; x++) 
-                        bitmap.SetPixel(x - minX, y - minY, GetPixel(pixels, format, x, y) ? black : transparent);
+                        bitmap.SetPixel(x - minX, y - minY, GetPixel(pixels, x, y) ? black : transparent);
                 gi.Bitmap = bitmap;
             }
 
             return gi;
         }
 
-        private static bool GetPixel(byte[] pixels, GGOFormat format, int x, int y) {
+        private static bool GetPixel(byte[] pixels, int x, int y) {
 
-            switch (format) {
-                default:
-                case GGOFormat.GGO_BITMAP:
-                    return (pixels[(y * 4) + (x >> 3)] & (0x80 >> (x & 0x07))) != 0;
-
-                case GGOFormat.GGO_GRAY2_BITMAP:
-                    return (pixels[(y * 4) + (x >> 3)] & (0x80 >> (x & 0x07))) != 0;
-
-                case GGOFormat.GGO_GRAY4_BITMAP:
-                    return (pixels[(y * 4) + (x >> 3)] & (0x80 >> (x & 0x07))) != 0;
-
-                case GGOFormat.GGO_GRAY8_BITMAP:
-                    return (pixels[(y * 4) + (x >> 3)] & (0x80 >> (x & 0x07))) != 0;
-            }
+            return (pixels[(y * 4) + (x >> 3)] & (0x80 >> (x & 0x07))) != 0;
         }
     }
 }
