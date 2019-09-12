@@ -235,6 +235,7 @@
 
                             GGOFormat fmt;
                             switch (format) {
+                                default:
                                 case PixelsFormat.L1:
                                     fmt = GGOFormat.GGO_BITMAP;
                                     break;

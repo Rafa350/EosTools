@@ -40,7 +40,7 @@
             }
 
             if (String.IsNullOrEmpty(outPath))
-                outPath = @"..\..\..\..\Data";
+                outPath = @"..\..\Data";
 
             List<FontDescriptor> fontDescriptors = new List<FontDescriptor>();
 
@@ -51,25 +51,36 @@
             fontDescriptors.Add(new FontDescriptor(new Font("MS Sans Serif", 14), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("MS Sans Serif", 18), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("MS Sans Serif", 24), null, ' ', 'z'));
+
             fontDescriptors.Add(new FontDescriptor(new Font("Consolas", 8), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Consolas", 10), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Consolas", 12), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Consolas", 14), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Consolas", 18), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Consolas", 24), null, ' ', 'z'));
+
             fontDescriptors.Add(new FontDescriptor(new Font("Arial", 8), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Arial", 10), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Arial", 12), null, '0', '9'));
             fontDescriptors.Add(new FontDescriptor(new Font("Arial", 14), null, '0', '9'));
             fontDescriptors.Add(new FontDescriptor(new Font("Arial", 18), null, '0', '9'));
             fontDescriptors.Add(new FontDescriptor(new Font("Arial", 24), null, '0', '9'));
+
             fontDescriptors.Add(new FontDescriptor(new Font("Tahoma", 7), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Tahoma", 8), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Tahoma", 10), null, ' ', 'z'));
+            fontDescriptors.Add(new FontDescriptor(new Font("Tahoma", 12), null, ' ', 'z'));
+            fontDescriptors.Add(new FontDescriptor(new Font("Tahoma", 14), null, ' ', 'z'));
+
+            fontDescriptors.Add(new FontDescriptor(new Font("Courier New", 7), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Courier New", 7), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Courier New", 8), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Courier New", 10), null, ' ', 'z'));
-            fontDescriptors.Add(new FontDescriptor(new Font("5x7 practical", 12), null, ' ', 'z'));
+            fontDescriptors.Add(new FontDescriptor(new Font("Courier New", 12), null, ' ', 'z'));
+
+            //fontDescriptors.Add(new FontDescriptor(new Font("Fixedsys", 12), null, ' ', 'z'));
+
+            //fontDescriptors.Add(new FontDescriptor(new Font("5x7 practical", 12), null, ' ', 'z'));
 
             fontDescriptors.Add(new FontDescriptor(new Font("MS Sans Serif", 7, FontStyle.Bold), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("MS Sans Serif", 8, FontStyle.Bold), null, ' ', 'z'));
@@ -78,15 +89,18 @@
             fontDescriptors.Add(new FontDescriptor(new Font("MS Sans Serif", 14, FontStyle.Bold), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("MS Sans Serif", 18, FontStyle.Bold), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("MS Sans Serif", 24, FontStyle.Bold), null, ' ', 'z'));
+
             fontDescriptors.Add(new FontDescriptor(new Font("Arial", 8, FontStyle.Bold), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Arial", 10, FontStyle.Bold), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Arial", 12, FontStyle.Bold), null, '0', '9'));
             fontDescriptors.Add(new FontDescriptor(new Font("Arial", 14, FontStyle.Bold), null, '0', '9'));
             fontDescriptors.Add(new FontDescriptor(new Font("Arial", 18, FontStyle.Bold), null, '0', '9'));
             fontDescriptors.Add(new FontDescriptor(new Font("Arial", 24, FontStyle.Bold), null, '0', '9'));
+
             fontDescriptors.Add(new FontDescriptor(new Font("Tahoma", 7, FontStyle.Bold), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Tahoma", 8, FontStyle.Bold), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Tahoma", 10, FontStyle.Bold), null, ' ', 'z'));
+
             fontDescriptors.Add(new FontDescriptor(new Font("Courier New", 7, FontStyle.Bold), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Courier New", 8, FontStyle.Bold), null, ' ', 'z'));
             fontDescriptors.Add(new FontDescriptor(new Font("Courier New", 10, FontStyle.Bold), null, ' ', 'z'));

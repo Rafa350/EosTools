@@ -92,7 +92,7 @@
             // Inclueix fitxers si cal
             //
             if (!String.IsNullOrEmpty(includeFiles)) {
-                string[] files = includeFiles.Split(';');
+                string[] files = includeFiles.Split(',');
                 foreach (string file in files)
                     writer.WriteLine("#include \"{0}\"", file);
                 writer.WriteLine();
