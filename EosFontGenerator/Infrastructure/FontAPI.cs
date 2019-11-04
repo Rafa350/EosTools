@@ -1,56 +1,11 @@
-﻿namespace Media.PicFontGenerator.Infrastructure {
+﻿namespace EosTools.v1.FontGeneratorApp.Infrastructure {
 
     using System;
-    using System.Drawing;
     using System.Runtime.InteropServices;
 
-    public sealed class FontInfo {
-
-        public int Ascent;
-        public int Descent;
-        public int Height;
-    }
-
-    public enum PixelsFormat {
-        L1,
-        L2,
-        L4,
-        L8
-    }
-
-    public sealed class GlyphPixels {
-
-        private readonly PixelsFormat format;
-        private readonly byte[] pixels;
-
-        public GlyphPixels(PixelsFormat format, byte[] pixels) {
-
-            this.format = format;
-            this.pixels = pixels;
-        }
-
-        public PixelsFormat Format {
-            get { return format; }
-        }
-
-        public byte[] Pixels {
-            get { return pixels; }
-        }
-    }
-
-    public sealed class GlyphInfo {
-
-        public Bitmap Bitmap;
-        public int Left;
-        public int Top;
-        public int Width { get { return Bitmap == null ? 0 : Bitmap.Width; } }
-        public int Height { get { return Bitmap == null ? 0 : Bitmap.Height; } }
-        public int Advance;
-    }
-    
     public static class FontAPI {
 
-        private enum GGOFormat: uint {
+        public enum GGOFormat: uint {
             GGO_METRICS = 0,
             GGO_BITMAP = 1,
             GGO_GRAY2_BITMAP = 4,
@@ -59,7 +14,7 @@
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct TEXTMETRICS {
+        public struct TEXTMETRICS {
             public int tmHeight;
             public int tmAscent;
             public int tmDescent;
@@ -83,13 +38,13 @@
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct POINT {
+        public struct POINT {
             public int x;
             public int y;
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct GLYPHMETRICS {
+        public struct GLYPHMETRICS {
             public uint gmBlackBoxX;
             public uint gmBlackBoxY;
             public POINT gmptGlyphOrigin;
@@ -98,13 +53,13 @@
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct FIXED {
+        public struct FIXED {
             public short fract;
             public short value;
         }
         
         [StructLayout(LayoutKind.Sequential)]
-        private struct MAT2 {
+        public struct MAT2 {
             [MarshalAs(UnmanagedType.Struct)]
             public FIXED eM11;
             [MarshalAs(UnmanagedType.Struct)]
@@ -116,244 +71,23 @@
         }
 
         [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern uint GetGlyphOutline(
+        public static extern uint GetGlyphOutline(
             IntPtr hdc, 
             uint ch,
-            uint format, 
+            GGOFormat fmt, 
             out GLYPHMETRICS gm, 
             uint bufferSize, 
             IntPtr buffer, 
             ref MAT2 matrix);
 
         [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern bool GetTextMetrics(
+        public static extern bool GetTextMetrics(
             IntPtr hdc, 
             out TEXTMETRICS tm);
 
         [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern IntPtr SelectObject(
+        public static extern IntPtr SelectObject(
             IntPtr hdc, 
             IntPtr obj);
-
-        public static FontInfo GetFontInfo(Font font) {
-
-            using (Bitmap bitmap = new Bitmap(1, 1)) {
-                using (Graphics graphics = Graphics.FromImage(bitmap)) {
-
-                    IntPtr hdc = graphics.GetHdc();
-                    try {
-                        IntPtr hOldFont = SelectObject(hdc, font.ToHfont());
-                        try {
-                            TEXTMETRICS tm;
-                            if (!GetTextMetrics(hdc, out tm)) {
-                                int error = Marshal.GetLastWin32Error();
-                                throw new InvalidOperationException(
-                                    String.Format("GetTextMetrics: ERROR '{0}", error));
-                            }
-                            return CreateFontInfo(tm);
-                        }
-                        finally {
-                            SelectObject(hdc, hOldFont);
-                        }
-                    }
-                    finally {
-                        graphics.ReleaseHdc(hdc);
-                    }
-                }
-            }
-        }
-
-        public static GlyphInfo GetGlyphInfo(Font font, char ch) {
-
-            using (Bitmap bitmap = new Bitmap(1, 1)) {
-                using (Graphics graphics = Graphics.FromImage(bitmap)) {
-
-                    IntPtr hdc = graphics.GetHdc();
-                    try {
-                        IntPtr hOldFont = SelectObject(hdc, font.ToHfont());
-                        try {
-
-                            GLYPHMETRICS gm;
-                            MAT2 matrix = new MAT2();
-                            matrix.eM11.value = 1;
-                            matrix.eM12.value = 0;
-                            matrix.eM21.value = 0;
-                            matrix.eM22.value = 1;
-
-                            GGOFormat format = GGOFormat.GGO_BITMAP;
-
-                            byte[] pixels = null;
-                            int bufferSize = (int) GetGlyphOutline(hdc, ch, (uint) format,
-                                out gm, 0, IntPtr.Zero, ref matrix);
-                            if (bufferSize > 0) {
-                                IntPtr buffer = Marshal.AllocHGlobal(bufferSize);
-                                try {
-                                    if (GetGlyphOutline(hdc, ch, (uint) format, out gm, (uint) bufferSize, buffer, ref matrix) == 0) {
-                                        int error = Marshal.GetLastWin32Error();
-                                        throw new InvalidOperationException(
-                                            String.Format("GetGlyphOutline: ERROR '{0}", error));
-                                    }
-
-                                    pixels = new byte[bufferSize];
-                                    Marshal.Copy(buffer, pixels, 0, bufferSize);
-                                }
-                                finally {
-                                    Marshal.FreeHGlobal(buffer);
-                                }
-                            }
-
-                            return CreateGlyphInfo(gm, pixels);
-
-                        }
-                        finally {
-                            SelectObject(hdc, hOldFont);
-                        }
-                    }
-                    finally {
-                        graphics.ReleaseHdc(hdc);
-                    }
-                }
-            }
-        }
-
-        public static GlyphPixels GetPixels(Font font, char ch, PixelsFormat format) {
-
-            using (Bitmap bitmap = new Bitmap(1, 1)) {
-                using (Graphics graphics = Graphics.FromImage(bitmap)) {
-
-                    IntPtr hdc = graphics.GetHdc();
-                    try {
-                        IntPtr hOldFont = SelectObject(hdc, font.ToHfont());
-                        try {
-
-                            GLYPHMETRICS gm;
-                            MAT2 matrix = new MAT2();
-                            matrix.eM11.value = 1;
-                            matrix.eM12.value = 0;
-                            matrix.eM21.value = 0;
-                            matrix.eM22.value = 1;
-
-                            GGOFormat fmt;
-                            switch (format) {
-                                default:
-                                case PixelsFormat.L1:
-                                    fmt = GGOFormat.GGO_BITMAP;
-                                    break;
-
-                                case PixelsFormat.L2:
-                                    fmt = GGOFormat.GGO_GRAY2_BITMAP;
-                                    break;
-
-                                case PixelsFormat.L4:
-                                    fmt = GGOFormat.GGO_GRAY4_BITMAP;
-                                    break;
-
-                                case PixelsFormat.L8:
-                                    fmt = GGOFormat.GGO_GRAY4_BITMAP;
-                                    break;
-                            }
-
-                            byte[] pixels = null;
-                            int bufferSize = (int)GetGlyphOutline(hdc, ch, (uint)fmt, out gm, 0, IntPtr.Zero, ref matrix);
-                            if (bufferSize > 0) {
-                                IntPtr buffer = Marshal.AllocHGlobal(bufferSize);
-                                try {
-                                    if (GetGlyphOutline(hdc, ch, (uint)fmt, out gm, (uint)bufferSize, buffer, ref matrix) == 0) {
-                                        int error = Marshal.GetLastWin32Error();
-                                        throw new InvalidOperationException(String.Format("GetGlyphOutline: ERROR '{0}", error));
-                                    }
-
-                                    pixels = new byte[bufferSize];
-                                    Marshal.Copy(buffer, pixels, 0, bufferSize);
-                                }
-                                finally {
-                                    Marshal.FreeHGlobal(buffer);
-                                }
-
-                                return new GlyphPixels(format, pixels);
-                            }
-                            else
-                                return null;
-                        }
-                        finally {
-                            SelectObject(hdc, hOldFont);
-                        }
-                    }
-                    finally {
-                        graphics.ReleaseHdc(hdc);
-                    }
-                }
-            }
-        }
-
-        private static FontInfo CreateFontInfo(TEXTMETRICS tm) {
-
-            FontInfo fi = new FontInfo();
-            fi.Ascent = tm.tmAscent;
-            fi.Descent = tm.tmDescent;
-            fi.Height = tm.tmHeight;
-
-            return fi;
-        }
-
-        private static GlyphInfo CreateGlyphInfo(GLYPHMETRICS gm, byte[] pixels) {
-
-            GlyphInfo gi = new GlyphInfo();
-            gi.Advance = gm.gmCellIncX;
-            gi.Left = gm.gmptGlyphOrigin.x;
-            gi.Top = gm.gmptGlyphOrigin.y;
-
-            if (pixels != null) {
-
-                // Calcula el tamany real del bitmap
-                //
-                int maxX = Int32.MinValue;
-                int maxY = Int32.MinValue;
-                for (int y = 0; y < (int) gm.gmBlackBoxY; y++) {
-                    for (int x = 0; x < (int) gm.gmBlackBoxX; x++) {
-                        if (GetPixel(pixels, x, y)) {
-                            if (x > maxX)
-                                maxX = x;
-                            if (y > maxY)
-                                maxY = y;
-                        }
-                    }
-                }
-                int minX = Int32.MaxValue;
-                int minY = Int32.MaxValue;
-                for (int y = (int) gm.gmBlackBoxY - 1; y >= 0; y--) {
-                    for (int x = (int) gm.gmBlackBoxX - 1; x >= 0; x--) {
-                        if (GetPixel(pixels, x, y)) {
-                            if (x < minX)
-                                minX = x;
-                            if (y < minY)
-                                minY = y;
-                        }
-                    }
-                }
-
-                // Corrigeix la posicio del bitmap
-                //
-                gi.Left += minX;
-                gi.Top += minY;
-
-                // Crea el bitmap
-                //
-                Bitmap bitmap = new Bitmap(maxX - minX + 1, maxY - minY + 1);
-                Color black = Color.FromKnownColor(KnownColor.Black);
-                Color transparent = Color.FromKnownColor(KnownColor.Transparent);
-                for (int y = minY; y <= maxY; y++) 
-                    for (int x = minX; x <= maxX; x++) 
-                        bitmap.SetPixel(x - minX, y - minY, GetPixel(pixels, x, y) ? black : transparent);
-                gi.Bitmap = bitmap;
-            }
-
-            return gi;
-        }
-
-        private static bool GetPixel(byte[] pixels, int x, int y) {
-
-            return (pixels[(y * 4) + (x >> 3)] & (0x80 >> (x & 0x07))) != 0;
-        }
     }
 }

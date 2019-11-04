@@ -1,12 +1,12 @@
-﻿namespace Media.PicFontGenerator {
+﻿namespace EosTools.v1.FontGeneratorApp {
 
     using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.IO;
-    using Media.PicFontGenerator.Generator;
-    using Media.PicFontGenerator.Generator.XML;
-    using Media.PicFontGenerator.Model;
+    using EosTools.v1.FontGeneratorApp.Generator;
+    using EosTools.v1.FontGeneratorApp.Generator.XML;
+    using EosTools.v1.FontGeneratorApp.Model;
 
     class Program {
 

@@ -1,0 +1,57 @@
+<eos>
+
+	<moduleDeclarations>
+		<moduleDeclaration
+			name="digInputs"
+			class="eos::digInputService"
+			addChild="add">
+		</moduleDeclaration>
+		<moduleDeclaration
+			name="digInput"
+			class="eos::digInput">
+				<property
+					name="port"/>
+				<property
+				    name="pin"/>
+				<event
+					name="onChange"/>
+		</moduleDeclaration>
+	</moduleDeclarations>
+
+
+	<application>
+		
+		<digInputs 
+			name="inputs">
+			<digInput
+				name="sw0"
+				port="A"
+				pin="0">
+				<onChange property="value" target="outputs.led0.value" set="1"/>
+			</digInput>
+			<digInput
+				name="sw1"
+				port="A"
+				pin="1"
+				onChange="">
+			</digInput>
+			<digInput
+				name="sw2"
+				port="A"
+				pin="2"
+				onChange="">
+			</digInput>
+		</digInputs>
+		
+		<digOutputs 
+			name="outputs">
+			<digOutput
+				name="led0"
+				port="B"
+				pin="1"
+				value="wire1"/>
+		</digOutputs>
+			
+	</application>
+
+</eos>

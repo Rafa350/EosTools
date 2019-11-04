@@ -231,7 +231,7 @@
                         byte b = 0;
                         byte mask = 0x80;
                         for (int i = 0; i < scanLine.Length; i++) {
-                            if (scanLine[i] == '#')
+                            if (scanLine[i] != '.')
                                 b |= (byte)(mask >> (i & 0x07));
                             if (((i % 8) == 7) || (i == scanLine.Length - 1)) {
                                 bitmap.Add(b);

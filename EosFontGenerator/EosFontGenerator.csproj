@@ -52,6 +52,9 @@
   <ItemGroup>
     <Compile Include="Generator\XML\XmlCodeGenerator.cs" />
     <Compile Include="Infrastructure\FontAPI.cs" />
+    <Compile Include="Infrastructure\FontData.cs" />
+    <Compile Include="Infrastructure\GlyphBitmap.cs" />
+    <Compile Include="Infrastructure\GlyphData.cs" />
     <Compile Include="Model\CharacterDescriptor.cs" />
     <Compile Include="Model\FontDescriptor.cs" />
     <Compile Include="Generator\ICodeGenerator.cs" />

@@ -1,280 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Creado con EosFontGenerator -->
 <!-- No modificar -->
-<!-- Name:  Arial -->
-<!-- Size:  24pt -->
-<!-- Style: Bold -->
+<!-- Family: Arial -->
+<!-- Name  : Arial, Bold, 24pt -->
+<!-- Size  : 24pt -->
+<!-- Style : Bold -->
 <resources>
-    <fontResource version="2.0" resourceId="ArialBold24pt">
-        <font name="Arial Bold 24pt" height="37" ascent="30" descent="7" isBold="True" isItalic="False">
+    <fontResource version="2.1" resourceId="ArialBold24pt">
+        <font family="Arial" name="Arial, Bold, 24pt" height="37" ascent="30" descent="7">
             <char code="0x30" advance="18">
                 <bitmap format="L1" left="1" top="23" width="15" height="23">
-                    <scanLine>.....#####.....</scanLine>
-                    <scanLine>...#########...</scanLine>
-                    <scanLine>..###########..</scanLine>
-                    <scanLine>.#############.</scanLine>
-                    <scanLine>.#####...#####.</scanLine>
-                    <scanLine>.####.....####.</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>.####.....####.</scanLine>
-                    <scanLine>.#####...#####.</scanLine>
-                    <scanLine>.#############.</scanLine>
-                    <scanLine>..###########..</scanLine>
-                    <scanLine>...#########...</scanLine>
-                    <scanLine>.....#####.....</scanLine>
+                    <scanLine>.....11111.....</scanLine>
+                    <scanLine>...111111111...</scanLine>
+                    <scanLine>..11111111111..</scanLine>
+                    <scanLine>.1111111111111.</scanLine>
+                    <scanLine>.11111...11111.</scanLine>
+                    <scanLine>.1111.....1111.</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>.1111.....1111.</scanLine>
+                    <scanLine>.11111...11111.</scanLine>
+                    <scanLine>.1111111111111.</scanLine>
+                    <scanLine>..11111111111..</scanLine>
+                    <scanLine>...111111111...</scanLine>
+                    <scanLine>.....11111.....</scanLine>
                 </bitmap>
             </char>
             <char code="0x31" advance="18">
                 <bitmap format="L1" left="3" top="23" width="10" height="23">
-                    <scanLine>......####</scanLine>
-                    <scanLine>......####</scanLine>
-                    <scanLine>.....#####</scanLine>
-                    <scanLine>....######</scanLine>
-                    <scanLine>...#######</scanLine>
-                    <scanLine>.#########</scanLine>
-                    <scanLine>##########</scanLine>
-                    <scanLine>#####.####</scanLine>
-                    <scanLine>###...####</scanLine>
-                    <scanLine>#.....####</scanLine>
-                    <scanLine>......####</scanLine>
-                    <scanLine>......####</scanLine>
-                    <scanLine>......####</scanLine>
-                    <scanLine>......####</scanLine>
-                    <scanLine>......####</scanLine>
-                    <scanLine>......####</scanLine>
-                    <scanLine>......####</scanLine>
-                    <scanLine>......####</scanLine>
-                    <scanLine>......####</scanLine>
-                    <scanLine>......####</scanLine>
-                    <scanLine>......####</scanLine>
-                    <scanLine>......####</scanLine>
-                    <scanLine>......####</scanLine>
+                    <scanLine>......1111</scanLine>
+                    <scanLine>......1111</scanLine>
+                    <scanLine>.....11111</scanLine>
+                    <scanLine>....111111</scanLine>
+                    <scanLine>...1111111</scanLine>
+                    <scanLine>.111111111</scanLine>
+                    <scanLine>1111111111</scanLine>
+                    <scanLine>11111.1111</scanLine>
+                    <scanLine>111...1111</scanLine>
+                    <scanLine>1.....1111</scanLine>
+                    <scanLine>......1111</scanLine>
+                    <scanLine>......1111</scanLine>
+                    <scanLine>......1111</scanLine>
+                    <scanLine>......1111</scanLine>
+                    <scanLine>......1111</scanLine>
+                    <scanLine>......1111</scanLine>
+                    <scanLine>......1111</scanLine>
+                    <scanLine>......1111</scanLine>
+                    <scanLine>......1111</scanLine>
+                    <scanLine>......1111</scanLine>
+                    <scanLine>......1111</scanLine>
+                    <scanLine>......1111</scanLine>
+                    <scanLine>......1111</scanLine>
                 </bitmap>
             </char>
             <char code="0x32" advance="18">
                 <bitmap format="L1" left="1" top="23" width="15" height="23">
-                    <scanLine>....#######....</scanLine>
-                    <scanLine>...##########..</scanLine>
-                    <scanLine>.#############.</scanLine>
-                    <scanLine>.#############.</scanLine>
-                    <scanLine>#####.....#####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>...........####</scanLine>
-                    <scanLine>...........####</scanLine>
-                    <scanLine>..........####.</scanLine>
-                    <scanLine>.........#####.</scanLine>
-                    <scanLine>........#####..</scanLine>
-                    <scanLine>.......######..</scanLine>
-                    <scanLine>......######...</scanLine>
-                    <scanLine>.....######....</scanLine>
-                    <scanLine>....#####......</scanLine>
-                    <scanLine>...#####.......</scanLine>
-                    <scanLine>..#####........</scanLine>
-                    <scanLine>..####.........</scanLine>
-                    <scanLine>.##############</scanLine>
-                    <scanLine>.##############</scanLine>
-                    <scanLine>###############</scanLine>
-                    <scanLine>###############</scanLine>
+                    <scanLine>....1111111....</scanLine>
+                    <scanLine>...1111111111..</scanLine>
+                    <scanLine>.1111111111111.</scanLine>
+                    <scanLine>.1111111111111.</scanLine>
+                    <scanLine>11111.....11111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>...........1111</scanLine>
+                    <scanLine>...........1111</scanLine>
+                    <scanLine>..........1111.</scanLine>
+                    <scanLine>.........11111.</scanLine>
+                    <scanLine>........11111..</scanLine>
+                    <scanLine>.......111111..</scanLine>
+                    <scanLine>......111111...</scanLine>
+                    <scanLine>.....111111....</scanLine>
+                    <scanLine>....11111......</scanLine>
+                    <scanLine>...11111.......</scanLine>
+                    <scanLine>..11111........</scanLine>
+                    <scanLine>..1111.........</scanLine>
+                    <scanLine>.11111111111111</scanLine>
+                    <scanLine>.11111111111111</scanLine>
+                    <scanLine>111111111111111</scanLine>
+                    <scanLine>111111111111111</scanLine>
                 </bitmap>
             </char>
             <char code="0x33" advance="18">
                 <bitmap format="L1" left="1" top="23" width="15" height="23">
-                    <scanLine>....######.....</scanLine>
-                    <scanLine>..##########...</scanLine>
-                    <scanLine>..###########..</scanLine>
-                    <scanLine>.############..</scanLine>
-                    <scanLine>#####....#####.</scanLine>
-                    <scanLine>####......####.</scanLine>
-                    <scanLine>.###......####.</scanLine>
-                    <scanLine>..........####.</scanLine>
-                    <scanLine>.........####..</scanLine>
-                    <scanLine>.....#######...</scanLine>
-                    <scanLine>.....######....</scanLine>
-                    <scanLine>.....########..</scanLine>
-                    <scanLine>.........#####.</scanLine>
-                    <scanLine>..........#####</scanLine>
-                    <scanLine>...........####</scanLine>
-                    <scanLine>...........####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>#####.....#####</scanLine>
-                    <scanLine>######...#####.</scanLine>
-                    <scanLine>.#############.</scanLine>
-                    <scanLine>..###########..</scanLine>
-                    <scanLine>...#########...</scanLine>
-                    <scanLine>....######.....</scanLine>
+                    <scanLine>....111111.....</scanLine>
+                    <scanLine>..1111111111...</scanLine>
+                    <scanLine>..11111111111..</scanLine>
+                    <scanLine>.111111111111..</scanLine>
+                    <scanLine>11111....11111.</scanLine>
+                    <scanLine>1111......1111.</scanLine>
+                    <scanLine>.111......1111.</scanLine>
+                    <scanLine>..........1111.</scanLine>
+                    <scanLine>.........1111..</scanLine>
+                    <scanLine>.....1111111...</scanLine>
+                    <scanLine>.....111111....</scanLine>
+                    <scanLine>.....11111111..</scanLine>
+                    <scanLine>.........11111.</scanLine>
+                    <scanLine>..........11111</scanLine>
+                    <scanLine>...........1111</scanLine>
+                    <scanLine>...........1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>11111.....11111</scanLine>
+                    <scanLine>111111...11111.</scanLine>
+                    <scanLine>.1111111111111.</scanLine>
+                    <scanLine>..11111111111..</scanLine>
+                    <scanLine>...111111111...</scanLine>
+                    <scanLine>....111111.....</scanLine>
                 </bitmap>
             </char>
             <char code="0x34" advance="18">
                 <bitmap format="L1" left="1" top="23" width="16" height="23">
-                    <scanLine>.........####...</scanLine>
-                    <scanLine>.........####...</scanLine>
-                    <scanLine>........#####...</scanLine>
-                    <scanLine>.......######...</scanLine>
-                    <scanLine>......#######...</scanLine>
-                    <scanLine>......#######...</scanLine>
-                    <scanLine>.....########...</scanLine>
-                    <scanLine>....####.####...</scanLine>
-                    <scanLine>....###..####...</scanLine>
-                    <scanLine>...####..####...</scanLine>
-                    <scanLine>..####...####...</scanLine>
-                    <scanLine>..###....####...</scanLine>
-                    <scanLine>.###.....####...</scanLine>
-                    <scanLine>####.....####...</scanLine>
-                    <scanLine>################</scanLine>
-                    <scanLine>################</scanLine>
-                    <scanLine>################</scanLine>
-                    <scanLine>################</scanLine>
-                    <scanLine>.........####...</scanLine>
-                    <scanLine>.........####...</scanLine>
-                    <scanLine>.........####...</scanLine>
-                    <scanLine>.........####...</scanLine>
-                    <scanLine>.........####...</scanLine>
+                    <scanLine>.........1111...</scanLine>
+                    <scanLine>.........1111...</scanLine>
+                    <scanLine>........11111...</scanLine>
+                    <scanLine>.......111111...</scanLine>
+                    <scanLine>......1111111...</scanLine>
+                    <scanLine>......1111111...</scanLine>
+                    <scanLine>.....11111111...</scanLine>
+                    <scanLine>....1111.1111...</scanLine>
+                    <scanLine>....111..1111...</scanLine>
+                    <scanLine>...1111..1111...</scanLine>
+                    <scanLine>..1111...1111...</scanLine>
+                    <scanLine>..111....1111...</scanLine>
+                    <scanLine>.111.....1111...</scanLine>
+                    <scanLine>1111.....1111...</scanLine>
+                    <scanLine>1111111111111111</scanLine>
+                    <scanLine>1111111111111111</scanLine>
+                    <scanLine>1111111111111111</scanLine>
+                    <scanLine>1111111111111111</scanLine>
+                    <scanLine>.........1111...</scanLine>
+                    <scanLine>.........1111...</scanLine>
+                    <scanLine>.........1111...</scanLine>
+                    <scanLine>.........1111...</scanLine>
+                    <scanLine>.........1111...</scanLine>
                 </bitmap>
             </char>
             <char code="0x35" advance="18">
                 <bitmap format="L1" left="1" top="23" width="16" height="23">
-                    <scanLine>...############.</scanLine>
-                    <scanLine>...############.</scanLine>
-                    <scanLine>..#############.</scanLine>
-                    <scanLine>..#############.</scanLine>
-                    <scanLine>..####..........</scanLine>
-                    <scanLine>..####..........</scanLine>
-                    <scanLine>.####...........</scanLine>
-                    <scanLine>.####.#####.....</scanLine>
-                    <scanLine>.############...</scanLine>
-                    <scanLine>.#############..</scanLine>
-                    <scanLine>###############.</scanLine>
-                    <scanLine>######....#####.</scanLine>
-                    <scanLine>.###.......#####</scanLine>
-                    <scanLine>............####</scanLine>
-                    <scanLine>............####</scanLine>
-                    <scanLine>............####</scanLine>
-                    <scanLine>####........####</scanLine>
-                    <scanLine>#####......#####</scanLine>
-                    <scanLine>.#####....#####.</scanLine>
-                    <scanLine>.##############.</scanLine>
-                    <scanLine>..############..</scanLine>
-                    <scanLine>...##########...</scanLine>
-                    <scanLine>.....######.....</scanLine>
+                    <scanLine>...111111111111.</scanLine>
+                    <scanLine>...111111111111.</scanLine>
+                    <scanLine>..1111111111111.</scanLine>
+                    <scanLine>..1111111111111.</scanLine>
+                    <scanLine>..1111..........</scanLine>
+                    <scanLine>..1111..........</scanLine>
+                    <scanLine>.1111...........</scanLine>
+                    <scanLine>.1111.11111.....</scanLine>
+                    <scanLine>.111111111111...</scanLine>
+                    <scanLine>.1111111111111..</scanLine>
+                    <scanLine>111111111111111.</scanLine>
+                    <scanLine>111111....11111.</scanLine>
+                    <scanLine>.111.......11111</scanLine>
+                    <scanLine>............1111</scanLine>
+                    <scanLine>............1111</scanLine>
+                    <scanLine>............1111</scanLine>
+                    <scanLine>1111........1111</scanLine>
+                    <scanLine>11111......11111</scanLine>
+                    <scanLine>.11111....11111.</scanLine>
+                    <scanLine>.11111111111111.</scanLine>
+                    <scanLine>..111111111111..</scanLine>
+                    <scanLine>...1111111111...</scanLine>
+                    <scanLine>.....111111.....</scanLine>
                 </bitmap>
             </char>
             <char code="0x36" advance="18">
                 <bitmap format="L1" left="1" top="23" width="15" height="23">
-                    <scanLine>......#####....</scanLine>
-                    <scanLine>....#########..</scanLine>
-                    <scanLine>...###########.</scanLine>
-                    <scanLine>..############.</scanLine>
-                    <scanLine>.#####....#####</scanLine>
-                    <scanLine>.####......####</scanLine>
-                    <scanLine>.####......####</scanLine>
-                    <scanLine>####...........</scanLine>
-                    <scanLine>####...........</scanLine>
-                    <scanLine>####..#####....</scanLine>
-                    <scanLine>############...</scanLine>
-                    <scanLine>#############..</scanLine>
-                    <scanLine>##############.</scanLine>
-                    <scanLine>#####.....#####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>.###.......####</scanLine>
-                    <scanLine>.#####....#####</scanLine>
-                    <scanLine>..############.</scanLine>
-                    <scanLine>..###########..</scanLine>
-                    <scanLine>...#########...</scanLine>
-                    <scanLine>.....######....</scanLine>
+                    <scanLine>......11111....</scanLine>
+                    <scanLine>....111111111..</scanLine>
+                    <scanLine>...11111111111.</scanLine>
+                    <scanLine>..111111111111.</scanLine>
+                    <scanLine>.11111....11111</scanLine>
+                    <scanLine>.1111......1111</scanLine>
+                    <scanLine>.1111......1111</scanLine>
+                    <scanLine>1111...........</scanLine>
+                    <scanLine>1111...........</scanLine>
+                    <scanLine>1111..11111....</scanLine>
+                    <scanLine>111111111111...</scanLine>
+                    <scanLine>1111111111111..</scanLine>
+                    <scanLine>11111111111111.</scanLine>
+                    <scanLine>11111.....11111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>.111.......1111</scanLine>
+                    <scanLine>.11111....11111</scanLine>
+                    <scanLine>..111111111111.</scanLine>
+                    <scanLine>..11111111111..</scanLine>
+                    <scanLine>...111111111...</scanLine>
+                    <scanLine>.....111111....</scanLine>
                 </bitmap>
             </char>
             <char code="0x37" advance="18">
                 <bitmap format="L1" left="1" top="23" width="15" height="23">
-                    <scanLine>###############</scanLine>
-                    <scanLine>###############</scanLine>
-                    <scanLine>###############</scanLine>
-                    <scanLine>###############</scanLine>
-                    <scanLine>.........#####.</scanLine>
-                    <scanLine>.........####..</scanLine>
-                    <scanLine>........####...</scanLine>
-                    <scanLine>.......#####...</scanLine>
-                    <scanLine>.......####....</scanLine>
-                    <scanLine>......####.....</scanLine>
-                    <scanLine>......####.....</scanLine>
-                    <scanLine>......####.....</scanLine>
-                    <scanLine>.....####......</scanLine>
-                    <scanLine>.....####......</scanLine>
-                    <scanLine>....####.......</scanLine>
-                    <scanLine>....####.......</scanLine>
-                    <scanLine>....####.......</scanLine>
-                    <scanLine>....####.......</scanLine>
-                    <scanLine>...####........</scanLine>
-                    <scanLine>...####........</scanLine>
-                    <scanLine>...####........</scanLine>
-                    <scanLine>...####........</scanLine>
-                    <scanLine>...####........</scanLine>
+                    <scanLine>111111111111111</scanLine>
+                    <scanLine>111111111111111</scanLine>
+                    <scanLine>111111111111111</scanLine>
+                    <scanLine>111111111111111</scanLine>
+                    <scanLine>.........11111.</scanLine>
+                    <scanLine>.........1111..</scanLine>
+                    <scanLine>........1111...</scanLine>
+                    <scanLine>.......11111...</scanLine>
+                    <scanLine>.......1111....</scanLine>
+                    <scanLine>......1111.....</scanLine>
+                    <scanLine>......1111.....</scanLine>
+                    <scanLine>......1111.....</scanLine>
+                    <scanLine>.....1111......</scanLine>
+                    <scanLine>.....1111......</scanLine>
+                    <scanLine>....1111.......</scanLine>
+                    <scanLine>....1111.......</scanLine>
+                    <scanLine>....1111.......</scanLine>
+                    <scanLine>....1111.......</scanLine>
+                    <scanLine>...1111........</scanLine>
+                    <scanLine>...1111........</scanLine>
+                    <scanLine>...1111........</scanLine>
+                    <scanLine>...1111........</scanLine>
+                    <scanLine>...1111........</scanLine>
                 </bitmap>
             </char>
             <char code="0x38" advance="18">
                 <bitmap format="L1" left="1" top="23" width="15" height="23">
-                    <scanLine>....#######....</scanLine>
-                    <scanLine>..###########..</scanLine>
-                    <scanLine>.#############.</scanLine>
-                    <scanLine>.#####...#####.</scanLine>
-                    <scanLine>#####.....#####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>#####.....#####</scanLine>
-                    <scanLine>.#####...#####.</scanLine>
-                    <scanLine>..###########..</scanLine>
-                    <scanLine>...#########...</scanLine>
-                    <scanLine>..###########..</scanLine>
-                    <scanLine>.####....#####.</scanLine>
-                    <scanLine>#####.....#####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>#####.....#####</scanLine>
-                    <scanLine>.#####...#####.</scanLine>
-                    <scanLine>.#############.</scanLine>
-                    <scanLine>..###########..</scanLine>
-                    <scanLine>....#######....</scanLine>
+                    <scanLine>....1111111....</scanLine>
+                    <scanLine>..11111111111..</scanLine>
+                    <scanLine>.1111111111111.</scanLine>
+                    <scanLine>.11111...11111.</scanLine>
+                    <scanLine>11111.....11111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>11111.....11111</scanLine>
+                    <scanLine>.11111...11111.</scanLine>
+                    <scanLine>..11111111111..</scanLine>
+                    <scanLine>...111111111...</scanLine>
+                    <scanLine>..11111111111..</scanLine>
+                    <scanLine>.1111....11111.</scanLine>
+                    <scanLine>11111.....11111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>11111.....11111</scanLine>
+                    <scanLine>.11111...11111.</scanLine>
+                    <scanLine>.1111111111111.</scanLine>
+                    <scanLine>..11111111111..</scanLine>
+                    <scanLine>....1111111....</scanLine>
                 </bitmap>
             </char>
             <char code="0x39" advance="18">
                 <bitmap format="L1" left="1" top="23" width="15" height="23">
-                    <scanLine>....######.....</scanLine>
-                    <scanLine>...#########...</scanLine>
-                    <scanLine>..###########..</scanLine>
-                    <scanLine>.############..</scanLine>
-                    <scanLine>#####....#####.</scanLine>
-                    <scanLine>####.......###.</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>####.......####</scanLine>
-                    <scanLine>#####.....#####</scanLine>
-                    <scanLine>.##############</scanLine>
-                    <scanLine>..#############</scanLine>
-                    <scanLine>...############</scanLine>
-                    <scanLine>....#####..####</scanLine>
-                    <scanLine>...........####</scanLine>
-                    <scanLine>...........####</scanLine>
-                    <scanLine>####......####.</scanLine>
-                    <scanLine>####......####.</scanLine>
-                    <scanLine>#####....#####.</scanLine>
-                    <scanLine>.############..</scanLine>
-                    <scanLine>.###########...</scanLine>
-                    <scanLine>..#########....</scanLine>
-                    <scanLine>....#####......</scanLine>
+                    <scanLine>....111111.....</scanLine>
+                    <scanLine>...111111111...</scanLine>
+                    <scanLine>..11111111111..</scanLine>
+                    <scanLine>.111111111111..</scanLine>
+                    <scanLine>11111....11111.</scanLine>
+                    <scanLine>1111.......111.</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>1111.......1111</scanLine>
+                    <scanLine>11111.....11111</scanLine>
+                    <scanLine>.11111111111111</scanLine>
+                    <scanLine>..1111111111111</scanLine>
+                    <scanLine>...111111111111</scanLine>
+                    <scanLine>....11111..1111</scanLine>
+                    <scanLine>...........1111</scanLine>
+                    <scanLine>...........1111</scanLine>
+                    <scanLine>1111......1111.</scanLine>
+                    <scanLine>1111......1111.</scanLine>
+                    <scanLine>11111....11111.</scanLine>
+                    <scanLine>.111111111111..</scanLine>
+                    <scanLine>.11111111111...</scanLine>
+                    <scanLine>..111111111....</scanLine>
+                    <scanLine>....11111......</scanLine>
                 </bitmap>
             </char>
         </font>

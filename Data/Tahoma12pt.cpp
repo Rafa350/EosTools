@@ -3,9 +3,9 @@
  *       Archivo generado desde un archivo de recursos.
  *       No modificar!
  *
- *       Fuente : Tahoma 12pt
+ *       Fuente : Tahoma, 12pt
  *
- *       Fecha de generacion  : 10/9/2019 14:08:39
+ *       Fecha de generacion  : 4/11/2019 19:26:55
  *       Nombre del generador : EosResourceCompiler
  *       Version del generador: 1.1.0.0
  *
@@ -15,7 +15,7 @@
 #include "eos.h"
 
 
-#ifdef FONT_USE_Tahoma12pt
+#ifdef FONT_USE_Tahoma,12pt
 
 
 static const unsigned char font[] = {
@@ -117,7 +117,7 @@ static const unsigned char font[] = {
     /* 00BC */     0x34, 0x03,         // 'z'
 
                    // CHARINFO
-    /* 00BE */     0x00, 0x00, 0x00, 0x00, 0x05, 0xFF, 0xFF,
+    /* 00BE */     0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF,
     /* 00C5 */     0x01, 0x0C, 0x01, 0x0C, 0x04, 0x3B, 0x03,
     /* 00CC */     0x04, 0x05, 0x01, 0x0D, 0x06, 0x47, 0x03,
     /* 00D3 */     0x0B, 0x0C, 0x00, 0x0C, 0x0C, 0x4C, 0x03,
@@ -407,7 +407,7 @@ static const unsigned char font[] = {
                    0xFC, 
 };
 
-const unsigned char *fontTahoma12pt = font;
+const unsigned char *fontTahoma,12pt = font;
 
 
 #endif

@@ -1,7 +1,7 @@
-﻿namespace Media.PicFontGenerator.Generator {
+﻿namespace EosTools.v1.FontGeneratorApp.Generator {
 
     using System.IO;
-    using Media.PicFontGenerator.Model;
+    using EosTools.v1.FontGeneratorApp.Model;
     
     public interface ICodeGenerator {
 

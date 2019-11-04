@@ -1,73 +1,28 @@
-﻿namespace Media.PicFontGenerator.Model {
+﻿namespace EosTools.v1.FontGeneratorApp.Model {
 
     using System;
     using System.Drawing;
-    using Media.PicFontGenerator.Infrastructure;
 
     public class CharacterDescriptor {
 
-        private readonly FontDescriptor fontDescriptor;
+        private readonly Font font;
         private readonly char character;
-        private readonly GlyphInfo glyphInfo;
 
-        public CharacterDescriptor(FontDescriptor fontDescriptor, char character) {
+        public CharacterDescriptor(Font font, char character) {
 
-            if (fontDescriptor == null)
-                throw new ArgumentNullException("fontDescriptor");
+            if (font == null)
+                throw new ArgumentNullException("font");
 
-            this.fontDescriptor = fontDescriptor;
+            this.font = font;
             this.character = character;
-
-            glyphInfo = FontAPI.GetGlyphInfo(fontDescriptor.Font, character);
-            FontAPI.GetPixels(FontDescriptor.Font, character, PixelsFormat.L1);
         }
 
-        public FontDescriptor FontDescriptor {
-            get {
-                return fontDescriptor;
-            }
+        public Font Font {
+            get { return font; }
         }
 
         public char Character {
-            get {
-                return character;
-            }
-        }
-
-        public Bitmap Bitmap {
-            get {
-                return glyphInfo.Bitmap;
-            }
-        }
-
-        public int Advance {
-            get {
-                return glyphInfo.Advance;
-            }
-        }
-
-        public int Width {
-            get {
-                return glyphInfo.Width;
-            }
-        }
-
-        public int Height {
-            get {
-                return glyphInfo.Height;
-            }
-        }
-
-        public int Left {
-            get {
-                return glyphInfo.Left;
-            }
-        }
-
-        public int Top {
-            get {
-                return glyphInfo.Top;
-            }
+            get { return character; }
         }
     }
 }

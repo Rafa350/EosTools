@@ -1,16 +1,14 @@
-﻿namespace Media.PicFontGenerator.Model {
+﻿namespace EosTools.v1.FontGeneratorApp.Model {
 
     using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Text;
-    using Media.PicFontGenerator.Infrastructure;
 
     public class FontDescriptor {
 
         private readonly Font font;
         private readonly string name;
-        private readonly FontInfo fontInfo;
         private readonly Dictionary<char, CharacterDescriptor> characterDescriptors = new Dictionary<char, CharacterDescriptor>();
 
         public FontDescriptor(Font font, string name, char firstChar, char lastChar) :
@@ -28,10 +26,8 @@
             this.font = font;
             this.name = name;
 
-            fontInfo = FontAPI.GetFontInfo(font);
-
             foreach (char character in characters)
-                characterDescriptors.Add(character, new CharacterDescriptor(this, character));
+                characterDescriptors.Add(character, new CharacterDescriptor(font, character));
         }
 
         private static string MakeCharacterString(char firstChar, char lastChar) {
@@ -87,24 +83,6 @@
         public int NumChars {
             get {
                 return characterDescriptors.Count;
-            }
-        }
-
-        public int Height {
-            get {
-                return fontInfo.Height;
-            }
-        }
-
-        public int Ascent {
-            get {
-                return fontInfo.Ascent;
-            }
-        }
-        
-        public int Descent {
-            get {
-                return fontInfo.Descent;
             }
         }
     }
