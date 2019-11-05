@@ -24,18 +24,16 @@
 
                 wr.WriteComment(" Creado con EosFontGenerator ");
                 wr.WriteComment(" No modificar ");
-                wr.WriteComment(String.Format(" Family: {0} ", fontData.FamilyName));
                 wr.WriteComment(String.Format(" Name  : {0} ", fontData.Name));
                 wr.WriteComment(String.Format(" Size  : {0}pt ", fontDescriptor.Font.SizeInPoints));
                 wr.WriteComment(String.Format(" Style : {0} ", fontDescriptor.Font.Style));
 
                 wr.WriteStartElement("resources");
                 wr.WriteStartElement("fontResource");
-                wr.WriteAttributeString("version", "2.1");
+                wr.WriteAttributeString("version", "2.0");
                 wr.WriteAttributeString("resourceId", fontData.Name.Replace(", ", ""));
 
                 wr.WriteStartElement("font");
-                wr.WriteAttributeString("family", fontData.FamilyName);
                 wr.WriteAttributeString("name", fontData.Name);
                 wr.WriteAttributeString("height", fontData.Height.ToString());
                 wr.WriteAttributeString("ascent", fontData.Ascent.ToString());

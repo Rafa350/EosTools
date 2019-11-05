@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Creado con EosFontGenerator -->
 <!-- No modificar -->
-<!-- Family: Arial -->
 <!-- Name  : Arial, 24pt -->
 <!-- Size  : 24pt -->
 <!-- Style : Regular -->
 <resources>
     <fontResource version="2.1" resourceId="Arial24pt">
-        <font family="Arial" name="Arial, 24pt" height="36" ascent="29" descent="7">
+        <font name="Arial, 24pt" height="36" ascent="29" descent="7">
             <char code="0x30" advance="18">
                 <bitmap format="L1" left="1" top="23" width="16" height="23">
                     <scanLine>.....111111.....</scanLine>

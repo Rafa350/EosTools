@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Creado con EosFontGenerator -->
 <!-- No modificar -->
-<!-- Family: Microsoft Sans Serif -->
 <!-- Name  : Microsoft Sans Serif, Bold, 7pt -->
 <!-- Size  : 7pt -->
 <!-- Style : Bold -->
 <resources>
     <fontResource version="2.1" resourceId="Microsoft Sans SerifBold7pt">
-        <font family="Microsoft Sans Serif" name="Microsoft Sans Serif, Bold, 7pt" height="12" ascent="10" descent="2">
+        <font name="Microsoft Sans Serif, Bold, 7pt" height="12" ascent="10" descent="2">
             <char code="0x20" advance="0" />
             <char code="0x21" advance="4">
                 <bitmap format="L1" left="1" top="7" width="2" height="7">

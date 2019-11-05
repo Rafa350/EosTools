@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Creado con EosFontGenerator -->
 <!-- No modificar -->
-<!-- Family: Consolas -->
 <!-- Name  : Consolas, 8pt -->
 <!-- Size  : 8pt -->
 <!-- Style : Regular -->
 <resources>
     <fontResource version="2.1" resourceId="Consolas8pt">
-        <font family="Consolas" name="Consolas, 8pt" height="13" ascent="10" descent="3">
+        <font name="Consolas, 8pt" height="13" ascent="10" descent="3">
             <char code="0x20" advance="0" />
             <char code="0x21" advance="6">
                 <bitmap format="L1" left="2" top="8" width="1" height="8">

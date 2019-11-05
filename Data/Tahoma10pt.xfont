@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Creado con EosFontGenerator -->
 <!-- No modificar -->
-<!-- Family: Tahoma -->
 <!-- Name  : Tahoma, 10pt -->
 <!-- Size  : 10pt -->
 <!-- Style : Regular -->
 <resources>
     <fontResource version="2.1" resourceId="Tahoma10pt">
-        <font family="Tahoma" name="Tahoma, 10pt" height="16" ascent="13" descent="3">
+        <font name="Tahoma, 10pt" height="16" ascent="13" descent="3">
             <char code="0x20" advance="0" />
             <char code="0x21" advance="4">
                 <bitmap format="L1" left="1" top="9" width="1" height="9">

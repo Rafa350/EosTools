@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Creado con EosFontGenerator -->
 <!-- No modificar -->
-<!-- Family: Tahoma -->
 <!-- Name  : Tahoma, Bold, 7pt -->
 <!-- Size  : 7pt -->
 <!-- Style : Bold -->
 <resources>
     <fontResource version="2.1" resourceId="TahomaBold7pt">
-        <font family="Tahoma" name="Tahoma, Bold, 7pt" height="11" ascent="9" descent="2">
+        <font name="Tahoma, Bold, 7pt" height="11" ascent="9" descent="2">
             <char code="0x20" advance="0" />
             <char code="0x21" advance="3">
                 <bitmap format="L1" left="0" top="7" width="2" height="7">

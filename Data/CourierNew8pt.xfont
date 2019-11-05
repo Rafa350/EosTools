@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Creado con EosFontGenerator -->
 <!-- No modificar -->
-<!-- Family: Courier New -->
 <!-- Name  : Courier New, 8pt -->
 <!-- Size  : 8pt -->
 <!-- Style : Regular -->
 <resources>
     <fontResource version="2.1" resourceId="Courier New8pt">
-        <font family="Courier New" name="Courier New, 8pt" height="14" ascent="11" descent="3">
+        <font name="Courier New, 8pt" height="14" ascent="11" descent="3">
             <char code="0x20" advance="0" />
             <char code="0x21" advance="7">
                 <bitmap format="L1" left="3" top="7" width="1" height="7">

@@ -3,6 +3,10 @@
     using System;
     using System.Runtime.InteropServices;
 
+    /// <summary>
+    /// Clase estatica per a accedir a les funcions API de WIN32
+    /// </summary>
+    /// 
     public static class FontAPI {
 
         public enum GGOFormat: uint {
@@ -70,6 +74,18 @@
             public FIXED eM22;
         }
 
+        /// <summary>
+        /// Obte les metriques d'un caracter en el font actual.
+        /// </summary>
+        /// <param name="hdc">Contex del dispositiu.</param>
+        /// <param name="ch">El caracter.</param>
+        /// <param name="fmt">Format de sortida.</param>
+        /// <param name="gm">Buffer per les metriques del caracter.</param>
+        /// <param name="bufferSize">Tamany del buffer de pixels.</param>
+        /// <param name="buffer">Buffer de pixels.</param>
+        /// <param name="matrix">Matriu de transformacio.</param>
+        /// <returns>Reultat de l'operacio.</returns>
+        /// 
         [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern uint GetGlyphOutline(
             IntPtr hdc, 
@@ -80,11 +96,25 @@
             IntPtr buffer, 
             ref MAT2 matrix);
 
+        /// <summary>
+        /// Obte les metriques del font actual.
+        /// </summary>
+        /// <param name="hdc">Context del dispositiu.</param>
+        /// <param name="tm">Buffer per les metriques del font.</param>
+        /// <returns>El resultat de l'operacio.</returns>
+        /// 
         [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern bool GetTextMetrics(
             IntPtr hdc, 
             out TEXTMETRICS tm);
 
+        /// <summary>
+        /// Selecciona un objecte en el context de dispositiu.
+        /// </summary>
+        /// <param name="hdc">Context del dispositiu.</param>
+        /// <param name="obj">L'objecte a seleccionar.</param>
+        /// <returns>L'objecte previament seleccionat.</returns>
+        /// 
         [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr SelectObject(
             IntPtr hdc, 

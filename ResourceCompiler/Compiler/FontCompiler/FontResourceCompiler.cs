@@ -68,7 +68,7 @@
                 }
             }
 
-            string fontName = font.Name.Replace(" ", "");
+            string fontName = font.Name.Replace(", ", "");
 
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
 

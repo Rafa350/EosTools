@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Creado con EosFontGenerator -->
 <!-- No modificar -->
-<!-- Family: Arial -->
 <!-- Name  : Arial, 8pt -->
 <!-- Size  : 8pt -->
 <!-- Style : Regular -->
 <resources>
     <fontResource version="2.1" resourceId="Arial8pt">
-        <font family="Arial" name="Arial, 8pt" height="14" ascent="11" descent="3">
+        <font name="Arial, 8pt" height="14" ascent="11" descent="3">
             <char code="0x20" advance="0" />
             <char code="0x21" advance="2">
                 <bitmap format="L1" left="0" top="8" width="1" height="8">

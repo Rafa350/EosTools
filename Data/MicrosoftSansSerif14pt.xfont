@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Creado con EosFontGenerator -->
 <!-- No modificar -->
-<!-- Family: Microsoft Sans Serif -->
 <!-- Name  : Microsoft Sans Serif, 14pt -->
 <!-- Size  : 14pt -->
 <!-- Style : Regular -->
 <resources>
     <fontResource version="2.1" resourceId="Microsoft Sans Serif14pt">
-        <font family="Microsoft Sans Serif" name="Microsoft Sans Serif, 14pt" height="24" ascent="19" descent="5">
+        <font name="Microsoft Sans Serif, 14pt" height="24" ascent="19" descent="5">
             <char code="0x20" advance="0" />
             <char code="0x21" advance="5">
                 <bitmap format="L1" left="1" top="14" width="2" height="14">

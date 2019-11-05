@@ -13,7 +13,6 @@
 
         private readonly string name;
         private readonly string fontName;
-        private readonly string familyName;
         private readonly int ascent;
         private readonly int descent;
         private readonly int height;
@@ -40,7 +39,6 @@
                                     String.Format("GetTextMetrics: ERROR '{0}", error));
                             }
 
-                            familyName = font.FontFamily.Name;
                             fontName = font.Name;
 
                             StringBuilder sb = new StringBuilder();
@@ -75,10 +73,10 @@
             get { return name; }
         }
 
-        public string FamilyName {
-            get { return familyName; }
-        }
-
+        /// <summary>
+        /// Obte el nom del font.
+        /// </summary>
+        /// 
         public string FontName {
             get { return fontName; }
         }

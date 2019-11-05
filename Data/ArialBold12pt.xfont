@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Creado con EosFontGenerator -->
 <!-- No modificar -->
-<!-- Family: Arial -->
 <!-- Name  : Arial, Bold, 12pt -->
 <!-- Size  : 12pt -->
 <!-- Style : Bold -->
 <resources>
     <fontResource version="2.1" resourceId="ArialBold12pt">
-        <font family="Arial" name="Arial, Bold, 12pt" height="19" ascent="15" descent="4">
+        <font name="Arial, Bold, 12pt" height="19" ascent="15" descent="4">
             <char code="0x30" advance="9">
                 <bitmap format="L1" left="0" top="12" width="8" height="12">
                     <scanLine>..1111..</scanLine>
