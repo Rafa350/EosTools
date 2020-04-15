@@ -12,7 +12,7 @@
         public ArgumentDefinition(string name, int index, string description = null, bool required = false) {
 
             if (String.IsNullOrEmpty(name))
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
 
             this.name = name;
             this.index = index;

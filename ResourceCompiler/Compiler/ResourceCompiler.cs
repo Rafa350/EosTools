@@ -41,10 +41,10 @@
         public void Compile(ResourcePool resources, string outputFolder, CompilerParameters parameters) {
 
             if (resources == null)
-                throw new ArgumentNullException("resources");
+                throw new ArgumentNullException(nameof(resources));
 
             if (String.IsNullOrEmpty(outputFolder))
-                throw new ArgumentNullException("outputFolder");
+                throw new ArgumentNullException(nameof(outputFolder));
 
             ResourceVisitor visitor = new ResourceVisitor(outputFolder, parameters);
             visitor.Visit(resources);
