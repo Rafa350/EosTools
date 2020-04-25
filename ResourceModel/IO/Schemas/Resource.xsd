@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Resource"
+    targetNamespace="http://MikroPic.com/schemas/eostools/v3/Resources.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://MikroPic.com/schemas/eostools/v3/Resources.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="resources">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1">
+                    <xs:element ref="menuResource"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="menuResource">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="menu" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="resourceId" use="required" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="menu">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="menuItem" />
+                    <xs:element ref="commandItem" />
+                    <xs:element ref="exitItem" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="title" use="required" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="menuItem">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="menu" maxOccurs="1" minOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="id" use="optional" type="xs:string"/>
+            <xs:attribute name="title" use="required" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="commandItem">
+        <xs:complexType>
+            <xs:attribute name="id" use="required" type="xs:string"/>
+            <xs:attribute name="title" use="required" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="exitItem">
+        <xs:complexType>
+            <xs:attribute name="title" use="required" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

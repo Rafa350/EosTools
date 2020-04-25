@@ -4,38 +4,32 @@
     
     public abstract class Item: IVisitable {
 
-        private string title;
-        private string displayFormat;
+        private readonly string title;
 
-        public Item(string title) {
+        /// <summary>
+        /// Constructor de l'bjecte.
+        /// </summary>
+        /// <param name="title">Titol.</param>
+        /// 
+        protected Item(string title) {
 
             if (String.IsNullOrEmpty(title))
-                throw new ArgumentNullException("title");
+                throw new ArgumentNullException(nameof(title));
 
             this.title = title;
         }
 
-        public Item(string title, string displayFormat) {
-
-            if (String.IsNullOrEmpty(title))
-                throw new ArgumentNullException("title");
-
-            this.title = title;
-            this.displayFormat = displayFormat;
-        }
-
+        /// <summary>
+        /// Accepta un visitador.
+        /// </summary>
+        /// <param name="visitor">El visitador.</param>
+        /// 
         public abstract void AcceptVisitor(IVisitor visitor);
 
-        public string Title {
-            get {
-                return title;
-            }
-        }
-
-        public string DisplayFormat {
-            get {
-                return displayFormat;
-            }
-        }
+        /// <summary>
+        /// Obte el titol del item.
+        /// </summary>
+        /// 
+        public string Title => title;
     }
 }

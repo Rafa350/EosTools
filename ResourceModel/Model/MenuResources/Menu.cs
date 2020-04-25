@@ -2,7 +2,6 @@
 
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
 
     /// <summary>
     /// Descriptor d'un recurs de menu.
@@ -21,7 +20,7 @@
         public Menu(string title) {
 
             if (String.IsNullOrEmpty("title"))
-                throw new ArgumentNullException("title");
+                throw new ArgumentNullException(nameof(title));
 
             this.title = title;
         }
@@ -35,7 +34,7 @@
         public Menu(string title, params Item[] items) {
 
             if (String.IsNullOrEmpty("title"))
-                throw new ArgumentNullException("title");
+                throw new ArgumentNullException(nameof(title));
 
             this.title = title;
             this.items.AddRange(items);
@@ -50,7 +49,7 @@
         public Menu(string title, IEnumerable<Item> items) {
 
             if (String.IsNullOrEmpty("title"))
-                throw new ArgumentNullException("title");
+                throw new ArgumentNullException(nameof(title));
 
             this.title = title;
             this.items.AddRange(items);
@@ -70,20 +69,12 @@
         /// Obte el titol.
         /// </summary>
         /// 
-        public string Title {
-            get {
-                return title;
-            }
-        }
+        public string Title => title;
 
         /// <summary>
         /// Obte els subitems.
         /// </summary>
         /// 
-        public IReadOnlyCollection<Item> Items {
-            get {
-                return items;
-            }
-        }
+        public IReadOnlyCollection<Item> Items => items;
     }
 }

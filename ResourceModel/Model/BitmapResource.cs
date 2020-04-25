@@ -22,7 +22,7 @@
             base(resourceId, languaje) {
 
             if (bitmap == null)
-                throw new ArgumentNullException("bitmap");
+                throw new ArgumentNullException(nameof(bitmap));
 
             this.bitmap = bitmap;
         }

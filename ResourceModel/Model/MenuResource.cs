@@ -22,7 +22,7 @@
             base(resourceId, languaje) {
 
             if (menu == null)
-                throw new ArgumentNullException("menu");
+                throw new ArgumentNullException(nameof(menu));
 
             this.menu = menu;
         }

@@ -70,6 +70,7 @@
     <Compile Include="Model\IVisitor.cs" />
     <Compile Include="Model\MenuResource.cs" />
     <Compile Include="Model\MenuResources\Commandtem.cs" />
+    <Compile Include="Model\MenuResources\CommandtemBase.cs" />
     <Compile Include="Model\MenuResources\ExitItem.cs" />
     <Compile Include="Model\MenuResources\Item.cs" />
     <Compile Include="Model\MenuResources\Menu.cs" />
@@ -82,6 +83,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="IO\Schemas\Resource.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="signature.pfx" />
   </ItemGroup>
   <ItemGroup />

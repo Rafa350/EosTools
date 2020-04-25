@@ -22,7 +22,7 @@
         public Bitmap(string source, BitmapFormat format) {
 
             if (String.IsNullOrEmpty(source))
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
 
             this.source = source;
             this.format = format;

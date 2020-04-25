@@ -11,7 +11,7 @@
             : base(resourceId, languaje) {
 
             if (fontTable == null)
-                throw new ArgumentNullException("fontTable");
+                throw new ArgumentNullException(nameof(fontTable));
 
             this.fontTable = fontTable;
         }

@@ -18,7 +18,7 @@
         public ResourcePool(IEnumerable<Resource> resources) {
 
             if (resources == null)
-                throw new ArgumentNullException("resources");
+                throw new ArgumentNullException(nameof(resources));
 
             this.resources.AddRange(resources);
         }

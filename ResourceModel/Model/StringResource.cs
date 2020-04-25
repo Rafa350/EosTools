@@ -11,7 +11,7 @@ namespace EosTools.v1.ResourceModel.Model {
             base(resourceId, language) {
 
             if (strings == null)
-                throw new ArgumentNullException("strings");
+                throw new ArgumentNullException(nameof(strings));
 
             this.strings = strings;
         }

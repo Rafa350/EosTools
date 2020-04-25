@@ -205,7 +205,7 @@
             int byteCount = 1;
             foreach (char ch in item.Title) {
                 if (byteCount == 0)
-                    writer.Write("              ");
+                    writer.Write("                   ");
                 writer.Write("'{0}', ", ch);
                 byteCount++;
                 if (byteCount == 8) {
@@ -219,7 +219,7 @@
 
             writer.WriteLine("    /* {0:X4} */     {1}, ",
                 offset,
-                item.Command);
+                item.MenuId);
             offset += 1;
         }
 

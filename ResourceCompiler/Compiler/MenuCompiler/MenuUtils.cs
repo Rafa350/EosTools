@@ -17,8 +17,8 @@
 
             public override void Visit(CommandItem item) {
 
-                if (commands.IndexOf(item.Command) == -1)
-                    commands.Add(item.Command);
+                if (commands.IndexOf(item.MenuId) == -1)
+                    commands.Add(item.MenuId);
             }
         }
 

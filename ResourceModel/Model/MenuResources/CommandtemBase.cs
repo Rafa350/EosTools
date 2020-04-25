@@ -1,6 +1,8 @@
 ﻿namespace EosTools.v1.ResourceModel.Model.MenuResources {
 
-    public class CommandItem: CommandItemBase {
+    public abstract class CommandItemBase: Item {
+
+        private readonly string menuId;
 
         /// <summary>
         /// Constructor de l'objecte.
@@ -8,18 +10,16 @@
         /// <param name="menuId">Identificador del item.</param>
         /// <param name="title">Titol del item.</param>
         /// 
-        public CommandItem(string menuId, string title) 
-            : base(menuId, title) {
+        protected CommandItemBase(string menuId, string title) 
+            : base(title) {
+
+            this.menuId = menuId;
         }
 
         /// <summary>
-        /// Accepta un visitador.
+        /// Obte el identificador del item.
         /// </summary>
-        /// <param name="visitor">El visitador.</param>
         /// 
-        public override void AcceptVisitor(IVisitor visitor) {
-
-            visitor.Visit(this);
-        }
+        public string MenuId => menuId;
     }
 }

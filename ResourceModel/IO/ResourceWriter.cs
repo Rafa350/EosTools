@@ -43,8 +43,8 @@
             public override void Visit(CommandItem item) {
 
                 writer.WriteStartElement("commandItem");
+                writer.WriteAttributeString("menuId", item.MenuId);
                 writer.WriteAttributeString("title", item.Title);
-                writer.WriteAttributeString("command", item.Command.ToString());
 
                 base.Visit(item);
 
@@ -54,6 +54,17 @@
             public override void Visit(MenuItem item) {
 
                 writer.WriteStartElement("menuItem");
+                writer.WriteAttributeString("menuId", item.MenuId);
+                writer.WriteAttributeString("title", item.Title);
+
+                base.Visit(item);
+
+                writer.WriteEndElement();
+            }
+
+            public override void Visit(ExitItem item) {
+
+                writer.WriteStartElement("exitItem");
                 writer.WriteAttributeString("title", item.Title);
 
                 base.Visit(item);
@@ -65,7 +76,7 @@
         public ResourceWriter(Stream stream) {
 
             if (stream == null)
-                throw new ArgumentNullException("stream");
+                throw new ArgumentNullException(nameof(stream));
 
             this.stream = stream;
         }

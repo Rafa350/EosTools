@@ -10,7 +10,7 @@
         public FontTable(IEnumerable<FontTableItem> items) {
 
             if (items == null)
-                throw new ArgumentNullException("items");
+                throw new ArgumentNullException(nameof(items));
 
             this.items.AddRange(items);
         }

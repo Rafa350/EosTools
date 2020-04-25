@@ -18,7 +18,7 @@
         public ResourceReader(Stream stream) {
 
             if (stream == null)
-                throw new ArgumentNullException("stream");
+                throw new ArgumentNullException(nameof(stream));
 
             this.stream = stream;
         }
@@ -114,20 +114,15 @@
         private MenuItem ProcessMenuItem(XmlNode menuItemNode) {
 
             string title = menuItemNode.Attributes["title"].Value;
-
-            string displayFormat = null;
-            if (menuItemNode.Attributes["displayFormat"] != null) {
-                displayFormat = menuItemNode.Attributes["displayFormat"].Value;
-                if (displayFormat == null)
-                    displayFormat = String.Empty;
-            }
+            string menuId = menuItemNode.Attributes["id"] == null ?
+                "0" :  menuItemNode.Attributes["id"].Value;
 
             Menu subMenu = null;
             XmlNode menuNode = menuItemNode.SelectSingleNode("menu");
             if (menuNode != null)
                 subMenu = ProcessMenu(menuNode);
 
-            return new MenuItem(title, displayFormat, subMenu);
+            return new MenuItem(menuId, title, subMenu);
         }
 
         /// <summary>
@@ -139,15 +134,9 @@
         private CommandItem ProcessCommandItem(XmlNode commandItemNode) {
 
             string title = commandItemNode.Attributes["title"].Value;
-            string displayFormat = null;
-            if (commandItemNode.Attributes["displayFormat"] != null) {
-                displayFormat = commandItemNode.Attributes["displayFormat"].Value;
-                if (displayFormat == null)
-                    displayFormat = String.Empty;
-            }
-            string command = commandItemNode.Attributes["command"].Value;
+            string menuId = commandItemNode.Attributes["id"].Value;
 
-            return new CommandItem(title, displayFormat, command);
+            return new CommandItem(menuId, title);
         }
 
         /// <summary>

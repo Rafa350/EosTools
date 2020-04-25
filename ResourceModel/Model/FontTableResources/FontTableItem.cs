@@ -11,7 +11,7 @@
         public FontTableItem(int fontId, string fontName) {
 
             if (String.IsNullOrEmpty(fontName))
-                throw new ArgumentNullException("fontName");
+                throw new ArgumentNullException(nameof(fontName));
 
             this.fontId = fontId;
             this.fontName = fontName;

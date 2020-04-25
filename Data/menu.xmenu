@@ -1,77 +1,281 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- APLEX4 -->
 <resources>
-    <menuResource resourceId="MnuMain">
-        <menu title="MENU">
-            <menuItem title="Configuration...">
-                <menu title="CONFIGURATION">
-                
-                    <!-- Opcions de configuracio dels eixos -->
-                    <menuItem title="Axis...">
-                        <menu title="AXIS">
-                        
-                            <!--Configuracio del eix X -->
-                            <menuItem title="X-Axis...">
-                                <menu title="X-AXIS">
-                                    <menuItem title="Motor...">
-                                        <menu title="X-AXIS MOTOR">
-                                            <menuItem title="Limits..">
-                                                <menu title="X-AXIS MOTOR LIMITS">
-                                                    <commandItem title="Jerk" displayFormat="" command="CMD_SET_XJERK" />
-                                                    <commandItem title="Accel" displayFormat="" command="CMD_SET_XMAXACCEL" />
-                                                    <commandItem title="Speed" displayFormat="" command="CMD_SET_XMAXSPEED" />
-                                                    <exitItem title="Back" />
-                                                </menu>
-                                            </menuItem>
-                                            <menuItem title="Scale...">
-                                                <menu title="X-AXIS MOTOR SCALE">
-                                                    <commandItem title="Steps" displayFormat="" command="CMD_SET_XNUMSTEPS" />
-                                                    <commandItem title="Units" displayFormat="" command="CMD_SET_XNUMUNITS" />
-                                                    <exitItem title="Back" />
-                                                </menu>
-                                            </menuItem>
-                                            <exitItem title="Back" />
-                                        </menu>
-                                    </menuItem>
-                                    <exitItem title="Back" />
+	<menuResource resourceId="MnuMain">
+		<menu title="MENU">
+			<menuItem title="CONFIGURATION">
+				<menu title="CONFIGURATION">
+
+					<!-- Configuracio de les entrades -->                    
+					<menuItem title="INPUTS">
+						<menu title="INPUTS">
+                                   
+                            <!-- Conmfiguracio de la entrada INP_X0 -->
+                            <menuItem title="INP-X0">
+                                <menu title="IMP-X0">
+                                    <commandItem title="FUNCTION" id="CMD_INPX0_FUNCTION" />
+                                    <commandItem title="MODE" id="CMD_INPX0_MODE" />
+                                    <commandItem title="EV.DLY" id="CMD_INPX0_EVDLY" />
+                                    <commandItem title="FL.DLY.ON" id="CMD_INPX0_FLDLYON" />
+                                    <commandItem title="FL.DLY.OFF" id="CMD_INPX0_FLDLYOFF" />
+                                    <exitItem title="BACK"/>
+                                </menu>
+                            </menuItem>
+                            <exitItem title="BACK"/>
+
+						</menu>
+					</menuItem>
+
+                    <!-- Configuracio de les sortides -->
+					<menuItem title="OUTPUTS">
+						<menu title="OUTPUTS">
+
+                            <!-- Configura la sortida OUT_X0 -->
+                            <menuItem title="OUT-X0">
+                                <menu title="OUT-X0">
+                                    <commandItem title="FUNCTION" id="CMD_OUTX0_FUNCTION"/>
+                                    <commandItem title="ON.EVENT" id="CMD_OUTX0_ON"/>
+                                    <commandItem title="OFF.EVENT" id="CMD_OUTX0_OFF"/>
+                                    <commandItem title="DELAY" id="CMD_OUTX0_DELAY"/>
+                                    <commandItem title="TIME" id="CMD_OUTX0_TIME"/>
+                                    <exitItem title="BACK"/>
                                 </menu>
                             </menuItem>
 
-                            <!--Configuracio del eix Y -->
-                            <menuItem title="Y-Axis...">
-                                <menu title="Y-AXIS">
-                                    <menuItem title="Motor...">
-                                        <menu title="Y-AXIS MOTOR">
-                                            <menuItem title="Limits..">
-                                                <menu title="Y-AXIS MOTOR LIMITS">
-                                                    <commandItem title="Jerk" displayFormat="" command="CMD_SET_YJERK" />
-                                                    <commandItem title="Accel" displayFormat="" command="CMD_SET_YMAXACCEL" />
-                                                    <commandItem title="Speed" displayFormat="" command="CMD_SET_YMAXSPEED" />
-                                                    <exitItem title="Back" />
-                                                </menu>
-                                            </menuItem>
-                                            <menuItem title="Scale...">
-                                                <menu title="Y-AXIS MOTOR SCALE">
-                                                    <commandItem title="Steps" displayFormat="" command="CMD_SET_YNUMSTEPS" />
-                                                    <commandItem title="Units" displayFormat="" command="CMD_SET_YNUMUNITS" />
-                                                    <exitItem title="Back" />
-                                                </menu>
-                                            </menuItem>
-                                            <exitItem title="Back" />
-                                        </menu>
-                                    </menuItem>
-                                    <exitItem title="Back" />
+                            <!-- Configura la sortida OUT_X1 -->
+                            <menuItem title="OUT-X1">
+                                <menu title="OUT-X1">
+                                    <commandItem title="FUNCTION" id="CMD_OUTX1_FUNCTION"/>
+                                    <commandItem title="ON.EVENT" id="CMD_OUTX1_ON"/>
+                                    <commandItem title="OFF.EVENT" id="CMD_OUTX1_OFF"/>
+                                    <commandItem title="DELAY" id="CMD_OUTX1_DELAY"/>
+                                    <commandItem title="TIME" id="CMD_OUTX1_TIME"/>
+                                    <exitItem title="BACK"/>
                                 </menu>
                             </menuItem>
 
-                            <!--Configuracio del eix Z -->
+                            <!-- Configura la sortida OUT_X2 -->
+                            <menuItem title="OUT-X2">
+                                <menu title="OUT-X2">
+                                    <commandItem title="FUNCTION" id="CMD_OUTX2_FUNCTION"/>
+                                    <commandItem title="ON.EVENT" id="CMD_OUTX2_ON"/>
+                                    <commandItem title="OFF.EVENT" id="CMD_OUTX2_OFF"/>
+                                    <commandItem title="DELAY" id="CMD_OUTX2_DELAY"/>
+                                    <commandItem title="TIME" id="CMD_OUTX2_TIME"/>
+                                    <exitItem title="BACK"/>
+                                </menu>
+                            </menuItem>
 
-                            <exitItem title="Back" />
+                            <!-- Configura la sortida OUT_X3 -->
+                            <menuItem title="OUT-X3">
+                                <menu title="OUT-X3">
+                                    <commandItem title="FUNCTION" id="CMD_OUTX3_FUNCTION"/>
+                                    <commandItem title="ON.EVENT" id="CMD_OUTX3_ON"/>
+                                    <commandItem title="OFF.EVENT" id="CMD_OUTX3_OFF"/>
+                                    <commandItem title="DELAY" id="CMD_OUTX3_DELAY"/>
+                                    <commandItem title="TIME" id="CMD_OUTX3_TIME"/>
+                                    <exitItem title="BACK"/>
+                                </menu>
+
+                            </menuItem>
+                            <exitItem title="BACK"/>
+
+						</menu>
+					</menuItem>
+                                       
+                    <!-- Configuracio dels pilots -->
+                    <menuItem title="PILOT">
+                        <menu title="PILOT">
+
+                            <!-- Configura el pilot RED -->
+                            <menuItem title="RED">
+                                <menu title="RED">                                    
+                                    <commandItem title="FUNCTION" id="CMD_RedPilot_Function"/>
+                                    <commandItem title="BLK.WARN" id="CMD_RedPilot_BlinkOnWarn"/>
+                                    <commandItem title="BLK.ERROR" id="CMD_RedPilot_BlinkOnError"/>
+                                    <exitItem title="BACK" />                                
+                                </menu>
+                            </menuItem>
+
+                            <!-- Configura el pilot AMBER -->
+                            <menuItem title="AMBER">
+                                <menu title="AMBER">                                    
+                                    <commandItem title="FUNCTION" id="CMD_AmberPilot_Function"/>
+                                    <commandItem title="BLK.WARN" id="CMD_AmberPilot_BlinkOnWarn"/>
+                                    <commandItem title="BLK.ERROR" id="CMD_AmberPilot_BlinkOnError"/>
+                                    <exitItem title="BACK" />                                
+                                </menu>
+                            </menuItem>
+
+                            <!-- Configura el pilot GREEN -->
+                            <menuItem title="GREEN">
+                                <menu title="GREEN">                                    
+                                    <commandItem title="FUNCTION" id="CMD_GreenPilot_Function"/>
+                                    <commandItem title="BLK.WARN" id="CMD_GreenPilot_BlinkOnWarn"/>
+                                    <commandItem title="BLK.ERROR" id="CMD_GreenPilot_BlinkOnError"/>
+                                    <exitItem title="BACK" />                                
+                                </menu>
+                            </menuItem>
+
+                            <exitItem title="BACK" />
                         </menu>
                     </menuItem>
-                    <exitItem title="Back" />                    
-                </menu>
-            </menuItem>
-            <commandItem title="Exit" command="CMD_EXIT"/>
-        </menu>
-    </menuResource>
+
+                    <!-- Configuracio de seguretat -->
+                    <menuItem title="SECURITY">
+                        <menu title= "SECURITY">
+                            <menuItem title="INTERNAL">
+                                <menu title="INTERNAL">
+                                    <commandItem title="ENABLED" id="CMD_SecurityInternal_Enabled"/>
+                                    <commandItem title="RESTART" id="CMD_SecurityInternal_Restart"/>
+                                    <exitItem title="BACK"/>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="EXTERNAL">
+                                <menu title="EXTERNAL">
+                                    <commandItem title="ENABLED" id="CMD_SecurityExternal_Enabled"/>
+                                    <commandItem title="RESTART" id="CMD_SecurityExternal_Restart"/>
+                                    <commandItem title="PORT" id="CMD_SecurityExternal_Port"/>
+                                    <commandItem title="MODE" id="CMD_SecurityExternal_Mode"/>
+                                    <exitItem title="BACK"/>
+                                </menu>
+                            </menuItem>
+                            <exitItem title="BACK"/>
+                        </menu>
+                    </menuItem>
+
+                    <!-- Configura la impresora -->
+					<menuItem title="PRINTER">
+						<menu title="PRINTER">
+							<commandItem title="ERROR LEVEL" id="CMD_CFG_PRT_ERROR_LEVEL"/>
+							<commandItem title="ERROR MODE" id="CMD_CFG_PRT_ERROR_MODE"/>
+							<commandItem title="ACTIVE LEVEL" id="CMD_CFG_PRT_ACTIVE_LEVEL"/>
+							<commandItem title="READY EDGE" id="CMD_CFG_PRT_READY_EDGE"/>
+							<exitItem title="BACK" />
+						</menu>
+					</menuItem>
+
+                    <!-- Configuracio del processos -->
+                    <menuItem title="PROCESS">
+                        <menu title="PROCESS">
+
+                            <!-- Proces d'imporessio -->
+                            <menuItem title="PRINT">
+                                <menu title="PRINT">
+                                    <!-- Opcions de trigger -->
+                                    <menuItem title="TRIGGER">
+                                        <menu title="TRIGGER">
+                                            <commandItem title="PORT" id="CMD_Print_TriggerPort"/>
+                                            <commandItem title="MODE" id="CMD_Print_TriggerMode"/>
+                                            <exitItem title="BACK"/>
+                                        </menu>
+                                    </menuItem>
+                                    <!-- Retard al inici de cicle -->
+                                    <commandItem title="PRE.DELAY" id="CMD_Print_PreDelay" />
+                                    <!-- Retard al final de cicle -->
+                                    <commandItem title="POST.DELAY" id="CMD_Print_PostDelay"/>
+                                    <!-- Retard per iniciar l'aspiracio -->
+                                    <commandItem title="VAC.DELAY" id="CMD_Print_VacuumDelay" />
+                                    <!-- Retard per inicial el bufador -->
+                                    <commandItem title="AST.DELAY" id="CMD_Print_AssistDelay" />
+                                    <!-- Temps maxim del cicle, se es sobrepasa es genera un error -->
+                                    <commandItem title="TIMEOUT" id="CMD_Print_Timeout"/>
+                                    <exitItem title="BACK" />
+                                </menu>
+                            </menuItem>
+
+                            <!-- Proces d'aplicacio -->
+                            <menuItem title="APPLY">
+                                <menu title="APPLY">
+                                    <!-- Opcions de trigger -->
+                                    <menuItem title="TRIGGER">
+                                        <menu title="TRIGGER">
+                                            <commandItem title="PORT" id="CMD_Apply_TriggerPort"/>
+                                            <commandItem title="MODE" id="CMD_Apply_TriggerMode"/>
+                                            <exitItem title="BACK"/>
+                                        </menu>
+                                    </menuItem>
+                                    <!-- Opcions del detector de proximitat -->
+                                    <menuItem title="PROXIMITY">
+                                        <menu title="PROXIMITY">
+                                            <commandItem title="ENABLED" id="CMD_Apply_ProximityEnabled"/>
+                                            <commandItem title="PORT" id="CMD_Apply_ProximityPort"/>
+                                            <commandItem title="MODE" id="CMD_Apply_ProximityMode"/>
+                                            <exitItem title="BACK"/>
+                                        </menu>
+                                    </menuItem>
+                                    <!-- Opcions del detector de buit -->
+                                    <menuItem title="VACUUM">
+                                        <menu title="VACUUM">
+                                            <commandItem title="ENABLED" id="CMD_Apply_VacuumEnabled"/>
+                                            <exitItem title="BACK"/>
+                                        </menu>
+                                    </menuItem>
+                                    <!-- Retard al inici de cicle -->
+                                    <commandItem title="PRE.DELAY" id="CMD_Apply_PreDelay" />
+                                    <!-- Retard al final de cicle -->
+                                    <commandItem title="POST.DELAY" id="CMD_Apply_PostDelay"/>
+                                    <!--Retard del air-jet -->
+                                    <commandItem title="JET.DELAY" id="CMD_Apply_JetDelay" />
+                                    <!-- Temps del air-jet -->
+                                    <commandItem title="JET.TIME" id="CMD_Apply_JetTime" />
+                                    <exitItem title="BACK" />
+                                </menu>
+                            </menuItem>
+
+                            <!-- Proces d'extenssio del brac -->
+                            <menuItem title="ARM.EXTEND">
+                                <menu title="ARM.EXTEND">
+                                    <!-- Retard al inici de cicle -->
+                                    <commandItem title="PRE.DELAY" id="CMD_EXTEND_PRE_DELAY" />
+                                    <!-- Retard al final de cicle -->
+                                    <commandItem title="POST.DELAY" id="CMD_EXTEND_POST_DELAY"/>
+                                    <exitItem title="BACK" />
+                                </menu>
+                            </menuItem>
+
+                            <!-- Proces de retraccio del brac -->
+                            <menuItem title="ARM.RETRACT">
+                                <menu title="ARM.RETRACT">
+                                    <!-- Retard al inici de cicle -->
+                                    <commandItem title="PRE.DELAY" id="CMD_RETRACT_PRE_DELAY" />
+                                    <!-- Retard al final de cicle -->
+                                    <commandItem title="POST.DELAY" id="CMD_RETRACT_POST_DELAY"/>
+                                    <!-- Temps maxim del cicle, se es sobrepasa es genera un error -->
+                                    <commandItem title="TIMEOUT" id="CMD_RETRACT_TIMEOUT"/>
+                                    <exitItem title="BACK"/>
+                                </menu>
+                            </menuItem>
+
+                            <exitItem title="BACK" />
+                        </menu>
+                    </menuItem>
+                    <exitItem title="BACK" />
+				</menu>
+			</menuItem>
+
+			<menuItem title="DIAGNOSTICS">
+				<menu title="DIAGNOSTICS">
+					<menuItem title="AUTO-TEST">
+						<menu title="AUTO-TEST">
+							<commandItem title="ACTIVE" id="CMD_CFG_TEST_ACTIVE" />
+							<commandItem title="INTERVAL" id="CMD_CFG_TEST_INTERVAL" />
+							<exitItem title="BACK"/>
+						</menu>
+					</menuItem>
+
+					<exitItem title="BACK" />
+				</menu>
+			</menuItem>
+
+			<menuItem title="SERVICE">
+				<menu title="SERVICE">
+					<commandItem title="RESET DEFAULTS" id="CMD_RESET_DEFAULTS" />
+					<exitItem title="BACK"/>
+				</menu>
+			</menuItem>
+
+			<commandItem title="EXIT &amp; SAVE" id="CMD_EXITSAVE"/>
+			<commandItem title="EXIT" id="CMD_EXIT" />
+		</menu>
+	</menuResource>
 </resources>

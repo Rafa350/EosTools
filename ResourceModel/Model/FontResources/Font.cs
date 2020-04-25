@@ -15,7 +15,7 @@
         public Font(string name, int height, int ascent, int descent, IEnumerable<FontChar> chars) {
 
             if (String.IsNullOrEmpty(name))
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
 
             this.name = name;
             this.height = height;
