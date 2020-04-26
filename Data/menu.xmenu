@@ -1,5 +1,7 @@
 <!-- APLEX4 -->
-<resources>
+<resources
+	xmlns="http://MikroPic.com/schemas/eosTools/v3/Resources.xsd">
+	
 	<menuResource resourceId="MnuMain">
 		<menu title="MENU">
 			<menuItem title="CONFIGURATION">
@@ -154,31 +156,42 @@
 						</menu>
 					</menuItem>
 
-                    <!-- Configuracio del processos -->
-                    <menuItem title="PROCESS">
-                        <menu title="PROCESS">
+                    <!-- Configuracio dels controladors -->
+                    <menuItem title="CONTROLLER">
+                        <menu title="CONTROLLER">
 
-                            <!-- Proces d'imporessio -->
+                            <!-- Controlador d'impressio -->
                             <menuItem title="PRINT">
                                 <menu title="PRINT">
-                                    <!-- Opcions de trigger -->
+                                    <!-- Opcions TR -->
                                     <menuItem title="TRIGGER">
                                         <menu title="TRIGGER">
-                                            <commandItem title="PORT" id="CMD_Print_TriggerPort"/>
-                                            <commandItem title="MODE" id="CMD_Print_TriggerMode"/>
+                                            <commandItem title="SIGNAL" id="CMD_Print_TriggerSignal"/>
+                                            <commandItem title="EDGE"   id="CMD_Print_TriggerEdge"/>
+                                            <commandItem title="DELAY"  id="CMD_Print_TriggerDelay" />
+                                            <exitItem title="BACK"/>
+                                        </menu>
+                                    </menuItem>
+                                    <!-- Opcions EN -->
+                                    <menuItem title="ENABLE">
+                                        <menu title="ENABLE">
+                                            <commandItem title="SIGNAL"    id="CMD_Print_EnableSignal"/>
+                                            <commandItem title="LEVEL"     id="CMD_Print_EnableLevel"/>
+                                            <commandItem title="ON.DELAY"  id="CMD_Print_EnableOnDelay" />
+                                            <commandItem title="OFF.DELAY" id="CMD_Print_EnableOffDelay" />
                                             <exitItem title="BACK"/>
                                         </menu>
                                     </menuItem>
                                     <!-- Retard al inici de cicle -->
-                                    <commandItem title="PRE.DELAY" id="CMD_Print_PreDelay" />
+                                    <commandItem title="PRE.DELAY"  id="CMD_Print_PreDelay" />
                                     <!-- Retard al final de cicle -->
                                     <commandItem title="POST.DELAY" id="CMD_Print_PostDelay"/>
                                     <!-- Retard per iniciar l'aspiracio -->
-                                    <commandItem title="VAC.DELAY" id="CMD_Print_VacuumDelay" />
+                                    <commandItem title="VAC.DELAY"  id="CMD_Print_VacuumDelay" />
                                     <!-- Retard per inicial el bufador -->
-                                    <commandItem title="AST.DELAY" id="CMD_Print_AssistDelay" />
+                                    <commandItem title="AST.DELAY"  id="CMD_Print_AssistDelay" />
                                     <!-- Temps maxim del cicle, se es sobrepasa es genera un error -->
-                                    <commandItem title="TIMEOUT" id="CMD_Print_Timeout"/>
+                                    <commandItem title="TIMEOUT"    id="CMD_Print_Timeout"/>
                                     <exitItem title="BACK" />
                                 </menu>
                             </menuItem>
@@ -186,11 +199,22 @@
                             <!-- Proces d'aplicacio -->
                             <menuItem title="APPLY">
                                 <menu title="APPLY">
-                                    <!-- Opcions de trigger -->
+                                    <!-- Opcions TR -->
                                     <menuItem title="TRIGGER">
                                         <menu title="TRIGGER">
-                                            <commandItem title="PORT" id="CMD_Apply_TriggerPort"/>
-                                            <commandItem title="MODE" id="CMD_Apply_TriggerMode"/>
+                                            <commandItem title="SIGNAL" id="CMD_Apply_TriggerSignal"/>
+                                            <commandItem title="EDGE"   id="CMD_Apply_TriggerEdge"/>
+                                            <commandItem title="DELAY"  id="CMD_Apply_TriggerDelay" />
+                                            <exitItem title="BACK"/>
+                                        </menu>
+								    </menuItem>
+                                    <!-- Opcions EN -->
+                                    <menuItem title="ENABLE">
+                                        <menu title="ENABLE">
+                                            <commandItem title="SIGNAL"    id="CMD_Apply_EnableSignal"/>
+                                            <commandItem title="LEVEL"     id="CMD_Apply_EnableLevel"/>
+                                            <commandItem title="ON.DELAY"  id="CMD_Apply_EnableOnDelay" />
+                                            <commandItem title="OFF.DELAY" id="CMD_Apply_EnableOffDelay" />
                                             <exitItem title="BACK"/>
                                         </menu>
                                     </menuItem>
@@ -198,8 +222,8 @@
                                     <menuItem title="PROXIMITY">
                                         <menu title="PROXIMITY">
                                             <commandItem title="ENABLED" id="CMD_Apply_ProximityEnabled"/>
-                                            <commandItem title="PORT" id="CMD_Apply_ProximityPort"/>
-                                            <commandItem title="MODE" id="CMD_Apply_ProximityMode"/>
+                                            <commandItem title="SIGNAL"  id="CMD_Apply_ProximitySignal"/>
+                                            <commandItem title="EDGE"    id="CMD_Apply_ProximityEdge"/>
                                             <exitItem title="BACK"/>
                                         </menu>
                                     </menuItem>
@@ -222,27 +246,38 @@
                                 </menu>
                             </menuItem>
 
-                            <!-- Proces d'extenssio del brac -->
-                            <menuItem title="ARM.EXTEND">
-                                <menu title="ARM.EXTEND">
-                                    <!-- Retard al inici de cicle -->
-                                    <commandItem title="PRE.DELAY" id="CMD_EXTEND_PRE_DELAY" />
-                                    <!-- Retard al final de cicle -->
-                                    <commandItem title="POST.DELAY" id="CMD_EXTEND_POST_DELAY"/>
+                            <!-- Controlador de moviment -->
+                            <menuItem title="MOTION">
+                                <menu title="MOTION">
+                                    <menuItem title="EXTEND">
+                                        <menu title="EXTEND">
+                                            <menuItem title="TRIGGER">
+                                                <menu title="TRIGGER">
+                                                    <commandItem title="SIGNAL" id="0"/>
+                                                    <commandItem title="EDGE" id="0"/>
+                                                    <commandItem title="DELAY" id="0"/>
+                                                    <exitItem title="BACK"/>                                                    
+                                                </menu>
+                                            </menuItem>
+                                            <exitItem title="BACK"/>
+                                        </menu>
+                                    </menuItem>
+                                    
+                                    <menuItem title="RETRACT">
+                                        <menu title="RETRACT">
+                                            <menuItem title="TRIGGER">
+                                                <menu title="TRIGGER">
+                                                    <commandItem title="SIGNAL" id="0"/>
+                                                    <commandItem title="EDGE" id="0"/>
+                                                    <commandItem title="DELAY" id="0"/>
+                                                    <exitItem title="BACK"/>                                                    
+                                                </menu>
+                                            </menuItem>
+                                            <exitItem title="BACK"/>
+                                        </menu>
+                                    </menuItem>
+                                    
                                     <exitItem title="BACK" />
-                                </menu>
-                            </menuItem>
-
-                            <!-- Proces de retraccio del brac -->
-                            <menuItem title="ARM.RETRACT">
-                                <menu title="ARM.RETRACT">
-                                    <!-- Retard al inici de cicle -->
-                                    <commandItem title="PRE.DELAY" id="CMD_RETRACT_PRE_DELAY" />
-                                    <!-- Retard al final de cicle -->
-                                    <commandItem title="POST.DELAY" id="CMD_RETRACT_POST_DELAY"/>
-                                    <!-- Temps maxim del cicle, se es sobrepasa es genera un error -->
-                                    <commandItem title="TIMEOUT" id="CMD_RETRACT_TIMEOUT"/>
-                                    <exitItem title="BACK"/>
                                 </menu>
                             </menuItem>
 

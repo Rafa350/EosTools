@@ -83,8 +83,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="IO\Schemas\Resource.xsd">
+    <EmbeddedResource Include="IO\Schemas\Resource.xsd">
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
     </None>
     <None Include="signature.pfx" />
   </ItemGroup>

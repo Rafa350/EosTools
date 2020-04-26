@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema id="Resource"
-    targetNamespace="http://MikroPic.com/schemas/eostools/v3/Resources.xsd"
+    targetNamespace="http://MikroPic.com/schemas/eosTools/v3/Resources.xsd"
     elementFormDefault="qualified"
-    xmlns="http://MikroPic.com/schemas/eostools/v3/Resources.xsd"
+    xmlns="http://MikroPic.com/schemas/eosTools/v3/Resources.xsd"
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
     <xs:element name="resources">
@@ -10,16 +10,19 @@
             <xs:sequence>
                 <xs:choice minOccurs="1">
                     <xs:element ref="menuResource"/>
+                    <xs:element ref="fontResource"/>
                 </xs:choice>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
+    <!-- MENU RESOURCE -->
     <xs:element name="menuResource">
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="menu" minOccurs="1" maxOccurs="1"/>
             </xs:sequence>
+            <xs:attribute name="version" use="optional" type="xs:string"/>
             <xs:attribute name="resourceId" use="required" type="xs:string"/>
         </xs:complexType>
     </xs:element>
@@ -57,6 +60,54 @@
     <xs:element name="exitItem">
         <xs:complexType>
             <xs:attribute name="title" use="required" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- FONT RESOURCE -->
+    <xs:element name="fontResource">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="font" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="version" use="optional" type="xs:string"/>
+            <xs:attribute name="resourceId" use="required" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="font">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="char" />
+            </xs:sequence>
+            <xs:attribute name="name" use="required" type="xs:string"/>
+            <xs:attribute name="height" use="required" type="xs:string"/>
+            <xs:attribute name="ascend" use="required" type="xs:string"/>
+            <xs:attribute name="descend" use="required" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="char">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="bitmap" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="code" use="required" type="xs:string"/>
+            <xs:attribute name="advance" use="required" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="bitmap">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="scanLine" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="format" use="required" type="xs:string"/>
+            <xs:attribute name="left" use="required" type="xs:string"/>
+            <xs:attribute name="top" use="required" type="xs:string"/>
+            <xs:attribute name="width" use="required" type="xs:string"/>
+            <xs:attribute name="height" use="required" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 

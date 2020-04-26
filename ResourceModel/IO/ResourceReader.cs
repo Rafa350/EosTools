@@ -4,56 +4,104 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
+    using System.Reflection;
     using System.Xml;
+    using System.Xml.Schema;
     using EosTools.v1.ResourceModel.Model;
+    using EosTools.v1.ResourceModel.Model.BitmapResources;
     using EosTools.v1.ResourceModel.Model.FontResources;
     using EosTools.v1.ResourceModel.Model.FontTableResources;
     using EosTools.v1.ResourceModel.Model.MenuResources;
-    using EosTools.v1.ResourceModel.Model.BitmapResources;
 
     public class ResourceReader: IResourceReader {
 
-        private readonly Stream stream;
+        private static readonly XmlSchemaSet schemas;
+        private readonly XmlNamespaceManager namespaceManager;
+        private readonly XmlReader reader;
+
+        /// <summary>
+        /// Constructor estatic de la clase
+        /// </summary>
+        /// 
+        static ResourceReader() {
+
+            schemas = new XmlSchemaSet();
+
+            string schemaResourceName = "EosTools.v1.ResourceModel.IO.Schemas.Resource.xsd";
+            Stream resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(schemaResourceName);
+            if (resourceStream == null)
+                throw new Exception(String.Format("No se encontro el recurso '{0}'", schemaResourceName));
+            XmlSchema schema = XmlSchema.Read(resourceStream, null);
+            schemas.Add(schema);
+
+            schemas.Compile();
+        }
 
         public ResourceReader(Stream stream) {
 
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));
 
-            this.stream = stream;
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.IgnoreProcessingInstructions = true;
+            settings.IgnoreWhitespace = true;
+            settings.IgnoreComments = true;
+            settings.CloseInput = false;
+            settings.Schemas = schemas;
+            settings.ValidationType = schemas == null ? ValidationType.None : ValidationType.Schema;
+            settings.ConformanceLevel = ConformanceLevel.Document;
+
+            reader = XmlReader.Create(stream, settings);
+
+            namespaceManager = new XmlNamespaceManager(reader.NameTable);
+            namespaceManager.AddNamespace(String.Empty, "http://MikroPic.com/schemas/eosTools/v3/Resources.xsd");
         }
 
         public ResourcePool Read() {
 
-            XmlDocument document = new XmlDocument();
-            document.Load(stream);
+            try {
 
-            List<Resource> resources = new List<Resource>();
-            foreach (XmlNode resourceNode in document.SelectSingleNode("resources")) {
-                switch (resourceNode.Name) {
-                    case "menuResource":
-                        resources.Add(ProcessMenuResource(resourceNode));
-                        break;
+                XmlDocument document = new XmlDocument();
+                document.Load(reader);
 
-                    case "fontResource":
-                        resources.Add(ProcessFontResource(resourceNode));
-                        break;
+                List<Resource> resources = new List<Resource>();
+                foreach (XmlNode resourceNode in document.DocumentElement) {
+                    switch (resourceNode.Name) {
+                        case "menuResource":
+                            resources.Add(ProcessMenuResource(resourceNode));
+                            break;
 
-                    case "fontTableResource":
-                        resources.Add(ProcessFontTableResource(resourceNode));
-                        break;
+                        case "fontResource":
+                            resources.Add(ProcessFontResource(resourceNode));
+                            break;
 
-                    case "formResource":
-                        resources.Add(ProcessFormResource(resourceNode));
-                        break;
+                        case "fontTableResource":
+                            resources.Add(ProcessFontTableResource(resourceNode));
+                            break;
 
-                    case "bitmapResource":
-                        resources.Add(ProcessBitmapResource(resourceNode));
-                        break;
+                        case "formResource":
+                            resources.Add(ProcessFormResource(resourceNode));
+                            break;
+
+                        case "bitmapResource":
+                            resources.Add(ProcessBitmapResource(resourceNode));
+                            break;
+                    }
                 }
+
+                return new ResourcePool(resources);
             }
 
-            return new ResourcePool(resources);
+            catch (XmlSchemaValidationException ex) {
+
+                throw new Exception(
+                    String.Format("Error de validacion en linea {0}, posicion {1}", ex.LineNumber, ex.LinePosition), ex);
+            }
+
+            catch (Exception ex) {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -64,14 +112,13 @@
         /// 
         private Resource ProcessMenuResource(XmlNode menuResourceNode) {
 
-            string resourceId = menuResourceNode.Attributes["resourceId"].Value;
+            string resourceId = AttributeAsString(menuResourceNode, "resourceId");
 
-            string language = CultureInfo.CurrentCulture.Name;
+            string language = AttributeExists(menuResourceNode, "language") ?
+                AttributeAsString(menuResourceNode, "language") :
+                CultureInfo.CurrentCulture.Name;
 
-            if (menuResourceNode.Attributes["language"] != null)
-                language = menuResourceNode.Attributes["language"].Value;
-
-            XmlNode menuNode = menuResourceNode.SelectSingleNode("menu");
+            XmlNode menuNode = menuResourceNode.FirstChild;
             return new MenuResource(resourceId, language, ProcessMenu(menuNode));
         }
 
@@ -83,10 +130,10 @@
         /// 
         private Menu ProcessMenu(XmlNode menuNode) {
 
-            string title = menuNode.Attributes["title"].Value;
+            string title = AttributeAsString(menuNode, "title");
 
             List<Item> items = new List<Item>();
-            foreach (XmlNode itemNode in menuNode.SelectNodes("menuItem|commandItem|exitItem")) {
+            foreach (XmlNode itemNode in menuNode.ChildNodes) { 
                 switch (itemNode.Name) {
                     case "menuItem":
                         items.Add(ProcessMenuItem(itemNode));
@@ -113,14 +160,14 @@
         /// 
         private MenuItem ProcessMenuItem(XmlNode menuItemNode) {
 
-            string title = menuItemNode.Attributes["title"].Value;
-            string menuId = menuItemNode.Attributes["id"] == null ?
-                "0" :  menuItemNode.Attributes["id"].Value;
+            string title = AttributeAsString(menuItemNode, "title");
+            string menuId = AttributeExists(menuItemNode, "id") ?
+                AttributeAsString(menuItemNode, "id") : "0";
 
-            Menu subMenu = null;
-            XmlNode menuNode = menuItemNode.SelectSingleNode("menu");
-            if (menuNode != null)
-                subMenu = ProcessMenu(menuNode);
+            XmlNode menuNode = menuItemNode.FirstChild;
+            Menu subMenu = menuNode == null ?
+                null :
+                ProcessMenu(menuNode);
 
             return new MenuItem(menuId, title, subMenu);
         }
@@ -133,8 +180,8 @@
         /// 
         private CommandItem ProcessCommandItem(XmlNode commandItemNode) {
 
-            string title = commandItemNode.Attributes["title"].Value;
-            string menuId = commandItemNode.Attributes["id"].Value;
+            string title = AttributeAsString(commandItemNode, "title");
+            string menuId = AttributeAsString(commandItemNode, "id");
 
             return new CommandItem(menuId, title);
         }
@@ -147,7 +194,7 @@
         /// 
         private ExitItem ProcessExitItem(XmlNode exitItemNode) {
 
-            string title = exitItemNode.Attributes["title"].Value;
+            string title = AttributeAsString(exitItemNode, "title");
 
             return new ExitItem(title);
         }
@@ -166,7 +213,7 @@
             if (fontResourceNode.Attributes["language"] != null)
                 language = fontResourceNode.Attributes["language"].Value;
 
-            XmlNode fontNode = fontResourceNode.SelectSingleNode("font");
+            XmlNode fontNode = fontResourceNode.SelectSingleNode("font", namespaceManager);
 
             return new FontResource(resourceId, null, ProcessFont(fontNode));
         }
@@ -185,7 +232,7 @@
             int descent = Convert.ToInt32(fontNode.Attributes["descent"].Value);
 
             List<FontChar> chars = new List<FontChar>();
-            foreach (XmlNode charNode in fontNode.SelectNodes("char"))
+            foreach (XmlNode charNode in fontNode.SelectNodes("char", namespaceManager))
                 chars.Add(ProcessFontChar(charNode));
 
             return new Font(name, height, ascent, descent, chars);
@@ -204,7 +251,7 @@
 
             // Comprova si es un fomt amb bitmap
             //
-            XmlNode bitmapNode = charNode.SelectSingleNode("bitmap");
+            XmlNode bitmapNode = charNode.SelectSingleNode("bitmap", namespaceManager);
             if (bitmapNode != null) {
                 int left = Convert.ToInt32(bitmapNode.Attributes["left"].Value);
                 int top = Convert.ToInt32(bitmapNode.Attributes["top"].Value);
@@ -212,7 +259,7 @@
                 int height = Convert.ToInt32(bitmapNode.Attributes["height"].Value);
 
                 List<byte> bitmap = new List<byte>();
-                foreach (XmlNode scanLineNode in bitmapNode.SelectNodes("scanLine")) {
+                foreach (XmlNode scanLineNode in bitmapNode.SelectNodes("scanLine", namespaceManager)) {
                     string scanLine = scanLineNode.InnerText;
                     if (String.IsNullOrEmpty(scanLine))
                         bitmap.Add(0);
@@ -235,7 +282,7 @@
 
             // Comprova si es un fomt amb glyh
             //
-            XmlNode glyphNode = charNode.SelectSingleNode("glyph");
+            XmlNode glyphNode = charNode.SelectSingleNode("glyph", namespaceManager);
             if (glyphNode != null) {
 
                 return null;
@@ -249,7 +296,7 @@
         private FontTableResource ProcessFontTableResource(XmlNode fontTableResourceNode) {
 
             string resourceId = fontTableResourceNode.Attributes["resourceId"].Value;
-            XmlNode fontTableNode = fontTableResourceNode.SelectSingleNode("fontTable");
+            XmlNode fontTableNode = fontTableResourceNode.SelectSingleNode("fontTable", namespaceManager);
 
             return new FontTableResource(resourceId, null, ProcessFontTable(fontTableNode));
         }
@@ -257,7 +304,7 @@
         private FontTable ProcessFontTable(XmlNode fontTableNode) {
 
             List<FontTableItem> items = new List<FontTableItem>();
-            foreach (XmlNode fontTableItemNode in fontTableNode.SelectNodes("font"))
+            foreach (XmlNode fontTableItemNode in fontTableNode.SelectNodes("font", namespaceManager))
                 items.Add(ProcessFontTableItem(fontTableItemNode));
                 
             return new FontTable(items);
@@ -296,7 +343,7 @@
             if (bitmapResourceNode.Attributes["language"] != null)
                 language = bitmapResourceNode.Attributes["language"].Value;
 
-            XmlNode bitmapNode = bitmapResourceNode.SelectSingleNode("bitmap");
+            XmlNode bitmapNode = bitmapResourceNode.SelectSingleNode("bitmap", namespaceManager);
             return new BitmapResource(resourceId, language, ProcessBitmapNode(bitmapNode));
         }
 
@@ -312,6 +359,16 @@
             BitmapFormat format = (BitmapFormat) Enum.Parse(typeof(BitmapFormat), bitmapNode.Attributes["format"].Value, true);
 
             return new Bitmap(source, format);
+        }
+
+        private static bool AttributeExists(XmlNode node, string name) {
+
+            return node.Attributes[name] != null;
+        }
+
+        private static string AttributeAsString(XmlNode node, string name) {
+
+            return node.Attributes[name].Value;
         }
     }
 }
