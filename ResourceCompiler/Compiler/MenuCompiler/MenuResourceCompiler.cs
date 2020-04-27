@@ -4,6 +4,7 @@
     using EosTools.v1.ResourceModel.Model;
     using EosTools.v1.ResourceModel.Model.MenuResources;
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using System.IO;
     using System.Reflection;
@@ -150,7 +151,7 @@
             writer.WriteLine("                   // MENUINFO");
             writer.WriteLine("    /* {0:X4} */     0x{1:X2}, ", 
                 offset,
-                menu.Items.Count);
+                menu.Items.Count());
             offset += 1;
 
             writer.Write("    /* {0:X4} */     0x{1:X2}, ", 

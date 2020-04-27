@@ -10,41 +10,13 @@
     public sealed class Menu: IVisitable {
 
         private readonly string title;
-        private readonly List<Item> items = new List<Item>();
-
-        /// <summary>
-        /// Contructor del menu.
-        /// </summary>
-        /// <param name="title">Titol de menu.</param>
-        /// 
-        public Menu(string title) {
-
-            if (String.IsNullOrEmpty("title"))
-                throw new ArgumentNullException(nameof(title));
-
-            this.title = title;
-        }
+        private readonly IEnumerable<Item> items;
 
         /// <summary>
         /// Contructor del menu.
         /// </summary>
         /// <param name="title">Titol del menu.</param>
-        /// <param name="items">Llista d'items del menu.</param>
-        /// 
-        public Menu(string title, params Item[] items) {
-
-            if (String.IsNullOrEmpty("title"))
-                throw new ArgumentNullException(nameof(title));
-
-            this.title = title;
-            this.items.AddRange(items);
-        }
-
-        /// <summary>
-        /// Contructor del menu.
-        /// </summary>
-        /// <param name="title">Titol del menu.</param>
-        /// <param name="items">Llista d'items del menu.</param>
+        /// <param name="items">Coleccio d'items del menu.</param>
         /// 
         public Menu(string title, IEnumerable<Item> items) {
 
@@ -52,7 +24,7 @@
                 throw new ArgumentNullException(nameof(title));
 
             this.title = title;
-            this.items.AddRange(items);
+            this.items = items;
         }
 
         /// <summary>
@@ -61,6 +33,9 @@
         /// <param name="visitor">El visitador.</param>
         /// 
         public void AcceptVisitor(IVisitor visitor) {
+
+            if (visitor == null)
+                throw new ArgumentNullException(nameof(visitor));
 
             visitor.Visit(this);
         }
@@ -72,9 +47,9 @@
         public string Title => title;
 
         /// <summary>
-        /// Obte els subitems.
+        /// Obte els items.
         /// </summary>
         /// 
-        public IReadOnlyCollection<Item> Items => items;
+        public IEnumerable<Item> Items => items;
     }
 }

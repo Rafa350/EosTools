@@ -26,32 +26,18 @@
             visitor.Visit(this);
         }
 
-        public int Code {
-            get { return code; }
-        }
+        public int Code => code;
 
-        public int Left {
-            get { return left; }
-        }
+        public int Left => left;
 
-        public int Top {
-            get { return top; }
-        }
+        public int Top => top;
 
-        public int Width {
-            get { return width; }
-        }
+        public int Width => width;
 
-        public int Height {
-            get { return height; }
-        }
+        public int Height => height;
 
-        public int Advance {
-            get { return advance; }
-        }
+        public int Advance => advance;
 
-        public byte[] Bitmap {
-            get { return bitmap; }
-        }
+        public byte[] Bitmap => bitmap;
     }
 }

@@ -7,6 +7,7 @@
     using System.Reflection;
     using System.Xml;
     using System.Xml.Schema;
+    using EosTools.v1.ResourceModel.IO.Xml;
     using EosTools.v1.ResourceModel.Model;
     using EosTools.v1.ResourceModel.Model.BitmapResources;
     using EosTools.v1.ResourceModel.Model.FontResources;
@@ -65,26 +66,28 @@
                 document.Load(reader);
 
                 List<Resource> resources = new List<Resource>();
-                foreach (XmlNode resourceNode in document.DocumentElement) {
-                    switch (resourceNode.Name) {
+
+                XmlNode node = document.DocumentElement;
+                foreach (XmlNode childNode in node.ChildNodes) {
+                    switch (childNode.Name) {
                         case "menuResource":
-                            resources.Add(ProcessMenuResource(resourceNode));
+                            resources.Add(ProcessMenuResource(childNode));
                             break;
 
                         case "fontResource":
-                            resources.Add(ProcessFontResource(resourceNode));
+                            resources.Add(ProcessFontResource(childNode));
                             break;
 
                         case "fontTableResource":
-                            resources.Add(ProcessFontTableResource(resourceNode));
+                            resources.Add(ProcessFontTableResource(childNode));
                             break;
 
                         case "formResource":
-                            resources.Add(ProcessFormResource(resourceNode));
+                            resources.Add(ProcessFormResource(childNode));
                             break;
 
                         case "bitmapResource":
-                            resources.Add(ProcessBitmapResource(resourceNode));
+                            resources.Add(ProcessBitmapResource(childNode));
                             break;
                     }
                 }
@@ -107,44 +110,44 @@
         /// <summary>
         /// Procesa un node 'menuResource'
         /// </summary>
-        /// <param name="menuResourceNode">El node a procesar.</param>
+        /// <param name="node">El node a procesar.</param>
         /// <returns>El recurs.</returns>
         /// 
-        private Resource ProcessMenuResource(XmlNode menuResourceNode) {
+        private Resource ProcessMenuResource(XmlNode node) {
 
-            string resourceId = AttributeAsString(menuResourceNode, "resourceId");
+            string resourceId = node.AttributeAsString("resourceId");
 
-            string language = AttributeExists(menuResourceNode, "language") ?
-                AttributeAsString(menuResourceNode, "language") :
+            string language = node.AttributeExists("language") ?
+                node.AttributeAsString("language") :
                 CultureInfo.CurrentCulture.Name;
 
-            XmlNode menuNode = menuResourceNode.FirstChild;
-            return new MenuResource(resourceId, language, ProcessMenu(menuNode));
+            XmlNode childNode = node.FirstChild;
+            return new MenuResource(resourceId, language, ProcessMenu(childNode));
         }
 
         /// <summary>
         /// Procesa un node 'menu'
         /// </summary>
-        /// <param name="menuNode">El node a procesar.</param>
+        /// <param name="node">El node a procesar.</param>
         /// <returns>El menu</returns>
         /// 
-        private Menu ProcessMenu(XmlNode menuNode) {
+        private Menu ProcessMenu(XmlNode node) {
 
-            string title = AttributeAsString(menuNode, "title");
+            string title = node.AttributeAsString("title");
 
             List<Item> items = new List<Item>();
-            foreach (XmlNode itemNode in menuNode.ChildNodes) { 
-                switch (itemNode.Name) {
+            foreach (XmlNode childNode in node.ChildNodes) { 
+                switch (childNode.Name) {
                     case "menuItem":
-                        items.Add(ProcessMenuItem(itemNode));
+                        items.Add(ProcessMenuItem(childNode));
                         break;
 
                     case "commandItem":
-                        items.Add(ProcessCommandItem(itemNode));
+                        items.Add(ProcessCommandItem(childNode));
                         break;
 
                     case "exitItem":
-                        items.Add(ProcessExitItem(itemNode));
+                        items.Add(ProcessExitItem(childNode));
                         break;
                 }
             }
@@ -155,19 +158,19 @@
         /// <summary>
         /// Procesa un node 'menuItem'
         /// </summary>
-        /// <param name="menuItemNode">El node a procesar.</param>
+        /// <param name="node">El node a procesar.</param>
         /// <returns>L'objecte 'MenuItem</returns>
         /// 
-        private MenuItem ProcessMenuItem(XmlNode menuItemNode) {
+        private MenuItem ProcessMenuItem(XmlNode node) {
 
-            string title = AttributeAsString(menuItemNode, "title");
-            string menuId = AttributeExists(menuItemNode, "id") ?
-                AttributeAsString(menuItemNode, "id") : "0";
+            string title = node.AttributeAsString("title");
+            string menuId = node.AttributeExists("id") ?
+                node.AttributeAsString("id") : "0";
 
-            XmlNode menuNode = menuItemNode.FirstChild;
-            Menu subMenu = menuNode == null ?
+            XmlNode childNode = node.FirstChild;
+            Menu subMenu = childNode == null ?
                 null :
-                ProcessMenu(menuNode);
+                ProcessMenu(childNode);
 
             return new MenuItem(menuId, title, subMenu);
         }
@@ -175,13 +178,13 @@
         /// <summary>
         /// Procesa un node 'commandItem'
         /// </summary>
-        /// <param name="commandItemNode">El node a procesar.</param>
+        /// <param name="node">El node a procesar.</param>
         /// <returns>L'objecte 'CommandItem'</returns>
         /// 
-        private CommandItem ProcessCommandItem(XmlNode commandItemNode) {
+        private CommandItem ProcessCommandItem(XmlNode node) {
 
-            string title = AttributeAsString(commandItemNode, "title");
-            string menuId = AttributeAsString(commandItemNode, "id");
+            string title = node.AttributeAsString("title");
+            string menuId = node.AttributeAsString("id");
 
             return new CommandItem(menuId, title);
         }
@@ -189,12 +192,12 @@
         /// <summary>
         /// Procesa un node 'exitItem'
         /// </summary>
-        /// <param name="exitItemNode">El node a procesar.</param>
+        /// <param name="node">El node a procesar.</param>
         /// <returns>L'objecte 'ExitItem'</returns>
         /// 
-        private ExitItem ProcessExitItem(XmlNode exitItemNode) {
+        private ExitItem ProcessExitItem(XmlNode node) {
 
-            string title = AttributeAsString(exitItemNode, "title");
+            string title = node.AttributeAsString("title");
 
             return new ExitItem(title);
         }
@@ -202,38 +205,38 @@
         /// <summary>
         /// Procesa un node 'fontResource'
         /// </summary>
-        /// <param name="fontResourceNode">El node a procesar.</param>
+        /// <param name="node">El node a procesar.</param>
         /// <returns>L'objecte 'FontResource'</returns>
         /// 
-        private FontResource ProcessFontResource(XmlNode fontResourceNode) {
+        private FontResource ProcessFontResource(XmlNode node) {
 
-            string resourceId = fontResourceNode.Attributes["resourceId"].Value;
+            string resourceId = node.AttributeAsString("resourceId");
 
-            string language = CultureInfo.CurrentCulture.Name;
-            if (fontResourceNode.Attributes["language"] != null)
-                language = fontResourceNode.Attributes["language"].Value;
+            string language = node.AttributeExists("language") ?
+                node.AttributeAsString("language") :
+                CultureInfo.CurrentCulture.Name;
 
-            XmlNode fontNode = fontResourceNode.SelectSingleNode("font", namespaceManager);
-
-            return new FontResource(resourceId, null, ProcessFont(fontNode));
+            XmlNode childNode = node.FirstChild;
+            return new FontResource(resourceId, null, ProcessFont(childNode));
         }
 
         /// <summary>
         /// Procesa un node 'font'
         /// </summary>
-        /// <param name="fontNode">El node a procesar.</param>
+        /// <param name="node">El node a procesar.</param>
         /// <returns>L'objecte 'Font'</returns>
         /// 
-        private Font ProcessFont(XmlNode fontNode) {
+        private Font ProcessFont(XmlNode node) {
 
-            string name = fontNode.Attributes["name"].Value;
-            int height = Convert.ToInt32(fontNode.Attributes["height"].Value);
-            int ascent = Convert.ToInt32(fontNode.Attributes["ascent"].Value);
-            int descent = Convert.ToInt32(fontNode.Attributes["descent"].Value);
+            string name = node.AttributeAsString("name");
+            int height = node.AttributeAsInteger("height");
+            int ascent = node.AttributeAsInteger("ascent");
+            int descent = node.AttributeAsInteger("descent");
 
             List<FontChar> chars = new List<FontChar>();
-            foreach (XmlNode charNode in fontNode.SelectNodes("char", namespaceManager))
-                chars.Add(ProcessFontChar(charNode));
+            foreach (XmlNode childNode in node.ChildNodes)
+                if (childNode.Name == "char")
+                    chars.Add(ProcessFontChar(childNode));
 
             return new Font(name, height, ascent, descent, chars);
         }
@@ -241,17 +244,17 @@
         /// <summary>
         /// Procesa un node 'char'
         /// </summary>
-        /// <param name="charNode">El node a procesar.</param>
+        /// <param name="node">El node a procesar.</param>
         /// <returns>L'objecte 'FontChar'</returns>
         /// 
-        private FontChar ProcessFontChar(XmlNode charNode) {
+        private FontChar ProcessFontChar(XmlNode node) {
 
-            int code = Int32.Parse(charNode.Attributes["code"].Value.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber);
-            int advance = Convert.ToInt32(charNode.Attributes["advance"].Value);
+            int code = Int32.Parse(node.Attributes["code"].Value.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber);
+            int advance = node.AttributeAsInteger("advance");
 
-            // Comprova si es un fomt amb bitmap
+            // Comprova si es un font amb bitmap
             //
-            XmlNode bitmapNode = charNode.SelectSingleNode("bitmap", namespaceManager);
+            XmlNode bitmapNode = node.SelectSingleNode("bitmap", namespaceManager);
             if (bitmapNode != null) {
                 int left = Convert.ToInt32(bitmapNode.Attributes["left"].Value);
                 int top = Convert.ToInt32(bitmapNode.Attributes["top"].Value);
@@ -282,7 +285,7 @@
 
             // Comprova si es un fomt amb glyh
             //
-            XmlNode glyphNode = charNode.SelectSingleNode("glyph", namespaceManager);
+            XmlNode glyphNode = node.SelectSingleNode("glyph", namespaceManager);
             if (glyphNode != null) {
 
                 return null;
@@ -293,19 +296,19 @@
             return new FontChar(code, 0, 0, 0, 0, advance, null);
         }
 
-        private FontTableResource ProcessFontTableResource(XmlNode fontTableResourceNode) {
+        private FontTableResource ProcessFontTableResource(XmlNode node) {
 
-            string resourceId = fontTableResourceNode.Attributes["resourceId"].Value;
-            XmlNode fontTableNode = fontTableResourceNode.SelectSingleNode("fontTable", namespaceManager);
+            string resourceId = node.AttributeAsString("resourceId");
+            XmlNode fontTableNode = node.SelectSingleNode("fontTable", namespaceManager);
 
             return new FontTableResource(resourceId, null, ProcessFontTable(fontTableNode));
         }
 
-        private FontTable ProcessFontTable(XmlNode fontTableNode) {
+        private FontTable ProcessFontTable(XmlNode node) {
 
             List<FontTableItem> items = new List<FontTableItem>();
-            foreach (XmlNode fontTableItemNode in fontTableNode.SelectNodes("font", namespaceManager))
-                items.Add(ProcessFontTableItem(fontTableItemNode));
+            foreach (XmlNode childNode in node.SelectNodes("font", namespaceManager))
+                items.Add(ProcessFontTableItem(childNode));
                 
             return new FontTable(items);
         }
@@ -332,19 +335,19 @@
         /// <summary>
         /// Procesa un node 'bitmapResource'
         /// </summary>
-        /// <param name="bitmapResourceNode">El node a procesar.</param>
+        /// <param name="node">El node a procesar.</param>
         /// <returns>L'objecte BitmapResource.</returns>
         /// 
-        private BitmapResource ProcessBitmapResource(XmlNode bitmapResourceNode) {
+        private BitmapResource ProcessBitmapResource(XmlNode node) {
 
-            string resourceId = bitmapResourceNode.Attributes["resourceId"].Value;
+            string resourceId = node.AttributeAsString("resourceId");
 
-            string language = CultureInfo.CurrentCulture.Name;
-            if (bitmapResourceNode.Attributes["language"] != null)
-                language = bitmapResourceNode.Attributes["language"].Value;
+            string language = node.AttributeExists("language") ?
+                node.AttributeAsString("language") :
+                CultureInfo.CurrentCulture.Name;
 
-            XmlNode bitmapNode = bitmapResourceNode.SelectSingleNode("bitmap", namespaceManager);
-            return new BitmapResource(resourceId, language, ProcessBitmapNode(bitmapNode));
+            XmlNode childNode = node.SelectSingleNode("bitmap", namespaceManager);
+            return new BitmapResource(resourceId, language, ProcessBitmapNode(childNode));
         }
 
         /// <summary>
@@ -359,16 +362,6 @@
             BitmapFormat format = (BitmapFormat) Enum.Parse(typeof(BitmapFormat), bitmapNode.Attributes["format"].Value, true);
 
             return new Bitmap(source, format);
-        }
-
-        private static bool AttributeExists(XmlNode node, string name) {
-
-            return node.Attributes[name] != null;
-        }
-
-        private static string AttributeAsString(XmlNode node, string name) {
-
-            return node.Attributes[name].Value;
         }
     }
 }

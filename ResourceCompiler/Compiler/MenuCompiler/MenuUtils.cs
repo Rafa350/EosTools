@@ -1,5 +1,6 @@
 ﻿namespace EosTools.v1.ResourceCompiler.Compiler.MenuCompiler {
 
+    using System.Linq;
     using System.Collections.Generic;
     using EosTools.v1.ResourceModel.Model;
     using EosTools.v1.ResourceModel.Model.MenuResources;
@@ -37,7 +38,7 @@
                 offset += 1;                          // Increment per la capcelera
                 offset += menu.Title.Length + 1;      // Increment pel titol
                 if (menu.Items != null)
-                    offset += menu.Items.Count * 2;   // Increment per la taula d'items
+                    offset += menu.Items.Count() * 2;   // Increment per la taula d'items
 
                 base.Visit(menu);
             }
@@ -73,6 +74,7 @@
                 base.Visit(item);
             }
         }
+
         public static IList<string> GetCommandList(MenuResource resource) {
 
             List<string> commands = new List<string>();
