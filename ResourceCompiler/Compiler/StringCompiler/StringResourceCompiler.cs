@@ -17,7 +17,7 @@ namespace EosTools.v1.ResourceCompiler.Compiler.StringCompiler {
         public void Compile(StringResource resource, string outputPath, CompilerParameters parameters) {
 
             if (resource == null)
-                throw new ArgumentNullException("resource");
+                throw new ArgumentNullException(nameof(resource));
 
         }
 

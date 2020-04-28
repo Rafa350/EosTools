@@ -24,7 +24,7 @@
             if ((parameters != null) && parameters.Exists("include-files"))
                 includeFiles = parameters["include-files"];
 
-            string fileName = String.Format("{0}.{1}", fontResource.ResourceId, outputExtension);
+            string fileName = String.Format("{0}.{1}", fontResource.Id, outputExtension);
             string path = Path.Combine(outputPath, fileName);
             TextWriter writer = new StreamWriter(
                 new FileStream(

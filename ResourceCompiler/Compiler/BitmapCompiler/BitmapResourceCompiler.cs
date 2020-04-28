@@ -36,9 +36,9 @@
             string fileName, path;
 
             if (resource == null)
-                throw new ArgumentNullException("resource");
+                throw new ArgumentNullException(nameof(resource));
 
-            string outputBaseFileName = resource.ResourceId;
+            string outputBaseFileName = resource.Id;
             string outputExtension = defOutputExtension;
             string outputHeaderExtension = defOutputHeaderExtension;
 
@@ -119,7 +119,7 @@
             if (useProxyVariable)
                 writer.WriteLine("static const unsigned char bitmap[] = {");
             else
-                writer.WriteLine("const unsigned char bitmap{0}[] = {{", resource.ResourceId);
+                writer.WriteLine("const unsigned char bitmap{0}[] = {{", resource.Id);
             writer.WriteLine();
 
             int offset = 0;
@@ -173,7 +173,7 @@
             writer.WriteLine();
 
             if (useProxyVariable) {
-                writer.WriteLine("const unsigned char *bitmap{0} = bitmap;", resource.ResourceId);
+                writer.WriteLine("const unsigned char *bitmap{0} = bitmap;", resource.Id);
                 writer.WriteLine();
             }
         }

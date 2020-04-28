@@ -11,7 +11,7 @@
         public CharacterDescriptor(Font font, char character) {
 
             if (font == null)
-                throw new ArgumentNullException("font");
+                throw new ArgumentNullException(nameof(font));
 
             this.font = font;
             this.character = character;

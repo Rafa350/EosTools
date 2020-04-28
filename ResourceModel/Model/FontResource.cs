@@ -14,12 +14,12 @@
         /// <summary>
         /// Constructor del recurs.
         /// </summary>
-        /// <param name="resourceId">Identificador del recurs.</param>
+        /// <param name="id">Identificador del recurs.</param>
         /// <param name="languaje">Llenguatge del recurs.</param>
         /// <param name="font">El font que conte aquest recurs.</param>
         /// 
-        public FontResource(string resourceId, string languaje, Font font) :
-            base(resourceId, languaje) {
+        public FontResource(string id, string languaje, Font font) :
+            base(id, languaje) {
 
             if (font == null)
                 throw new ArgumentNullException(nameof(font));

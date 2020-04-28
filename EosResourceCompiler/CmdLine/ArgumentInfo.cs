@@ -10,7 +10,7 @@
         public ArgumentInfo(ArgumentDefinition definition,  string value = null) {
 
             if (definition == null)
-                throw new ArgumentNullException("definition");
+                throw new ArgumentNullException(nameof(definition));
 
             this.definition = definition;
             this.value = value;

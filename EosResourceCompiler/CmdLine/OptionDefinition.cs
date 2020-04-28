@@ -12,7 +12,7 @@
         public OptionDefinition(string name, string description = null, bool required = false, bool multiple = false) {
 
             if (String.IsNullOrEmpty(name))
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
 
             this.name = name;
             this.description = description;

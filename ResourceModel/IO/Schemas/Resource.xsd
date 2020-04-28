@@ -5,6 +5,8 @@
     xmlns="http://MikroPic.com/schemas/eosTools/v3/Resources.xsd"
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
+    
+    <!-- RESOURCES -->
     <xs:element name="resources">
         <xs:complexType>
             <xs:sequence>
@@ -16,6 +18,7 @@
         </xs:complexType>
     </xs:element>
 
+    
     <!-- MENU RESOURCE -->
     <xs:element name="menuResource">
         <xs:complexType>
@@ -31,37 +34,32 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:choice minOccurs="1" maxOccurs="unbounded">
-                    <xs:element ref="menuItem" />
-                    <xs:element ref="commandItem" />
-                    <xs:element ref="exitItem" />
+                    <xs:element name="menuItem" >
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element ref="menu" maxOccurs="1" minOccurs="1"/>
+                            </xs:sequence>
+                            <xs:attribute name="id" use="optional" type="xs:string"/>
+                            <xs:attribute name="title" use="required" type="xs:string"/>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="commandItem" >
+                        <xs:complexType>
+                            <xs:attribute name="id" use="required" type="xs:string"/>
+                            <xs:attribute name="title" use="required" type="xs:string"/>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="exitItem" >
+                        <xs:complexType>
+                            <xs:attribute name="title" use="required" type="xs:string"/>
+                        </xs:complexType>
+                    </xs:element>
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="title" use="required" type="xs:string"/>
         </xs:complexType>
     </xs:element>
-
-    <xs:element name="menuItem">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="menu" maxOccurs="1" minOccurs="1"/>
-            </xs:sequence>
-            <xs:attribute name="id" use="optional" type="xs:string"/>
-            <xs:attribute name="title" use="required" type="xs:string"/>
-        </xs:complexType>
-    </xs:element>
-
-    <xs:element name="commandItem">
-        <xs:complexType>
-            <xs:attribute name="id" use="required" type="xs:string"/>
-            <xs:attribute name="title" use="required" type="xs:string"/>
-        </xs:complexType>
-    </xs:element>
-
-    <xs:element name="exitItem">
-        <xs:complexType>
-            <xs:attribute name="title" use="required" type="xs:string"/>
-        </xs:complexType>
-    </xs:element>
+   
     
     <!-- FONT RESOURCE -->
     <xs:element name="fontResource">
@@ -77,7 +75,38 @@
     <xs:element name="font">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="char" />
+                <xs:element name="char" >
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:choice minOccurs="1" maxOccurs="1">
+                                <xs:element name="bitmap">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="scanLine" type="xs:string"/>
+                                        </xs:sequence>
+                                        <xs:attribute name="format" use="required" type="xs:string"/>
+                                        <xs:attribute name="left" use="required" type="xs:string"/>
+                                        <xs:attribute name="top" use="required" type="xs:string"/>
+                                        <xs:attribute name="width" use="required" type="xs:string"/>
+                                        <xs:attribute name="height" use="required" type="xs:string"/>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="glyph">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:choice minOccurs="1">
+                                                <xs:element name="moveTo" type="xs:string"/>
+                                                <xs:element name="lineTo" type="xs:string"/>
+                                            </xs:choice>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:choice>
+                        </xs:sequence>
+                        <xs:attribute name="code" use="required" type="xs:string"/>
+                        <xs:attribute name="advance" use="required" type="xs:string"/>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
             <xs:attribute name="name" use="required" type="xs:string"/>
             <xs:attribute name="height" use="required" type="xs:string"/>
@@ -86,29 +115,5 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="char">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:choice minOccurs="1" maxOccurs="unbounded">
-                    <xs:element ref="bitmap" />
-                </xs:choice>
-            </xs:sequence>
-            <xs:attribute name="code" use="required" type="xs:string"/>
-            <xs:attribute name="advance" use="required" type="xs:string"/>
-        </xs:complexType>
-    </xs:element>
-
-    <xs:element name="bitmap">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="scanLine" type="xs:string"/>
-            </xs:sequence>
-            <xs:attribute name="format" use="required" type="xs:string"/>
-            <xs:attribute name="left" use="required" type="xs:string"/>
-            <xs:attribute name="top" use="required" type="xs:string"/>
-            <xs:attribute name="width" use="required" type="xs:string"/>
-            <xs:attribute name="height" use="required" type="xs:string"/>
-        </xs:complexType>
-    </xs:element>
 
 </xs:schema>

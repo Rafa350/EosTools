@@ -14,7 +14,15 @@
     using EosTools.v1.ResourceModel.Model.FontTableResources;
     using EosTools.v1.ResourceModel.Model.MenuResources;
 
-    public class ResourceReader: IResourceReader {
+    public class ResourceReader : IResourceReader {
+
+        private struct BitmapNodeInfo {
+            public int Left;
+            public int Top;
+            public int Width;
+            public int Height;
+            public byte[] Bytes;
+        }
 
         private static readonly XmlSchemaSet schemas;
         private readonly XmlNamespaceManager namespaceManager;
@@ -38,6 +46,11 @@
             schemas.Compile();
         }
 
+        /// <summary>
+        /// Constructor de l'objecte
+        /// </summary>
+        /// <param name="stream">Stream per lleigir.</param>
+        /// 
         public ResourceReader(Stream stream) {
 
             if (stream == null)
@@ -58,6 +71,11 @@
             namespaceManager.AddNamespace(String.Empty, "http://MikroPic.com/schemas/eosTools/v3/Resources.xsd");
         }
 
+        /// <summary>
+        /// Llegeix el model.
+        /// </summary>
+        /// <returns>El model.</returns>
+        /// 
         public ResourcePool Read() {
 
             try {
@@ -121,8 +139,7 @@
                 node.AttributeAsString("language") :
                 CultureInfo.CurrentCulture.Name;
 
-            XmlNode childNode = node.FirstChild;
-            return new MenuResource(resourceId, language, ProcessMenu(childNode));
+            return new MenuResource(resourceId, language, ProcessMenu(node.FirstChild));
         }
 
         /// <summary>
@@ -136,7 +153,7 @@
             string title = node.AttributeAsString("title");
 
             List<Item> items = new List<Item>();
-            foreach (XmlNode childNode in node.ChildNodes) { 
+            foreach (XmlNode childNode in node.ChildNodes) {
                 switch (childNode.Name) {
                     case "menuItem":
                         items.Add(ProcessMenuItem(childNode));
@@ -216,8 +233,7 @@
                 node.AttributeAsString("language") :
                 CultureInfo.CurrentCulture.Name;
 
-            XmlNode childNode = node.FirstChild;
-            return new FontResource(resourceId, null, ProcessFont(childNode));
+            return new FontResource(resourceId, null, ProcessFont(node.FirstChild));
         }
 
         /// <summary>
@@ -252,48 +268,71 @@
             int code = Int32.Parse(node.Attributes["code"].Value.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber);
             int advance = node.AttributeAsInteger("advance");
 
-            // Comprova si es un font amb bitmap
+            // Comprova si el caracter no te imatge
             //
-            XmlNode bitmapNode = node.SelectSingleNode("bitmap", namespaceManager);
-            if (bitmapNode != null) {
-                int left = Convert.ToInt32(bitmapNode.Attributes["left"].Value);
-                int top = Convert.ToInt32(bitmapNode.Attributes["top"].Value);
-                int width = Convert.ToInt32(bitmapNode.Attributes["width"].Value);
-                int height = Convert.ToInt32(bitmapNode.Attributes["height"].Value);
+            if (node.FirstChild == null)
+                return new FontChar(code, 0, 0, 0, 0, advance, null);
 
-                List<byte> bitmap = new List<byte>();
-                foreach (XmlNode scanLineNode in bitmapNode.SelectNodes("scanLine", namespaceManager)) {
-                    string scanLine = scanLineNode.InnerText;
-                    if (String.IsNullOrEmpty(scanLine))
-                        bitmap.Add(0);
-                    else {
-                        byte b = 0;
-                        byte mask = 0x80;
-                        for (int i = 0; i < scanLine.Length; i++) {
-                            if (scanLine[i] != '.')
-                                b |= (byte)(mask >> (i & 0x07));
-                            if (((i % 8) == 7) || (i == scanLine.Length - 1)) {
-                                bitmap.Add(b);
-                                b = 0;
-                            }
-                        }
-                    }
-                }
+            // Comprova si el caracter es una imatge de mapa de bits
+            //
+            else if (node.FirstChild.Name == "bitmap") {
 
-                return new FontChar(code, left, top, width, height, advance, bitmap.ToArray());
+                BitmapNodeInfo bitmapNodeInfo = ProcessBitmapChar(node.FirstChild);
+                return new FontChar(code, bitmapNodeInfo.Left, bitmapNodeInfo.Top, bitmapNodeInfo.Width,
+                        bitmapNodeInfo.Height, advance, bitmapNodeInfo.Bytes);
             }
 
-            // Comprova si es un fomt amb glyh
+            // Comprova si el caracter es una imatge vectorial vectorial
             //
-            XmlNode glyphNode = node.SelectSingleNode("glyph", namespaceManager);
-            if (glyphNode != null) {
+            else if (node.FirstChild.Name == "glyph") {
 
                 return null;
             }
 
-            // Es un font sense imatge
-            //
-            return new FontChar(code, 0, 0, 0, 0, advance, null);
+            else
+                throw new InvalidDataException("No se reconoce el formato de caracter.");
+        }
+
+        /// <summary>
+        /// P^rocesa un node 'bitmap'
+        /// </summary>
+        /// <param name="node">El node a procesar.</param>
+        /// <returns>Un objecte 'BitmapNodeInfo' amb informacio del node.</returns>
+        /// 
+        private BitmapNodeInfo ProcessBitmapChar(XmlNode node) {
+
+            int left = node.AttributeAsInteger("left");
+            int top = node.AttributeAsInteger("top");
+            int width = node.AttributeAsInteger("width");
+            int height = node.AttributeAsInteger("height");
+
+            List<byte> bitmap = new List<byte>();
+            foreach (XmlNode childNode in node.ChildNodes) {
+                string scanLine = childNode.InnerText;
+                if (String.IsNullOrEmpty(scanLine))
+                    bitmap.Add(0);
+                else {
+                    byte b = 0;
+                    byte mask = 0x80;
+                    for (int i = 0; i < scanLine.Length; i++) {
+                        if (scanLine[i] != '.')
+                            b |= (byte)(mask >> (i & 0x07));
+                        if (((i % 8) == 7) || (i == scanLine.Length - 1)) {
+                            bitmap.Add(b);
+                            b = 0;
+                        }
+                    }
+                }
+
+            }
+
+            return new BitmapNodeInfo {
+                Left = left,
+                Top = top,
+                Width = width,
+                Height = height,
+                Bytes = bitmap.ToArray()
+            };
         }
 
         private FontTableResource ProcessFontTableResource(XmlNode node) {
@@ -309,7 +348,7 @@
             List<FontTableItem> items = new List<FontTableItem>();
             foreach (XmlNode childNode in node.SelectNodes("font", namespaceManager))
                 items.Add(ProcessFontTableItem(childNode));
-                
+
             return new FontTable(items);
         }
 
@@ -359,7 +398,7 @@
         private Bitmap ProcessBitmapNode(XmlNode bitmapNode) {
 
             string source = bitmapNode.Attributes["source"].Value;
-            BitmapFormat format = (BitmapFormat) Enum.Parse(typeof(BitmapFormat), bitmapNode.Attributes["format"].Value, true);
+            BitmapFormat format = (BitmapFormat)Enum.Parse(typeof(BitmapFormat), bitmapNode.Attributes["format"].Value, true);
 
             return new Bitmap(source, format);
         }

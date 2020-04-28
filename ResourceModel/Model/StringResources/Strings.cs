@@ -4,21 +4,18 @@
 
     public sealed class Strings: IVisitable {
 
-        private List<StringsItem> items = new List<StringsItem>();
-
-        public Strings(params StringsItem[] items) {
-
-            this.items.AddRange(items);
-        }
+        private IEnumerable<StringsItem> items;
 
         public Strings(IEnumerable<StringsItem> items) {
 
-            this.items.AddRange(items);
+            this.items = items;
         }
 
         public void AcceptVisitor(IVisitor visitor) {
 
             visitor.Visit(this);
         }
+
+        public IEnumerable<StringsItem> Items => items;
     }
 }

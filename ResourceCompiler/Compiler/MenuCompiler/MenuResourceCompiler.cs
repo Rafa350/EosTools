@@ -43,9 +43,9 @@
             string fileName, path;
 
             if (resource == null)
-                throw new ArgumentNullException("resource");
+                throw new ArgumentNullException(nameof(resource));
 
-            string outputBaseFileName = resource.ResourceId;
+            string outputBaseFileName = resource.Id;
             string outputExtension = defOutputExtension;
             string outputHeaderExtension = defOutputHeaderExtension;
 
@@ -115,7 +115,7 @@
             writer.WriteLine();
             writer.WriteLine();
 
-            writer.WriteLine("extern const unsigned char menu{0}[];", resource.ResourceId);
+            writer.WriteLine("extern const unsigned char menu{0}[];", resource.Id);
         }
 
         private void GenerateSource(MenuResource menuResource, TextWriter writer) {
@@ -136,11 +136,11 @@
             writer.WriteLine(" ************************************************************************/");
             writer.WriteLine();
             writer.WriteLine();
-            writer.WriteLine("#include \"{0}.h\"", menuResource.ResourceId);
+            writer.WriteLine("#include \"{0}.h\"", menuResource.Id);
             writer.WriteLine();
             writer.WriteLine();
 
-            writer.WriteLine("const unsigned char menu{0}[] = {{", menuResource.ResourceId);
+            writer.WriteLine("const unsigned char menu{0}[] = {{", menuResource.Id);
             writer.WriteLine();
             GenerateMenu(writer, menuResource.Menu);
             writer.WriteLine("};");

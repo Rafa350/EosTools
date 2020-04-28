@@ -7,8 +7,8 @@
 
         private readonly FontTable fontTable;
 
-        public FontTableResource(string resourceId, string languaje, FontTable fontTable)
-            : base(resourceId, languaje) {
+        public FontTableResource(string id, string languaje, FontTable fontTable)
+            : base(id, languaje) {
 
             if (fontTable == null)
                 throw new ArgumentNullException(nameof(fontTable));

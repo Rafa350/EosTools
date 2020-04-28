@@ -22,7 +22,7 @@
             public override void Visit(MenuResource resource) {
 
                 writer.WriteStartElement("menuResource");
-                writer.WriteAttributeString("resourceId", resource.ResourceId);
+                writer.WriteAttributeString("resourceId", resource.Id);
                 writer.WriteAttributeString("language", resource.Languaje);
 
                 base.Visit(resource);

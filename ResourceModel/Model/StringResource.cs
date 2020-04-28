@@ -7,8 +7,8 @@ namespace EosTools.v1.ResourceModel.Model {
 
         private readonly Strings strings;
 
-        public StringResource(string resourceId, string language, Strings strings): 
-            base(resourceId, language) {
+        public StringResource(string id, string language, Strings strings): 
+            base(id, language) {
 
             if (strings == null)
                 throw new ArgumentNullException(nameof(strings));

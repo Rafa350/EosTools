@@ -11,7 +11,7 @@
         public void Add(string text) {
 
             if (String.IsNullOrEmpty(text))
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
 
             if (text.Contains("=")) {
                 string[] s = text.Split(new char[] { '=' });
@@ -24,7 +24,7 @@
         public void Add(string name, string value) {
 
             if (String.IsNullOrEmpty(name))
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
 
             items.Add(name, value);
         }
@@ -32,7 +32,7 @@
         public void Populate(object dataObject) {
 
             if (dataObject == null)
-                throw new ArgumentNullException("dataObject");
+                throw new ArgumentNullException(nameof(dataObject));
 
             Type dataObjectType = dataObject.GetType();
             foreach (KeyValuePair<string, string> kv in items) {

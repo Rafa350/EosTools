@@ -14,12 +14,12 @@
         /// <summary>
         /// Contructor de recurs.
         /// </summary>
-        /// <param name="resourceId">Identificador del recurs.</param>
+        /// <param name="id">Identificador del recurs.</param>
         /// <param name="languaje">llenguatge del recurs.</param>
         /// <param name="menu">El menu que conte aquest recurs.</param>
         /// 
-        public MenuResource(string resourceId, string languaje, Menu menu) :
-            base(resourceId, languaje) {
+        public MenuResource(string id, string languaje, Menu menu) :
+            base(id, languaje) {
 
             if (menu == null)
                 throw new ArgumentNullException(nameof(menu));
@@ -41,10 +41,6 @@
         /// El menu contingut en el recurs.
         /// </summary>
         /// 
-        public Menu Menu {
-            get {
-                return menu;
-            }
-        }
+        public Menu Menu => menu;
     }
 }

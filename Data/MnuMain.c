@@ -3,7 +3,7 @@
  *       Archivo generado desde un archivo de recursos
  *       No modificar!
  *
- *       Fecha de generación  : 27/4/2020 17:55:37
+ *       Fecha de generación  : 28/4/2020 18:37:37
  *       Nombre del generador : EosResourceCompiler
  *       Version del generador: 1.1.0.0
  *

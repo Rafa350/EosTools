@@ -21,7 +21,7 @@
         public CmdLineParser(string title, string description = null, bool caseSensitive = false) {
 
             if (String.IsNullOrEmpty(title))
-                throw new ArgumentNullException("title");
+                throw new ArgumentNullException(nameof(title));
 
             this.title = title;
             this.description = description;
@@ -39,7 +39,7 @@
         public void Add(OptionDefinition optionDefinition) {
 
             if (optionDefinition == null)
-                throw new ArgumentNullException("optionDefinition");
+                throw new ArgumentNullException(nameof(optionDefinition));
 
             optionDefinitions.Add(optionDefinition.Name, optionDefinition);
         }
@@ -81,7 +81,7 @@
         private OptionDefinition FindOptionDefinition(string arg) {
 
             if (String.IsNullOrEmpty(arg))
-                throw new ArgumentNullException("arg");
+                throw new ArgumentNullException(nameof(arg));
 
             if (!arg.StartsWith(optionPrefix))
                 throw new InvalidOperationException("No es una opcion.");
@@ -96,7 +96,7 @@
         private ArgumentDefinition FindArgumentDefinition(string arg, int index) {
 
             if (String.IsNullOrEmpty(arg))
-                throw new ArgumentNullException("arg");
+                throw new ArgumentNullException(nameof(arg));
 
             return argumentDefinitions[index];
         }

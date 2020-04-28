@@ -11,7 +11,7 @@
     public class Bitmap: IVisitable {
 
         private readonly string source;
-        private BitmapFormat format;
+        private readonly BitmapFormat format;
 
         /// <summary>
         /// Constructor de l'objecte.
@@ -42,20 +42,12 @@
         /// Obte l'origen del bitmap.
         /// </summary>
         /// 
-        public string Source {
-            get {
-                return source;
-            }
-        }
+        public string Source => source;
 
         /// <summary>
         /// Obte el format.
         /// </summary>
         /// 
-        public BitmapFormat Format {
-            get {
-                return format;
-            }
-        }
+        public BitmapFormat Format => format;
     }
 }

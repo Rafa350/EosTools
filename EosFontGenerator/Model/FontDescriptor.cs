@@ -18,10 +18,10 @@
         public FontDescriptor(Font font, string name, string characters) {
 
             if (font == null)
-                throw new ArgumentNullException("font");
+                throw new ArgumentNullException(nameof(font));
 
             if (String.IsNullOrEmpty(characters))
-                throw new ArgumentNullException("characters");
+                throw new ArgumentNullException(nameof(characters));
 
             this.font = font;
             this.name = name;
