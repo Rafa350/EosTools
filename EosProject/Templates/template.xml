@@ -1,0 +1,19 @@
+<project>
+    <folder name="{ProjectName}">
+        <folder name="source">
+            <folder name="STM32F7">
+                <createFile name="appInitialize.cpp"/>
+                <copyFile name="stm32f7xx_hal_timebase_tim.cpp" origin=""/>
+                <copyFile name="stm32f7xx_it.cpp" origin=""/>
+            </folder>
+        </folder>
+        <folder name="include">
+            <folder name="STM32F7">
+                <copyFile name="FreeRTOSConfig.h" />
+                <copyFile name="stm32F7xx_hal_conf.h" />
+                <copyFile name="stm32F746g_discovery.h" />
+                <copyFile name="stm32F746g_discovery_sdram.h" />
+            </folder>
+        </folder>
+    </folder>
+</project>
