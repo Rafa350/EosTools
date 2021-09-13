@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "EosROMFsGenerator": {
+      "commandName": "Project",
+      "commandLineArgs": "-h C:\\Users\\Rafael\\Documents\\Projectes\\Embedded\\EOS\\v2\\Demo\\HttpDemo\\HTTP c:\\temp\\fs.c",
+      "workingDirectory": "C:\\Users\\Rafael\\Documents\\Projectes\\Net\\EosTools\\Data"
+    }
+  }
+}
